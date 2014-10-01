@@ -124,6 +124,7 @@ public class NavigationDrawerFragment extends Fragment {
         setChildListener();
         return mDrawerListView;
     }
+    //
 
     private void setHomeFragment() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
