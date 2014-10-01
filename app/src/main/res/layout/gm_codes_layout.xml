@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.jwilliams.machinistmate.app.FractionMetricActivity"
+    tools:ignore="MergeRootFrame">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#161819">
+
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:textSize="12sp"
+            android:id="@+id/codes_code"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            style="@style/HeaderStyle"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="60dp"
+            android:textSize="12sp"
+            style="@style/HeaderStyle"
+            android:gravity="center_vertical|left"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:id="@+id/codes_desc" />
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:text="Milling (M)"
+            android:textSize="12sp"
+            style="@style/HeaderStyle"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:id="@+id/codes_mill"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:text="Turning (T)"
+            android:textSize="12sp"
+            style="@style/HeaderStyle"
+            android:layout_marginBottom="1dp"
+            android:id="@+id/codes_turn"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_detail_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111111"
+    tools:context="com.jwilliams.machinistmate.app.SpeedsDetailActivity"
+    tools:ignore="MergeRootFrame">
+
+    <LinearLayout
+        android:id="@+id/speed_answer_layout"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="4dp"
+        android:orientation="horizontal">
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/speed_answer"
+            style="@style/AnswerStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="3"
+            android:gravity="center"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/speed_answer_type"
+            style="@style/TypeStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:gravity="center|fill"
+            android:text="@string/rpm" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/speed_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/speed_answer_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:orientation="horizontal">
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoRadioButton
+            android:id="@+id/speeds_standard_radio"
+            style="@style/radioButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:checked="true"
+            android:text="@string/standard" />
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoRadioButton
+            android:id="@+id/speeds_metric_radio"
+            style="@style/radioButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:text="@string/metric" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/speed_surface_layout"
+        android:layout_width="400dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/speed_radio_group"
+        android:orientation="horizontal"
+        android:layout_alignLeft="@id/speed_answer_layout"
+        android:layout_alignStart="@id/speed_answer_layout"
+        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp">
+
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/surface_view"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/surface_standard"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom"/>
+        <EditText
+            android:id="@+id/surfaceInput"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/diameter_view"
+        android:layout_width="400dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/speed_surface_layout"
+        android:layout_alignLeft="@id/speed_answer_layout"
+        android:layout_alignStart="@id/speed_answer_layout"
+        android:orientation="horizontal"
+        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp">
+
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/diameter_text"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/diameter"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom" />
+
+
+        <EditText
+            android:id="@+id/diameterInput"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom"
+            android:hint="@string/in"/>
+    </LinearLayout>
+
+    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+        android:id="@+id/speed_calc"
+        style="@style/calc_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/calculate"
+        android:layout_below="@+id/diameter_view" />
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/speeds_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+        ads:adSize="BANNER"
+        android:layout_below="@+id/speed_calc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="20dp"/>
+
+</RelativeLayout>

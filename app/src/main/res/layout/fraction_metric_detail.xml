@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:id="@id/item_detail_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jwilliams.machinistmate.app.FractionMetricActivity"
+    tools:ignore="MergeRootFrame">
+
+    <LinearLayout
+        android:id="@+id/chart_header"
+        android:orientation="horizontal"
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:background="#1d1d1d"
+        android:layout_margin="4dp">
+
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="@string/fraction"
+            android:id="@+id/textView"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="2dp"
+            android:textSize="12sp"
+            style="@style/HeaderStyle"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="@string/standard"
+            android:id="@+id/textView2"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="2dp"
+            android:textSize="12sp"
+            style="@style/HeaderStyle"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:textSize="12sp"
+            android:text="@string/metric"
+            android:id="@+id/textView3"
+            android:gravity="center"
+            android:layout_marginBottom="2dp"
+            style="@style/HeaderStyle"/>
+
+        </LinearLayout>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="600dp"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@+id/chart_header">
+    <GridView
+        android:id="@+id/chart_reference_grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#1d1d1d"
+        android:numColumns="3"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
+        android:layout_marginBottom="4dp"
+        android:clickable="false" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/frac_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+        ads:adSize="BANNER"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
+</RelativeLayout>

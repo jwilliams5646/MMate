@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111111">
+
+    <LinearLayout
+        android:id="@+id/conv_answer_layout"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="4dp">
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/conv_answer"
+            style="@style/AnswerStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:layout_weight="4"
+            android:gravity="center" />
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/conv_answer_type"
+            style="@style/AnswerStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:gravity="center|fill" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/conv_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_below="@id/conv_answer_layout"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp">
+
+        <LinearLayout
+            android:id="@+id/input_spinner_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <Spinner
+                android:id="@+id/conv_input_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="bottom" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/square_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:src="@drawable/ic_look_over"
+            android:contentDescription="@string/converto"
+            android:layout_gravity="center_vertical" />
+
+        <LinearLayout
+            android:id="@+id/output_spinner_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <Spinner
+                android:id="@+id/conv_output_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="bottom" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/conversion_input_layout"
+        android:layout_width="400dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/conv_spinner_layout"
+        android:orientation="horizontal"
+        android:layout_alignStart="@id/conv_answer_layout"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginRight="4dp">
+
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/conv_input_text"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/input"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom" />
+
+
+        <EditText
+            android:id="@+id/conv_input"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom"
+            android:hint="@string/in"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/conv_precision_layout"
+        android:layout_below="@+id/conversion_input_layout"
+        android:layout_centerHorizontal="true">
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/precision"
+            android:id="@+id/textView"
+            android:layout_margin="4dp"
+            android:gravity="right|bottom"
+            style="@style/TextViewStyle"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="-"
+            android:id="@+id/conv_minus_button"
+            android:layout_margin="4dp"
+            style="@style/buttons"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="2"
+            android:id="@+id/conv_precision_view"
+            android:layout_margin="4dp"
+            style="@style/TextViewStyle"
+            android:gravity="center"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="+"
+            android:id="@+id/conv_add_button"
+            android:layout_margin="4dp"
+            style="@style/buttons"/>
+    </LinearLayout>
+
+    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+        android:id="@+id/conv_calc_button"
+        style="@style/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/calculate"
+        android:layout_below="@+id/conv_precision_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="4dp" />
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/rt_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+        ads:adSize="BANNER"
+        android:layout_below="@+id/conv_calc_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+
+</RelativeLayout>

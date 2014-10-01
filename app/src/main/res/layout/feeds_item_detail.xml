@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_detail_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111111"
+    tools:context="com.jwilliams.machinistmate.app.FeedsDetailActivity"
+    tools:ignore="MergeRootFrame">
+
+    <LinearLayout
+        android:id="@+id/feed_answer_layout"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="4dp"
+        android:orientation="horizontal">
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/feed_answer"
+            style="@style/AnswerStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:singleLine="true" />
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/feed_answer_type"
+            style="@style/TypeStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:gravity="center|fill"
+            android:padding="5dp" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/feed_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_below="@+id/feed_answer_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoRadioButton
+            android:id="@+id/feeds_standard_radio"
+            style="@style/radioButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:checked="true"
+            android:text="@string/standard" />
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoRadioButton
+            android:id="@+id/feeds_metric_radio"
+            style="@style/radioButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:text="@string/metric" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/feed_speed_layout"
+        android:layout_width="500dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/feed_radio_group"
+        android:layout_alignLeft="@id/feed_answer_layout"
+        android:layout_alignStart="@id/feed_answer_layout"
+        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
+        android:orientation="horizontal">
+
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/feed_speed"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/speedView"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom"/>
+
+        <EditText
+            android:id="@+id/feed_speed_input"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom|end"
+            android:hint="@string/rpm" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/feed_per_tooth_layout"
+        android:layout_width="500dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/feed_speed_layout"
+        android:layout_alignLeft="@id/feed_answer_layout"
+        android:layout_alignStart="@id/feed_answer_layout"
+        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
+        android:orientation="horizontal">
+
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/feed_per_tooth_view"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:text="@string/feedPerToothView"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom" />
+
+
+        <EditText
+            android:id="@+id/feed_per_tooth_input"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
+            android:hint="@string/in"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom|end"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/number_teeth_layout"
+        android:layout_width="500dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/feed_per_tooth_layout"
+        android:layout_alignLeft="@id/feed_answer_layout"
+        android:layout_alignStart="@id/feed_answer_layout"
+        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
+        android:orientation="horizontal">
+
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:id="@+id/number_teeth_view"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:text="@string/numberTeethView"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom"/>
+
+
+        <EditText
+            android:id="@+id/number_teeth_input"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
+            android:gravity="bottom|end"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="bottom" />
+    </LinearLayout>
+
+    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+        android:id="@+id/feed_calc"
+        style="@style/calc_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/number_teeth_layout"
+        android:layout_centerHorizontal="true"
+        android:text="@string/calculate"
+        android:layout_marginTop="10dp" />
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/feeds_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+        ads:adSize="BANNER"
+        android:layout_below="@+id/feed_calc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+
+</RelativeLayout>

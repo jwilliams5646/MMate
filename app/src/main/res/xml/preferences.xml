@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/home_screen">
+        <ListPreference
+            android:key="pref_key_home_choice"
+            android:title="@string/home_title"
+            android:entries="@array/home_entries"
+            android:entryValues="@array/home_values"
+            android:defaultValue="0"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_precision">
+        <ListPreference
+            android:key="pref_key_feeds_precision"
+            android:title="@string/feeds_precision"
+            android:entries="@array/pref_precision_array"
+            android:entryValues="@array/pref_precision_array"
+            android:defaultValue="4"/>
+        <ListPreference
+            android:key="pref_key_conversion_precision"
+            android:title="@string/conv_precision"
+            android:entries="@array/pref_precision_array"
+            android:entryValues="@array/pref_precision_array"
+            android:defaultValue="2"/>
+        <ListPreference
+            android:key="pref_key_geometry_precision"
+            android:title="@string/geometry_precision"
+            android:entries="@array/pref_precision_array"
+            android:entryValues="@array/pref_precision_array"
+            android:defaultValue="2" />
+    </PreferenceCategory>
+</PreferenceScreen>

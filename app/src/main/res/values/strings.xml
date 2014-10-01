@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name"><b>Machinist Mate</b></string>
+    <string name="action_settings">Settings</string>
+    <string name="action_example">Example</string>
+    <string name="navigation_drawer_open">Drawer Open</string>
+    <string name="navigation_drawer_close">Close Drawer</string>
+
+    <!--Preferences -->
+    <string name="home_screen">Home Screen</string>
+    <string name="home_title">Set Home Tool</string>
+    <string name="home_summary"></string>
+    <string-array name="home_entries">
+        <item>Speeds</item>
+        <item>Feeds</item>
+        <item>CNC Codes</item>
+        <item>Length</item>
+        <item>Volume</item>
+        <item>Right Triangle</item>
+        <item>Oblique Triangle</item>
+        <item>Circle</item>
+        <item>Square</item>
+        <item>Rectangle</item>
+        <item>Trapezoid</item>
+        <item>Parallelogram</item>
+        <item>Conversion Chart</item>
+        <item>Drill Chart</item>
+    </string-array>
+    <string-array name="home_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+    </string-array>
+
+    <string name="pref_precision">Precision</string>
+    <string name="feeds_precision">Feeds Precision</string>
+    <string name="conv_precision">Conversions Precision</string>
+    <string name="geometry_precision">Geometry Precision</string>
+    <string-array name="pref_precision_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+    <string name="in">inch</string>
+    <string name="ft">foot</string>
+    <string name="yd">yard</string>
+    <string name="mm">millimeter</string>
+    <string name="cm">centimeter</string>
+    <string name="m">meter</string>
+    <string name="calculate"><b>Calculate</b></string>
+    <string name="surface_standard">SFM</string>
+    <string name="surface_metric">SMM</string>
+    <string name="surfaceFeet">ft</string>
+    <string name="surfaceMeters">m</string>
+    <string name="speedView">Speed</string>
+    <string name="feedPerToothView">Feed per Tooth</string>
+    <string name="numberTeethView">Number of Teeth</string>
+    <string name="standard"><b>Standard</b></string>
+    <string name="metric"><b>Metric</b></string>
+    <string name="fraction"><b>Fraction</b></string>
+    <string name="rpm">RPM</string>
+    <string name="ipm">IPM</string>
+    <string name="mmpm">MMPM</string>
+    <string name="input">Input</string>
+    <string name="diameter">Diameter</string>
+    <string name="precision">Max Precision</string>
+    <string name="converto">convert to</string>
+    <string name="opposite">(O)pposite</string>
+    <string name="hypotenuse">(H)ypotenuse</string>
+    <string name="adjacent">(A)djacent</string>
+    <string name="base">Base(A)</string>
+    <string name="height">Height(O)</string>
+    <string name="or"><b>or</b></string>
+
+
+    <string name="drill_size_chart"><b>Drill Size Chart</b></string>
+
+
+    <string-array name="conv_length_array">
+        <item>Inch</item>
+        <item>Foot</item>
+        <item>Yard</item>
+        <item>Millimeter</item>
+        <item>Centimeter</item>
+        <item>Meter</item>
+    </string-array>
+
+
+    <string-array name="conv_volume_array">
+        <item>in<sup><small>3</small></sup></item>
+        <item>ft<sup><small>3</small></sup></item>
+        <item>yd<sup><small>3</small></sup></item>
+        <item>mm<sup><small>3</small></sup></item>
+        <item>cm<sup><small>3</small></sup></item>
+        <item>m<sup><small>3</small></sup></item>
+    </string-array>
+
+    <string-array name="rt_array">
+        <item>Sine</item>
+        <item>Inverse Sine</item>
+        <item>Cosine</item>
+        <item>Inverse Cosine</item>
+        <item>Tangent</item>
+        <item>Inverse Tangent</item>
+        <item>Area</item>
+        <item>Side H</item>
+        <item>Side O</item>
+        <item>Side A</item>
+        <item>Perimeter</item>
+    </string-array>
+
+    <string-array name="degree_rad_array">
+        <item>Degree</item>
+        <item>Radian</item>
+    </string-array>
+
+    <string-array name="degree_rad_value_array">
+        <item>Degree</item>
+        <item>Radian</item>
+        <item>Sides</item>
+    </string-array>
+
+    <string-array name="square_calc_array">
+        <item>Area</item>
+        <item>Diagonal</item>
+        <item>Side</item>
+        <item>Perimeter</item>
+    </string-array>
+
+    <string-array name="square_side_array">
+        <item>Area</item>
+        <item>Diagonal</item>
+        <item>Perimeter</item>
+    </string-array>
+
+    <string-array name="rect_calc_array">
+        <item>Area</item>
+        <item>Diagonal (d)</item>
+        <item>Width (W)</item>
+        <item>Length (L)</item>
+        <item>Perimeter</item>
+    </string-array>
+
+    <string-array name="rect_input_array">
+        <item>Area</item>
+        <item>Diagonal (d)</item>
+        <item>Perimeter</item>
+    </string-array>
+
+    <string-array name="circle_calc_array">
+        <item>Radius (r)</item>
+        <item>Diameter (d)</item>
+        <item>Area</item>
+        <item>Circumference (c)</item>
+    </string-array>
+
+    <string-array name="circle_radius_array">
+        <item>Diameter</item>
+        <item>Area</item>
+        <item>Circumference</item>
+    </string-array>
+
+    <string-array name="para_calc_array">
+        <item>Area</item>
+        <item>Base (b)</item>
+        <item>Height (h)</item>
+        <item>Side (a)</item>
+        <item>Perimeter</item>
+        <item>Angle x</item>
+        <item>Angle y</item>
+    </string-array>
+
+    <string-array name="trap_calc_array">
+        <item>Area</item>
+        <item>Base (a)</item>
+        <item>Base (b)</item>
+        <item>Side (c)</item>
+        <item>Side (d)</item>
+        <item>Height (h)</item>
+        <item>Median (m)</item>
+        <item>Perimeter</item>
+    </string-array>
+
+
+
+</resources>

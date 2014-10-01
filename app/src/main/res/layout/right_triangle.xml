@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="125dp"
+        android:id="@+id/rt_image"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:src="@drawable/right_triangle"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/rt_layout1"
+        android:layout_below="@+id/rt_image"
+        android:layout_alignLeft="@+id/rt_image">
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="H"
+            android:id="@+id/rt_h_view"
+            style="@style/TextViewStyle"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:id="@+id/rt_h_input"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            style="@style/EditTextStyle"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="x"
+            android:id="@+id/rt_x_view"
+            android:layout_margin="4dp"
+            style="@style/TextViewStyle"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:id="@+id/rt_x_input"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            style="@style/EditTextStyle" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/rt_x_spinner"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/rt_layout2"
+        android:layout_below="@+id/rt_layout1"
+        android:layout_alignLeft="@+id/rt_image">
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="O"
+            android:id="@+id/rt_o_view"
+            style="@style/TextViewStyle"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:id="@+id/rt_o_input"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            style="@style/EditTextStyle"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="y"
+            android:id="@+id/rt_y_view"
+            android:layout_margin="4dp"
+            style="@style/TextViewStyle"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:id="@+id/rt_y_input"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            style="@style/EditTextStyle" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/rt_y_spinner"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/rt_layout3"
+        android:layout_below="@+id/rt_layout2"
+        android:layout_alignLeft="@+id/rt_image">
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="A"
+            android:id="@+id/rt_a_view"
+            style="@style/TextViewStyle"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:id="@+id/rt_a_input"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            style="@style/EditTextStyle"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Area"
+            android:id="@+id/rt_area_view"
+            android:layout_margin="4dp"
+            style="@style/TextViewStyle"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text=""
+            android:id="@+id/rt_area_answer"
+            android:layout_margin="4dp"
+            style="@style/TextViewStyle"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/rt_layout4"
+        android:layout_below="@+id/rt_layout3"
+        android:layout_alignLeft="@+id/rt_image">
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Perimeter"
+            android:id="@+id/rt_perimeter_view"
+            style="@style/TextViewStyle"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text=""
+            android:id="@+id/rt_perimeter_answer"
+            android:layout_margin="4dp"
+            style="@style/TextViewStyle"
+            android:layout_weight="1"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Clear"
+            android:id="@+id/rt_clear_button"
+            style="@style/buttons"
+            android:layout_margin="4dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rt_layout4"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/rt_layout5">
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="Precision"
+            android:id="@+id/textView"
+            android:gravity="right|bottom"
+            style="@style/TextViewStyle"
+            android:layout_margin="4dp"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="-"
+            android:id="@+id/rt_minus_button"
+            style="@style/buttons"
+            android:layout_margin="4dp"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/rt_precision_view"
+            android:gravity="center"
+            android:text="2"
+            style="@style/TextViewStyle"
+            android:layout_margin="4dp"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="+"
+            android:id="@+id/rt_add_button"
+            style="@style/buttons"
+            android:layout_margin="4dp"/>
+    </LinearLayout>
+
+    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="\?"
+        android:id="@+id/rt_question_button"
+        style="@style/buttons"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/rt_image"
+        android:layout_margin="10dp"/>
+
+    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/calculate"
+        android:id="@+id/rt_calc_button"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/rt_layout5"
+        style="@style/buttons"
+        android:layout_margin="4dp"/>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/rt_adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+            ads:adSize="BANNER"
+            android:layout_below="@+id/rt_calc_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"/>
+
+</RelativeLayout>
+</ScrollView>

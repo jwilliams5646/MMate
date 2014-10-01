@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fraction_metric_chart"><b>Fraction - Metric Chart</b></string>
+
+    <string-array name="reference_array">
+        <item>Fraction to Metric</item>
+        <item>Stuff</item>
+        <item>Junk</item>
+    </string-array>
+
+
+    <string-array name="fraction_metric_list">
+        <item><b>1/64</b></item>  <item>.0156</item>  <item>0.396</item>
+        <item><b>1/32</b></item>  <item>.0312</item>  <item>.0793</item>
+        <item>-</item>  <item>.0394</item>  <item><b>1 mm</b></item>
+        <item><b>3/64</b></item>  <item>.0468</item>  <item>1.190</item>
+        <item><b>1/16</b></item>  <item>.0625</item>  <item>1.587</item>
+        <item><b>5/64</b></item>  <item>.0781</item>  <item>1.984</item>
+        <item>-</item>  <item>.0787</item>  <item><b>2 mm</b></item>
+        <item><b>3/32</b></item>  <item>.0937</item>  <item>2.381</item>
+        <item><b>7/64</b></item>  <item>.1093</item>  <item>2.778</item>
+        <item>-</item>  <item>.1181</item>  <item><b>3 mm</b></item>
+        <item><b>1/8</b></item>  <item>.125</item>  <item>3.175</item>
+        <item><b>9/64</b></item>  <item>.1406</item>  <item>3.571</item>
+        <item><b>5/32</b></item>  <item>.1562</item>  <item>3.968</item>
+        <item>-</item>  <item>.1575</item>  <item><b>4 mm</b></item>
+        <item><b>11/64</b></item>  <item>.1718</item>  <item>4.365</item>
+        <item><b>3/16</b></item>  <item>.1875</item>  <item>4.762</item>
+        <item>-</item>  <item>.2165</item>  <item><b>5 mm</b></item>
+        <item><b>13/64</b></item>  <item>.2031</item>  <item>5.159</item>
+        <item><b>7/32</b></item>  <item>.2187</item>  <item>5.5561</item>
+        <item><b>15/64</b></item>  <item>.2343</item>  <item>5.953</item>
+        <item>-</item>  <item>.2362</item>  <item><b>6 mm</b></item>
+        <item><b>1/4</b></item>  <item>.250</item>  <item>6.350</item>
+        <item><b>17/64</b></item>  <item>.2656</item>  <item>6.746</item>
+        <item>-</item>  <item>.2756</item>  <item><b>7 mm</b></item>
+        <item><b>9/32</b></item>  <item>.2812</item>  <item>7.143</item>
+        <item><b>19/64</b></item>  <item>.2968</item>  <item>7.540</item>
+        <item><b>5/16</b></item>  <item>.3125</item>  <item>7.937</item>
+        <item>-</item>  <item>.3150</item>  <item><b>8 mm</b></item>
+        <item><b>21/64</b></item>  <item>.3281</item>  <item>8.334</item>
+        <item><b>11/32</b></item>  <item>.3437</item>  <item>8.731</item>
+        <item>-</item>  <item>.3543</item>  <item><b>9 mm</b></item>
+        <item><b>23/64</b></item>  <item>.3593</item>  <item>9.128</item>
+        <item><b>3/8</b></item>  <item>.375</item>  <item>9.525</item>
+        <item><b>25/64</b></item>  <item>.3906</item>  <item>9.921</item>
+        <item>-</item>  <item>.3937</item>  <item><b>10 mm</b></item>
+        <item><b>13/32</b></item>  <item>.4062</item>  <item>10.318</item>
+        <item><b>27/64</b></item>  <item>.4218</item>  <item>10.715</item>
+        <item>-</item>  <item>.4331</item>  <item><b>11 mm</b></item>
+        <item><b>7/16</b></item>  <item>.4375</item>  <item>11.112</item>
+        <item><b>29/64</b></item>  <item>.4531</item>  <item>11.509</item>
+        <item><b>15/32</b></item>  <item>.4687</item>  <item>11.906</item>
+        <item>-</item>  <item>.4724</item>  <item><b>12 mm</b></item>
+        <item><b>31/64</b></item>  <item>.4843</item>  <item>12.303</item>
+        <item><b>1/2</b></item>  <item>.500</item>  <item>12.700</item>
+        <item>-</item>  <item>.5118</item>  <item><b>13 mm</b></item>
+        <item><b>33/64</b></item>  <item>.5156</item>  <item>13.096</item>
+        <item><b>17/32</b></item>  <item>.5312</item>  <item>13.493</item>
+        <item><b>35/64</b></item>  <item>.5468</item>  <item>13.890</item>
+        <item>-</item>  <item>.5512</item>  <item><b>14 mm</b></item>
+        <item><b>9/</b></item>  <item>.5625</item>  <item>14.287</item>
+        <item><b>37/64</b></item>  <item>.5781</item>  <item>14.684</item>
+        <item>-</item>  <item>.5906</item>  <item><b>15 mm</b></item>
+        <item><b>19/32</b></item>  <item>.5937</item>  <item>15.081</item>
+        <item><b>39/64</b></item>  <item>.6093</item>  <item>15.478</item>
+        <item><b>5/8</b></item>  <item>.625</item>  <item>15.875</item>
+        <item>-</item>  <item>.6299</item>  <item><b>16 mm</b></item>
+        <item><b>41/64</b></item>  <item>.6406</item>  <item>16.271</item>
+        <item><b>21/32</b></item>  <item>.6562</item>  <item>16.668</item>
+        <item>-</item>  <item>.6693</item>  <item><b>17 mm</b></item>
+        <item><b>43/64</b></item>  <item>.6718</item>  <item>17.065</item>
+        <item><b>11/16</b></item>  <item>.6875</item>  <item>17.462</item>
+        <item><b>45/64</b></item>  <item>.7031</item>  <item>17.859</item>
+        <item>-</item>  <item>.7087</item>  <item><b>18 mm</b></item>
+        <item><b>23/32</b></item>  <item>.7187</item>  <item>18.256</item>
+        <item><b>47/64</b></item>  <item>.7343</item>  <item>18.653</item>
+        <item>-</item>  <item>.7480</item>  <item><b>19 mm</b></item>
+        <item><b>3/4</b></item>  <item>.750</item>  <item>19.050</item>
+        <item><b>49/64</b></item>  <item>.7656</item>  <item>19.446</item>
+        <item><b>25/32</b></item>  <item>.7812</item>  <item>19.843</item>
+        <item>-</item>  <item>.7874</item>  <item><b>20 mm</b></item>
+        <item><b>51/64</b></item>  <item>.7968</item>  <item>20.240</item>
+        <item><b>13/16</b></item>  <item>.8125</item>  <item>20.637</item>
+        <item>-</item>  <item>.8268</item>  <item><b>21 mm</b></item>
+        <item><b>53/64</b></item>  <item>.8281</item>  <item>21.034</item>
+        <item><b>27/32</b></item>  <item>.8437</item>  <item>21.431</item>
+        <item><b>55/64</b></item>  <item>.8593</item>  <item>21.828</item>
+        <item>-</item>  <item>.8661</item>  <item><b>22 m</b></item>
+        <item><b>7/8</b></item>  <item>.875</item>  <item>22.225</item>
+        <item><b>57/64</b></item>  <item>.8906</item>  <item>22.621</item>
+        <item>-</item>  <item>.9055</item>  <item><b>23 mm</b></item>
+        <item><b>29/32</b></item>  <item>.9062</item>  <item>23.018</item>
+        <item><b>59/64</b></item>  <item>.9218</item>  <item>23.415</item>
+        <item><b>15/16</b></item>  <item>.9375</item>  <item>23.812</item>
+        <item>-</item>  <item>.9449</item>  <item><b>24 mm</b></item>
+        <item><b>61/64</b></item>  <item>.9531</item>  <item>24.209</item>
+        <item><b>31/32</b></item>  <item>.9687</item>  <item>24.606</item>
+        <item>-</item>  <item>.9843</item>  <item><b>25 mm</b></item>
+        <item><b>63/64</b></item>  <item>.9843</item>  <item>25.003</item>
+        <item><b>1 in</b></item>  <item>1.000</item>  <item>25.400</item>
+    </string-array>
+</resources>
