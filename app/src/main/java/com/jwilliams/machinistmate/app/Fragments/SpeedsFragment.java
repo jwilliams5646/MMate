@@ -38,7 +38,7 @@ public class SpeedsFragment extends Fragment {
     private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private AdRequest adRequest;
-    Speeds speeds;
+    private Speeds speeds;
 
     public SpeedsFragment() {
     }
