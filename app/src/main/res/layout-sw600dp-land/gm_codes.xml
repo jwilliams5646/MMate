@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/vertical_separator"
+    android:showDividers="middle">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="G"
+            android:id="@+id/gm_g_button"
+            style="@style/buttons"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="M"
+            android:id="@+id/gm_m_button"
+            style="@style/buttons" />
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="Letter Address"
+            android:id="@+id/gm_address_button"
+            style="@style/buttons" />
+
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="match_parent"
+        android:divider="@drawable/horizontal_separator"
+        android:showDividers="middle">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gm_codes_header"
+            android:divider="@drawable/vertical_separator"
+            android:showDividers="middle">
+
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:text="Code"
+                android:textSize="12sp"
+                android:id="@+id/code_header"
+                style="@style/HeaderStyle"/>
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Description"
+                android:textSize="12sp"
+                style="@style/HeaderStyle"
+                android:id="@+id/desc_header" />
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:text="Milling (M)"
+                android:textSize="12sp"
+                style="@style/HeaderStyle"
+                android:id="@+id/mill_header"/>
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Turning (T)"
+                android:textSize="12sp"
+                style="@style/HeaderStyle"
+                android:id="@+id/turn_header"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gm_buttons"
+            android:id="@+id/gm_address_header"
+            android:visibility="gone">
+
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:text="Code"
+                android:textSize="12sp"
+                android:id="@+id/gm_code"
+                android:gravity="center"
+                style="@style/HeaderStyle"/>
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center_vertical|left"
+                android:text="Description"
+                android:textSize="12sp"
+                style="@style/HeaderStyle"
+                android:id="@+id/gm_desc" />
+
+        </LinearLayout>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/gm_code_list"
+            android:divider="@android:color/black"
+            android:dividerHeight="1dp"
+            android:fastScrollEnabled="true"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/gm_address_list"
+            android:divider="@android:color/black"
+            android:dividerHeight="1dp"
+            android:fastScrollEnabled="true"
+            android:visibility="gone"/>
+
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/drill_adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+            ads:adSize="BANNER"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+</LinearLayout>

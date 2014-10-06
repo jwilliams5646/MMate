@@ -55,18 +55,24 @@ public class DbHelper extends SQLiteOpenHelper {
 
         if(dbExist){
             //do nothing - database already exist
+            Log.d("Database ", "exists");
         }
 
-        dbExist = checkDataBase();
+        //dbExist = checkDataBase();
 
         if(!dbExist){
+            Log.d("Database ", "doesn't exist");
             //By calling this method and empty database will be created into the default system path
             //of your application so we are gonna be able to overwrite that database with our database.
+            Log.d("Creating new db", "");
             this.getReadableDatabase();
 
             try {
+                Log.d("Copying data into ", "new database");
                 copyDataBase();
             } catch (IOException e) {
+                e.printStackTrace();
+                Log.d("Copy ", "Database");
                 throw new Error("Error copying database");
             }
         }
@@ -86,6 +92,7 @@ public class DbHelper extends SQLiteOpenHelper {
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 
         }catch(SQLiteException e){
+            e.printStackTrace();
         }
 
         if(checkDB != null){
@@ -123,10 +130,14 @@ public class DbHelper extends SQLiteOpenHelper {
         myInput.close();
     }
 
-    public void openDataBase() throws SQLException {
+    public void openDataBase()  {
         //Open the database
         String myPath = DB_PATH + DB_NAME;
-        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        try {
+            myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -196,17 +207,17 @@ public class DbHelper extends SQLiteOpenHelper {
      *CNC Codes queries
      */
 
-    static String g = "g";
+    //static String g = "g";
     public Cursor getGCodes(){
         return myDataBase.rawQuery("select code, desc, mill, turn from cncc where type = 'g'",null);
     }
 
-    static String m = "m";
+    //static String m = "m";
     public Cursor getMCodes(){
         return myDataBase.rawQuery("select code, desc, mill, turn from cncc where type = 'm'",null);
     }
 
-    static String add = "add";
+    //static String add = "add";
     public Cursor getAddCodes(){
         return myDataBase.rawQuery("select code, desc, mill, turn from cncc where type = 'add'",null);
     }

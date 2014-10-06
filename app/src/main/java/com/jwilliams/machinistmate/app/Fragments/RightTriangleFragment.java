@@ -3,6 +3,7 @@ package com.jwilliams.machinistmate.app.Fragments;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.Formatter;
+import com.jwilliams.machinistmate.app.GeometryClasses.RightTriangle;
 import com.jwilliams.machinistmate.app.R;
 
 /**
@@ -114,6 +116,7 @@ public class RightTriangleFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                RightTriangle rt = new RightTriangle();
                 double h = 0.0;
                 double o = 0.0;
                 double a = 0.0;
@@ -127,72 +130,85 @@ public class RightTriangleFragment extends Fragment {
                 boolean cx = false;
                 boolean cy = false;
                 int count = 0;
+                Log.d("I'm in the clicker thingy","");
+                Log.d("count = ", Integer.toString(count));
+
 
                 try{
-                    h = Double.parseDouble(sideH.getText().toString());
+                    //h = Double.parseDouble(sideH.getText().toString());
+                    rt.setH(Double.parseDouble(sideH.getText().toString()));
                 }catch(NumberFormatException e){
                     ch = true;
                     count++;
                 }
                 try{
-                    o = Double.parseDouble(sideO.getText().toString());
+                    //o = Double.parseDouble(sideO.getText().toString());
+                    rt.setO(Double.parseDouble(sideO.getText().toString()));
                 }catch(NumberFormatException e){
                     co = true;
                     count++;
                 }
                 try{
-                    a = Double.parseDouble(sideA.getText().toString());
+                    //a = Double.parseDouble(sideA.getText().toString());
+                    rt.setA(Double.parseDouble(sideA.getText().toString()));
                 }catch(NumberFormatException e){
                     ca = true;
                     count++;
                 }
                 try{
                     x = Double.parseDouble(angleX.getText().toString());
+                    rt.setX(x);
                 }catch(NumberFormatException e){
                     cx = true;
                     count++;
                 }
                 try{
                     y = Double.parseDouble(angleY.getText().toString());
+                    rt.setY(y);
                 }catch(NumberFormatException e){
                     cy = true;
                     count++;
                 }
-                if(count > 4){
+
+                Log.d("count = ", Integer.toString(count));
+                //Log.d("count = ", boolean.toString(count));
+/*                if(count > 4){
                     Toast.makeText(getActivity(), "Input at least 2 values", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(count < 2){
                     Toast.makeText(getActivity(), "Input only 2 values", Toast.LENGTH_SHORT).show();
                     return;
-                }
+                }*/
 
-                if(!ch && !co && ca && cx && cy){
-                    ss_ho(h, o, a, x, y, p, area);
-                }
-                else if(!ch && co && !ca && cx && cy){
-                    ss_ha(h, o, a, x, y, p, area);
-                }
-                else if(!ch && co && ca && !cx && cy){
-                    sa_hx(h, o, a, x, y, p, area);
-                }
-                else if(!ch && co && ca && cx && !cy){
-                    sa_hy(h, o, a, x, y, p, area);
-                }
-                else if(ch && !co && !ca && cx && cy){
-                    ss_oa(h, o, a, x, y, p, area);
-                }
-                else if(ch && !co && ca && !cx && cy){
-                    sa_ox(h, o, a, x, y, p, area);
-                }
-                else if(ch && !co && ca && cx && !cy){
-                    sa_oy(h, o, a, x, y, p, area);
-                }
-                else if(ch && co && !ca && !cx && cy){
-                    sa_ax(h, o, a, x, y, p, area);
-                }
-                else if(ch && co && !ca && cx && !cy){
-                    sa_ay(h, o, a, x, y, p, area);
+                if(count == 3  && (cx && cy)) {
+                    if (!ch && !co) {
+                        ss_ho(h, o, a, x, y, p, area);
+                        rt.calcFromHO(h, o);
+                    } else if (!ch && !ca) {
+                        if(h>a) {
+                            rt.calcFromHA(h, a);
+                        }else{
+                            Toast.makeText(getActivity(), "Side H must always be longer than side A.", Toast.LENGTH_SHORT).show();
+                        }
+                        ss_ha(h, o, a, x, y, p, area);
+                    } else if (!ch && !cx) {
+                        sa_hx(h, o, a, x, y, p, area);
+                    } else if (!ch && co && ca && cx && !cy) {
+                        sa_hy(h, o, a, x, y, p, area);
+                    } else if (ch && !co && !ca && cx && cy) {
+                        ss_oa(h, o, a, x, y, p, area);
+                    } else if (ch && !co && ca && !cx && cy) {
+                        sa_ox(h, o, a, x, y, p, area);
+                    } else if (ch && !co && ca && cx && !cy) {
+                        sa_oy(h, o, a, x, y, p, area);
+                    } else if (ch && co && !ca && !cx && cy) {
+                        sa_ax(h, o, a, x, y, p, area);
+                    } else if (ch && co && !ca && cx && !cy) {
+                        sa_ay(h, o, a, x, y, p, area);
+                    }
+                }else{
+                    Toast.makeText(getActivity(), "You must enter 2 values, and they cannot both be angles.", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -320,6 +336,7 @@ public class RightTriangleFragment extends Fragment {
             }
 
             private void ss_ho(double h, double o, double a, double x, double y, double p, double area) {
+                Log.d("I'm in the HO, ", "big booty HO");
                 a = Math.sqrt(h * h - o * o);
                 x = Math.toDegrees(Math.asin(o / h));
                 y = 90 - x;

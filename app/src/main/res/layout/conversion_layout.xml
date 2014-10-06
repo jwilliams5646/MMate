@@ -10,7 +10,6 @@
         android:id="@+id/conv_answer_layout"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="4dp">
@@ -41,48 +40,33 @@
         android:layout_below="@id/conv_answer_layout"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp">
-
-        <LinearLayout
-            android:id="@+id/input_spinner_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+        android:layout_margin="4dp">
 
             <Spinner
                 android:id="@+id/conv_input_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_gravity="bottom" />
-        </LinearLayout>
+                android:layout_marginEnd="4dp"/>
 
         <ImageView
             android:id="@+id/square_image"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
             android:src="@drawable/ic_look_over"
             android:contentDescription="@string/converto"
             android:layout_gravity="center_vertical" />
 
-        <LinearLayout
-            android:id="@+id/output_spinner_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
             <Spinner
                 android:id="@+id/conv_output_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_gravity="bottom" />
-        </LinearLayout>
+                android:layout_marginStart="4dp" />
 
 
     </LinearLayout>
@@ -93,7 +77,6 @@
         android:layout_height="48dp"
         android:layout_below="@+id/conv_spinner_layout"
         android:orientation="horizontal"
-        android:layout_alignStart="@id/conv_answer_layout"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:layout_marginRight="4dp">
