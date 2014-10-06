@@ -30,7 +30,7 @@
                 android:right="10dp"
                 android:bottom="10dp" />
             <solid
-                android:color="#1d1d1d" />
+                android:color="#0d0d0d" />
         </shape>
     </item>
 </selector>

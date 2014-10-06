@@ -155,22 +155,21 @@ public class GMFragment extends Fragment {
             if(codeContent!=null){
                 codeContent.clear();
                 codeAdapter = null;
-                codeList.setAdapter(null);
             }
 
             if(addContent!=null){
                 addContent.clear();
                 addAdapter = null;
-                addList.setAdapter(null);
             }
+
             if(dbSwitch <= 1){
                 setCodeAdapter();
             }else if(dbSwitch==2){
                 setAddressAdapter();
             }
-            codeHeader.setVisibility(View.INVISIBLE);
+
+            codeList.setAdapter(null);
             codeList.setVisibility(View.GONE);
-            addressHeader.setVisibility(View.INVISIBLE);
             addList.setVisibility(View.GONE);
         }
 
@@ -231,17 +230,20 @@ public class GMFragment extends Fragment {
             switch(dbSwitch){
                 case 0:
                     Log.d("post-execute", "codeAdapter0");
+                    addressHeader.setVisibility(View.GONE);
                     codeList.setAdapter(codeAdapter);
                     codeHeader.setVisibility(View.VISIBLE);
                     codeList.setVisibility(View.VISIBLE);
                     break;
                 case 1:
                     Log.d("post-execute", "codeAdapter1");
+                    addressHeader.setVisibility(View.GONE);
                     codeList.setAdapter(codeAdapter);
                     codeHeader.setVisibility(View.VISIBLE);
                     codeList.setVisibility(View.VISIBLE);
                     break;
                 case 2:
+                    codeHeader.setVisibility(View.GONE);
                     addList.setAdapter(addAdapter);
                     addressHeader.setVisibility(View.VISIBLE);
                     addList.setVisibility(View.VISIBLE);
@@ -250,9 +252,9 @@ public class GMFragment extends Fragment {
 
 
 
-            if(addAdapter!=null){
+/*            if(addAdapter!=null){
                 addAdapter=null;
-            }
+            }*/
             c = null;
             this.cancel(true);
         }

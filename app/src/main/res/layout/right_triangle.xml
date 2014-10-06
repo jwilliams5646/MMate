@@ -23,6 +23,7 @@
         android:orientation="horizontal"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
+        android:measureWithLargestChild="true"
         android:id="@+id/rt_layout1"
         android:layout_below="@+id/rt_image"
         android:layout_alignLeft="@+id/rt_image">

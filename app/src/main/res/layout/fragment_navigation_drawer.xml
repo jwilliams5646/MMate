@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:choiceMode="singleChoice"
-    android:divider="@android:color/black"
+    android:divider="#1b1b1b"
     android:dividerHeight="1dp"
-    android:background="#2d2d2d"
+    android:background="#171717"
     android:groupIndicator="@null"
+    android:childDivider="@android:color/black"
     tools:context=".NavigationDrawerFragment" />

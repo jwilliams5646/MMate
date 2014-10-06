@@ -59,11 +59,10 @@
 
     <style name="HeaderStyle" parent="BaseView">
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
-        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColor">#999999</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:background">#111111</item>
     </style>
 
     <style name="radioButtons" parent="BaseView">

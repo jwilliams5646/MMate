@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:id="@id/item_detail_container"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.jwilliams.machinistmate.app.FractionMetricActivity"
-    tools:ignore="MergeRootFrame">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="600dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="6dp"
-        android:layout_margin="4dp"
-        android:id="@+id/gm_buttons">
+        android:layout_marginTop="1dp"
+        android:id="@+id/gm_buttons"
+        android:divider="@drawable/vertical_separator"
+        android:showDividers="middle">
 
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
@@ -27,14 +23,12 @@
             android:textSize="12sp"
             android:text="G"
             android:id="@+id/gm_g_button"
-            android:layout_margin="1dp"
             style="@style/buttons"/>
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="40dp"
-            android:layout_margin="1dp"
             android:textSize="12sp"
             android:text="M"
             android:id="@+id/gm_m_button"
@@ -44,7 +38,6 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="40dp"
-            android:layout_margin="1dp"
             android:textSize="12sp"
             android:text="Letter Address"
             android:id="@+id/gm_address_button"
@@ -53,12 +46,11 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="600dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gm_buttons"
-        android:background="#161819"
         android:id="@+id/gm_codes_header"
-        android:layout_centerHorizontal="true">
+        android:divider="@drawable/vertical_separator"
+        android:showDividers="middle">
 
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -67,8 +59,6 @@
             android:text="Code"
             android:textSize="12sp"
             android:id="@+id/code_header"
-            android:layout_marginRight="1dp"
-            android:layout_marginBottom="2dp"
             style="@style/HeaderStyle"/>
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -78,9 +68,6 @@
             android:text="Description"
             android:textSize="12sp"
             style="@style/HeaderStyle"
-            android:gravity="center_vertical|left"
-            android:layout_marginRight="1dp"
-            android:layout_marginBottom="2dp"
             android:id="@+id/desc_header" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -89,8 +76,6 @@
             android:text="Milling (M)"
             android:textSize="12sp"
             style="@style/HeaderStyle"
-            android:layout_marginRight="1dp"
-            android:layout_marginBottom="2dp"
             android:id="@+id/mill_header"/>
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -99,19 +84,16 @@
             android:text="Turning (T)"
             android:textSize="12sp"
             style="@style/HeaderStyle"
-            android:layout_marginBottom="2dp"
             android:id="@+id/turn_header"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="600dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/gm_buttons"
-        android:background="#161819"
         android:id="@+id/gm_address_header"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible">
+        android:visibility="gone">
 
 
     <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -120,8 +102,6 @@
         android:text="Code"
         android:textSize="12sp"
         android:id="@+id/gm_code"
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="2dp"
         android:gravity="center"
         style="@style/HeaderStyle"/>
 
@@ -132,40 +112,33 @@
         android:gravity="center_vertical|left"
         android:text="Description"
         android:textSize="12sp"
-        android:layout_marginBottom="2dp"
         style="@style/HeaderStyle"
         android:id="@+id/gm_desc" />
 
 </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="600dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@+id/gm_codes_header"
-        android:layout_centerHorizontal="true">
         <ListView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/gm_code_list"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"/>
+            android:divider="@android:color/black"
+            android:dividerHeight="1dp"
+            android:fastScrollEnabled="true"/>
         <ListView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/gm_address_list"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:divider="@android:color/black"
+            android:dividerHeight="1dp"
+            android:fastScrollEnabled="true"
             android:visibility="gone"/>
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/drill_adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-            ads:adSize="BANNER"
-            android:layout_gravity="center"/>
-    </LinearLayout>
-</RelativeLayout>
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/drill_adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+        ads:adSize="BANNER"
+        android:layout_gravity="center"/>
+</LinearLayout>
