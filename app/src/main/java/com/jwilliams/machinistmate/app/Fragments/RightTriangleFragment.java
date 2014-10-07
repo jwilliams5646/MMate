@@ -206,10 +206,10 @@ public class RightTriangleFragment extends Fragment {
                         if(y < 1 || y >= 90){
                             setYToast();
                         } else{
-                            rt.calcFromHY(h,x,xPos,yPos);
+                            rt.calcFromHY(h,y,xPos,yPos);
                             postAnswers();
                         }
-                        sa_hy(h, o, a, x, y, p, area);
+                        //sa_hy(h, o, a, x, y, p, area);
                     } else if (ch && !co && !ca && cx && cy) {
                         ss_oa(h, o, a, x, y, p, area);
                     } else if (ch && !co && ca && !cx && cy) {
