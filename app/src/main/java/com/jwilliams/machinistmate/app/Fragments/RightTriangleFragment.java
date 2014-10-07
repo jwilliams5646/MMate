@@ -51,6 +51,7 @@ public class RightTriangleFragment extends Fragment {
     private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private AdRequest adRequest;
+    private RightTriangle rt;
 
 
     public RightTriangleFragment() {
@@ -73,7 +74,7 @@ public class RightTriangleFragment extends Fragment {
         setClearButtonListener();
         setQuestionButtonListener();
         setCalcButtonListener();
-        setPrecisionListeners();
+        //setPrecisionListeners();
         return rootView;
     }
 
@@ -86,7 +87,7 @@ public class RightTriangleFragment extends Fragment {
         adView.loadAd(adRequest);
     }
 
-    private void setPrecisionListeners() {
+/*    private void setPrecisionListeners() {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,13 +111,12 @@ public class RightTriangleFragment extends Fragment {
                 }
             }
         });
-    }
+    }*/
 
     private void setCalcButtonListener() {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RightTriangle rt = new RightTriangle();
                 double h = 0.0;
                 double o = 0.0;
                 double a = 0.0;
@@ -183,18 +183,32 @@ public class RightTriangleFragment extends Fragment {
 
                 if(count == 3  && (cx && cy)) {
                     if (!ch && !co) {
-                        ss_ho(h, o, a, x, y, p, area);
-                        rt.calcFromHO(h, o);
+                        //ss_ho(h, o, a, x, y, p, area);
+                        rt.calcFromHO(h,o,xPos,yPos);
+                        postAnswers();
                     } else if (!ch && !ca) {
-                        if(h>a) {
-                            rt.calcFromHA(h, a);
-                        }else{
+                        if(h<a) {
                             Toast.makeText(getActivity(), "Side H must always be longer than side A.", Toast.LENGTH_SHORT).show();
+                        }else{
+                            rt.calcFromHA(h,a,xPos,yPos);
+                            postAnswers();
                         }
-                        ss_ha(h, o, a, x, y, p, area);
+                        //ss_ha(h, o, a, x, y, p, area);
                     } else if (!ch && !cx) {
-                        sa_hx(h, o, a, x, y, p, area);
-                    } else if (!ch && co && ca && cx && !cy) {
+                        if(x < 1 || x >= 90){
+                            setXToast();
+                        } else{
+                            rt.calcFromHX(h,x,xPos,yPos);
+                            postAnswers();
+                        }
+                        //sa_hx(h, o, a, x, y, p, area);
+                    } else if (!ch && !cy) {
+                        if(y < 1 || y >= 90){
+                            setYToast();
+                        } else{
+                            rt.calcFromHY(h,x,xPos,yPos);
+                            postAnswers();
+                        }
                         sa_hy(h, o, a, x, y, p, area);
                     } else if (ch && !co && !ca && cx && cy) {
                         ss_oa(h, o, a, x, y, p, area);
@@ -304,7 +318,7 @@ public class RightTriangleFragment extends Fragment {
                 setAreaPeri(h, o, a);
             }
 
-            private void sa_hx(double h, double o, double a, double x, double y, double p, double area) {
+/*            private void sa_hx(double h, double o, double a, double x, double y, double p, double area) {
                 if(x < 1 || x >= 90){
                     setXToast();
                     return;
@@ -319,9 +333,9 @@ public class RightTriangleFragment extends Fragment {
                 sideA.setText(Formatter.formatOutput(a, precision));
                 setAngleY(y);
                 setAreaPeri(h,o,a);
-            }
+            }*/
 
-            private void ss_ha(double h, double o, double a, double x, double y, double p, double area) {
+/*            private void ss_ha(double h, double o, double a, double x, double y, double p, double area) {
                 if(h<a) {
                     Toast.makeText(getActivity(), "Side H must always be longer than side A.", Toast.LENGTH_SHORT).show();
                     return;
@@ -333,9 +347,9 @@ public class RightTriangleFragment extends Fragment {
                 setAngleX(x);
                 setAngleY(y);
                 setAreaPeri(h, o, a);
-            }
+            }*/
 
-            private void ss_ho(double h, double o, double a, double x, double y, double p, double area) {
+/*            private void ss_ho(double h, double o, double a, double x, double y, double p, double area) {
                 Log.d("I'm in the HO, ", "big booty HO");
                 a = Math.sqrt(h * h - o * o);
                 x = Math.toDegrees(Math.asin(o / h));
@@ -344,7 +358,7 @@ public class RightTriangleFragment extends Fragment {
                 setAngleX(x);
                 setAngleY(y);
                 setAreaPeri(h, o, a);
-            }
+            }*/
 
             public void setAngleX(double x){
                 if(xPos == 0){
@@ -383,6 +397,9 @@ public class RightTriangleFragment extends Fragment {
             private void setXToast() {
                 Toast.makeText(getActivity(), "Angle x can't be greater than 90 or less than 1", Toast.LENGTH_SHORT).show();
                 return;
+            }
+            private void postAnswers(){
+                Toast.makeText(getActivity(), "I haz all the answers.", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -458,6 +475,7 @@ public class RightTriangleFragment extends Fragment {
         yPos = 0;
         precision = 2;
         precisionView.setText(Integer.toString(precision));
+        rt = new RightTriangle();
     }
 
     private void clear(){
