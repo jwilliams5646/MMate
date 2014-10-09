@@ -11,6 +11,8 @@ public class RightTriangle {
     double y;
     double area;
     double perimeter;
+    int xPos;
+    int yPos;
 
     public void setH(double h){
        this.H = h;
@@ -32,12 +34,20 @@ public class RightTriangle {
         this.y = y;
     }
 
-    private void setArea(){
-        area = (O+A)/2;
+    public void setXPos(int xPos){
+        this.xPos = xPos;
     }
 
-    private void setPerimeter(){
-        perimeter = H+O+A;
+    public void setYPos(int yPos){
+        this.yPos = yPos;
+    }
+
+    public double getArea(){
+        return (O+A)/2;
+    }
+
+    public double setPerimeter(){
+        return H+O+A;
     }
 
     public double getRadians(double value){
@@ -48,15 +58,13 @@ public class RightTriangle {
         return Math.toDegrees(value);
     }
 
-    public double getY(double x){
-        return x - 90;
+    public double getY(){
+        return y;
     }
 
-    public void calcFromHO(double h, double o, int xPos, int yPos){
-        this.H = h;
-        this.O = o;
-        this.A = Math.sqrt(h * h - o * o);
-        x = Math.toDegrees(Math.asin(o / h));
+    public void calcFromHO(){
+        A = Math.sqrt(H * H - O * O);
+        x = Math.toDegrees(Math.asin(O / H));
         y = 90 - x;
         if(xPos == 1){
             x = getRadians(x);
@@ -64,15 +72,11 @@ public class RightTriangle {
         if(yPos == 1){
             y = getRadians(y);
         }
-        setArea();
-        setPerimeter();
     }
 
-    public void calcFromHA(double h, double a, int xPos, int yPos){
-        this.H = h;
-        this.A = a;
-        O = Math.sqrt(h * h - a * a);
-        x = Math.toDegrees(Math.acos(a / h));
+    public void calcFromHA(){
+        O = Math.sqrt(H * H - A * A);
+        x = Math.toDegrees(Math.acos(A / H));
         y = 90 - x;
         if(xPos == 1){
             x = getRadians(x);
@@ -80,41 +84,87 @@ public class RightTriangle {
         if(yPos == 1){
             y = getRadians(y);
         }
-        setArea();
-        setPerimeter();
     }
 
-    public void calcFromHX(double h, double x, int xPos, int yPos){
+    public void calcFromHX(){
         if(xPos == 1){
-            x = Math.toDegrees(x);
-        }
-        this.y = 90 - x;
-        if(xPos == 1){
-            this.x = getRadians(x);
+            y = 90 - Math.toDegrees(x);
+            O = H* Math.sin(x);
+            A = H* Math.cos(x);
+        }else {
+            y = 90 - x;
+            O = H* Math.sin(Math.toRadians(x));
+            A = H* Math.cos(Math.toRadians(x));
         }
         if(yPos == 1){
-            this.y = getRadians(y);
+            y = getRadians(y);
         }
-        O = h* Math.sin(Math.toRadians(x));
-        A = h* Math.cos(Math.toRadians(x));
-        setArea();
-        setPerimeter();
     }
 
-    public void calcFromHY(double h, double x, int xPos, int yPos){
-        if(xPos == 1){
-            x = Math.toDegrees(x);
+    public void calcFromHY(){
+        if(yPos == 1){
+            x = 90 - Math.toDegrees(y);
+        }else{
+            x = 90 - y;
         }
-        this.y = 90 - x;
+        O = H* Math.sin(Math.toRadians(x));
+        A = H* Math.cos(Math.toRadians(x));
         if(xPos == 1){
-            this.x = getRadians(x);
+            x = getRadians(x);
+        }
+    }
+
+    public void calcFromOA(){
+        H = Math.sqrt(O * O + A * A);
+        x = Math.toDegrees(Math.atan(O / A));
+        y = 90 - x;
+        if(xPos == 1){
+            x = getRadians(x);
         }
         if(yPos == 1){
-            this.y = getRadians(y);
+            y = getRadians(y);
         }
-        O = h* Math.sin(Math.toRadians(x));
-        A = h* Math.cos(Math.toRadians(x));
-        setArea();
-        setPerimeter();
+    }
+
+    public void calcFromOX(){
+        if(xPos == 1){
+            y = 90 - Math.toDegrees(x);
+            H = A/ Math.sin(Math.toRadians(y));
+            A = H* Math.cos(x);
+        }else{
+            y = 90 - x;
+            H = A/ Math.sin(Math.toRadians(y));
+            A = H* Math.cos(Math.toRadians(x));
+        }
+        if(yPos == 1){
+            y = getRadians(y);
+        }
+    }
+
+    public void calcFromOY(){
+        if(yPos == 1){
+            x = 90 - Math.toDegrees(y);
+            H = A/ Math.sin(y);
+        }else{
+            x = 90 - y;
+            H = A/ Math.sin(Math.toRadians(y));
+        }
+        A = H* Math.cos(Math.toRadians(x));
+        if(xPos == 1){
+            x = getRadians(x);
+        }
+    }
+
+    public void calcFromAX(){
+        if(xPos == 1){
+            y = 90 - Math.toDegrees(x);
+        }else{
+            y = 90 - x;
+        }
+        H = A/ Math.sin(Math.toRadians(y));
+        O = H* Math.sin(Math.toRadians(x));
+        if(yPos == 1){
+            y = getRadians(y);
+        }
     }
 }
