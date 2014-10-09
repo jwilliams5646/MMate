@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,16 +10,17 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:divider="@drawable/horizontal_separator"
+        android:showDividers="middle|beginning">
 
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="22sp"
-            android:text="G"
+            android:text="G Codes"
             android:id="@+id/gm_g_button"
             style="@style/buttons"/>
 
@@ -27,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="22sp"
-            android:text="M"
+            android:text="M Codes"
             android:id="@+id/gm_m_button"
             style="@style/buttons" />
 
@@ -38,6 +39,15 @@
             android:text="Letter Address"
             android:id="@+id/gm_address_button"
             style="@style/buttons" />
+
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/drill_adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+            ads:adSize="BANNER"
+            android:layout_gravity="center"/>
 
 
         </LinearLayout>
@@ -140,14 +150,5 @@
             android:dividerHeight="1dp"
             android:fastScrollEnabled="true"
             android:visibility="gone"/>
-
-
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/drill_adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-            ads:adSize="BANNER"
-            android:layout_gravity="center"/>
     </LinearLayout>
 </LinearLayout>

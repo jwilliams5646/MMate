@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.Adapters.DbHelper;
 import com.jwilliams.machinistmate.app.Adapters.GMAddAdapter;
@@ -110,8 +111,8 @@ public class GMFragment extends Fragment {
     private void setAd(View rootView){
         adView = (AdView)rootView.findViewById(R.id.drill_adView);
         adRequest = new AdRequest.Builder()
-/*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice(TEST_DEVICE_ID)*/
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice(TEST_DEVICE_ID)
                 .build();
         adView.loadAd(adRequest);
     }
