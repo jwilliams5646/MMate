@@ -191,6 +191,16 @@ public class RightTriangleFragment extends Fragment {
                     Toast.makeText(getActivity(), "You must enter 2 values, and they cannot both be angles.", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(!cx || !cy) {
+                    if (rt.getX() < 1 || rt.getX() >= 90) {
+                        setXToast();
+                        return;
+                    }
+                    if (rt.getY() < 1 || rt.getY() >= 90) {
+                        setYToast();
+                        return;
+                    }
+                }
 
                         if (!ch && !co) {
                             //ss_ho(h, o, a, x, y, p, area);
@@ -203,51 +213,32 @@ public class RightTriangleFragment extends Fragment {
                             }
                             //ss_ha(h, o, a, x, y, p, area);
                         } else if (!ch && !cx) {
-                            if (x < 1 || x >= 90) {
-                                setXToast();
-                            } else {
                                 rt.calcFromHX();
-                            }
                             //sa_hx(h, o, a, x, y, p, area);
                         } else if (!ch && !cy) {
-                            if (y < 1 || y >= 90) {
-                                setYToast();
-                            } else {
                                 rt.calcFromHY();
-                            }
                             //sa_hy(h, o, a, x, y, p, area);
                         } else if (!co && !ca) {
                             rt.calcFromOA();
                             //ss_oa(h, o, a, x, y, p, area);
                         } else if (!co && !cx) {
-                            if (x < 1 || x >= 90) {
-                                setXToast();
-                            } else {
                                 rt.calcFromOX();
-                            }
                             //sa_ox(h, o, a, x, y, p, area);
                         } else if (!co && !cy) {
-                            if (y < 1 || y >= 90) {
-                                setYToast();
-                            } else {
                                 rt.calcFromOY();
-                            }
                             //sa_oy(h, o, a, x, y, p, area);
                         } else if (!ca && !cx) {
-                            if (x < 1 || x >= 90) {
-                                setXToast();
-                            } else {
                                 rt.calcFromAX();
-                            }
                             //sa_ax(h, o, a, x, y, p, area);
-                        } else if (ch && co && !ca && cx && !cy) {
-                            sa_ay(h, o, a, x, y, p, area);
+                        } else if (!ca && !cy) {
+                            rt.calcFromAY();
+                            //sa_ay(h, o, a, x, y, p, area);
                         }
 
                 postAnswers();
             }
 
-            private void sa_ay(double h, double o, double a, double x, double y, double p, double area) {
+/*            private void sa_ay(double h, double o, double a, double x, double y, double p, double area) {
                 if(y < 1 || y >= 90){
                     setYToast();
                     return;
@@ -262,7 +253,7 @@ public class RightTriangleFragment extends Fragment {
                 sideO.setText(Formatter.formatOutput(o, precision));
                 setAngleX(x);
                 setAreaPeri(h, o, a);
-            }
+            }*/
 
 /*            private void sa_ax(double h, double o, double a, double x, double y, double p, double area) {
                 if(x < 1 || x >= 90){
@@ -381,34 +372,34 @@ public class RightTriangleFragment extends Fragment {
                 setAreaPeri(h, o, a);
             }*/
 
-            public void setAngleX(double x){
+/*            public void setAngleX(double x){
                 if(xPos == 0){
                     angleX.setText(Formatter.formatOutput(x, precision));
                 }else{
                     angleX.setText(Formatter.formatOutput(Math.toRadians(x), precision));
                 }
-            }
+            }*/
 
-            public void setAngleY(double y){
+/*            public void setAngleY(double y){
                 if(yPos == 0){
                     angleY.setText(Formatter.formatOutput(y, precision));
                 }else{
                     angleY.setText(Formatter.formatOutput(Math.toRadians(y), precision));
                 }
-            }
+            }*/
 
-            private void setAreaPeri(double h, double o, double a) {
+/*            private void setAreaPeri(double h, double o, double a) {
                 areaAnswer.setText(Formatter.formatOutput(getArea(o, a), precision));
                 perimeterAnswer.setText(Formatter.formatOutput(getPeri(h, o, a), precision));
-            }
+            }*/
 
-            private double getArea(double o, double a){
+/*            private double getArea(double o, double a){
                 return (o+a)/2;
             }
 
             private double getPeri(double h, double o, double a){
                 return h+o+a;
-            }
+            }*/
 
             private void setYToast() {
                 Toast.makeText(getActivity(), "Angle y can't be greater than 90 or less than 1", Toast.LENGTH_SHORT).show();

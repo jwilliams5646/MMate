@@ -62,6 +62,10 @@ public class RightTriangle {
         return y;
     }
 
+    public double getX(){
+        return x;
+    }
+
     public void calcFromHO(){
         A = Math.sqrt(H * H - O * O);
         x = Math.toDegrees(Math.asin(O / H));
@@ -166,5 +170,20 @@ public class RightTriangle {
         if(yPos == 1){
             y = getRadians(y);
         }
+    }
+
+    public void calcFromAY(){
+        if(yPos == 1){
+            x = 90 - Math.toDegrees(y);
+            H = A/ Math.sin(y);
+        }else {
+            x = 90 - y;
+            H = A/ Math.sin(Math.toRadians(y));
+        }
+        O = H* Math.sin(Math.toRadians(x));
+        if(xPos == 1){
+            x = Math.toRadians(x);
+        }
+
     }
 }
