@@ -161,8 +161,8 @@ public class DrillChartFragment extends Fragment {
     private void setDatabase(DbHelper myDbHelper){
         try {
             myDbHelper.createDataBase();
-        } catch (IOException ioe) {
-            throw new Error("Unable to create database");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

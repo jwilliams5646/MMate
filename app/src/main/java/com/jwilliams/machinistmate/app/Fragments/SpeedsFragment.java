@@ -1,7 +1,9 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +41,7 @@ public class SpeedsFragment extends Fragment {
     private AdView adView;
     private AdRequest adRequest;
     private Speeds speeds;
+    private Context context;
 
     public SpeedsFragment() {
     }
@@ -61,6 +64,10 @@ public class SpeedsFragment extends Fragment {
         setRadioGroupListener();
         setCalcButtonListener();
         return rootView;
+    }
+
+    public void getContext(){
+        context = getActivity();
     }
 
     private void setCalcButtonListener() {
@@ -102,7 +109,11 @@ public class SpeedsFragment extends Fragment {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice(TEST_DEVICE_ID)
                 .build();
-        adView.loadAd(adRequest);
+        try {
+            adView.loadAd(adRequest);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void setLayout(View rootView) {
@@ -139,25 +150,40 @@ public class SpeedsFragment extends Fragment {
 
     @Override
     public void onResume() {
+        Log.d("Resuming...",".......");
         super.onResume();
         if (adView != null) {
-            adView.resume();
+            try {
+                adView.resume();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     public void onPause() {
+        Log.d("Pausing...",".......");
         if (adView != null) {
-            adView.pause();
+            try {
+                adView.pause();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
         super.onPause();
     }
 
     @Override
     public void onDestroy() {
+        Log.d("Destroying...",".......");
         // Destroy the AdView.
         if (adView != null) {
-            adView.destroy();
+            try {
+                adView.destroy();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
         super.onDestroy();
     }

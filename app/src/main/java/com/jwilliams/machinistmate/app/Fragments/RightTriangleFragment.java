@@ -37,17 +37,13 @@ public class RightTriangleFragment extends Fragment {
     private EditText angleY;
     private RobotoTextView areaAnswer;
     private RobotoTextView perimeterAnswer;
-    //private RobotoTextView precisionView;
     private Spinner angleXSpinner;
     private Spinner angleYSpinner;
-    //private RobotoButton addButton;
-    //private RobotoButton minusButton;
     private RobotoButton calcButton;
     private RobotoButton clearButton;
     private RobotoButton questionButton;
     private int xPos;
     private int yPos;
-    //private int precision;
     private ArrayAdapter<CharSequence> adapter;
     private View rootView;
     private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
@@ -76,7 +72,6 @@ public class RightTriangleFragment extends Fragment {
         setClearButtonListener();
         setQuestionButtonListener();
         setCalcButtonListener();
-        //setPrecisionListeners();
         return rootView;
     }
 
@@ -89,32 +84,6 @@ public class RightTriangleFragment extends Fragment {
         adView.loadAd(adRequest);
     }
 
-/*    private void setPrecisionListeners() {
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(precision < 6) {
-                    precision++;
-                    precisionView.setText(Integer.toString(precision));
-                }else{
-                    Toast.makeText(getActivity().getApplicationContext(), "Max precision reached.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        minusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (precision > 1) {
-                    precision--;
-                    precisionView.setText(Integer.toString(precision));
-                } else {
-                    Toast.makeText(getActivity(), "You can't go down any farther.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }*/
-
     private void setCalcButtonListener() {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,13 +91,6 @@ public class RightTriangleFragment extends Fragment {
                 rt = new RightTriangle();
                 rt.setXPos(xPos);
                 rt.setYPos(yPos);
-/*                double h = 0.0;
-                double o = 0.0;
-                double a = 0.0;
-                double x = 0.0;
-                double y = 0.0;
-                double area = 0.0;
-                double p = 0.0;*/
                 boolean ch = false;
                 boolean co = false;
                 boolean ca = false;
@@ -141,7 +103,6 @@ public class RightTriangleFragment extends Fragment {
 
 
                 try {
-                    //h = Double.parseDouble(sideH.getText().toString());
                     rt.setH(Double.parseDouble(sideH.getText().toString()));
                 } catch (NumberFormatException e) {
                     ch = true;
@@ -149,7 +110,6 @@ public class RightTriangleFragment extends Fragment {
                     errorDetection = errorDetection + "H" + " ";
                 }
                 try {
-                    //o = Double.parseDouble(sideO.getText().toString());
                     rt.setO(Double.parseDouble(sideO.getText().toString()));
                 } catch (NumberFormatException e) {
                     co = true;
@@ -157,7 +117,6 @@ public class RightTriangleFragment extends Fragment {
                     errorDetection = errorDetection + "O" + " ";
                 }
                 try {
-                    //a = Double.parseDouble(sideA.getText().toString());
                     rt.setA(Double.parseDouble(sideA.getText().toString()));
                 } catch (NumberFormatException e) {
                     ca = true;
@@ -165,7 +124,6 @@ public class RightTriangleFragment extends Fragment {
                     errorDetection = errorDetection + "A" + " ";
                 }
                 try {
-                    //x = Double.parseDouble(angleX.getText().toString());
                     rt.setX(Double.parseDouble(angleX.getText().toString()));
                 } catch (NumberFormatException e) {
                     cx = true;
@@ -173,7 +131,6 @@ public class RightTriangleFragment extends Fragment {
                     errorDetection = errorDetection + "X" + " ";
                 }
                 try {
-                    //y = Double.parseDouble(angleY.getText().toString());
                     rt.setY(Double.parseDouble(angleY.getText().toString()));
                 } catch (NumberFormatException e) {
                     cy = true;
@@ -209,215 +166,35 @@ public class RightTriangleFragment extends Fragment {
                     }
                 }
 
-                if (rt.getH() < rt.getA()) {
+                if (rt.getH() < rt.getA() && rt.getH() != 0) {
                     Toast.makeText(getActivity(), "Side H must always be longer than side A.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (!ch && !co) {
-                    //ss_ho(h, o, a, x, y, p, area);
                     rt.calcFromHO();
                 } else if (!ch && !ca) {
                     rt.calcFromHA();
-                    //ss_ha(h, o, a, x, y, p, area);
                 } else if (!ch && !cx) {
                     rt.calcFromHX();
-                    //sa_hx(h, o, a, x, y, p, area);
                 } else if (!ch && !cy) {
                     rt.calcFromHY();
-                    //sa_hy(h, o, a, x, y, p, area);
                 } else if (!co && !ca) {
                     rt.calcFromOA();
-                    //ss_oa(h, o, a, x, y, p, area);
                 } else if (!co && !cx) {
                     rt.calcFromOX();
-                    //sa_ox(h, o, a, x, y, p, area);
                 } else if (!co && !cy) {
                     rt.calcFromOY();
-                    //sa_oy(h, o, a, x, y, p, area);
                 } else if (!ca && !cx) {
                     rt.calcFromAX();
-                    //sa_ax(h, o, a, x, y, p, area);
                 } else if (!ca && !cy) {
                     rt.calcFromAY();
-                    //sa_ay(h, o, a, x, y, p, area);
                 }
 
                 postAnswers();
             }
 
-/*            private void sa_ay(double h, double o, double a, double x, double y, double p, double area) {
-                if(y < 1 || y >= 90){
-                    setYToast();
-                    return;
-                }
-                if(yPos == 1){
-                    y = Math.toDegrees(y);
-                }
-                x = 90 - y;
-                h = a/ Math.sin(Math.toRadians(y));
-                o = h* Math.sin(Math.toRadians(x));
-                sideH.setText(Formatter.formatOutput(h, precision));
-                sideO.setText(Formatter.formatOutput(o, precision));
-                setAngleX(x);
-                setAreaPeri(h, o, a);
-            }*/
 
-/*            private void sa_ax(double h, double o, double a, double x, double y, double p, double area) {
-                if(x < 1 || x >= 90){
-                    setXToast();
-                    return;
-                }
-                if(xPos == 1){
-                    x = Math.toDegrees(x);
-                }
-                y = 90 - x;
-                h = a/ Math.sin(Math.toRadians(y));
-                o = h* Math.sin(Math.toRadians(x));
-                sideH.setText(Formatter.formatOutput(h, precision));
-                sideO.setText(Formatter.formatOutput(o, precision));
-                setAngleY(y);
-                setAreaPeri(h, o, a);
-            }*/
-
-/*            private void sa_oy(double h, double o, double a, double x, double y, double p, double area) {
-                if(y < 1 || y >= 90){
-                    setYToast();
-                    return;
-                }
-                if(yPos == 1){
-                    y = Math.toDegrees(y);
-                }
-                x = 90 - y;
-                h = a/ Math.sin(Math.toRadians(y));
-                a = h* Math.cos(Math.toRadians(x));
-                sideH.setText(Formatter.formatOutput(h, precision));
-                sideA.setText(Formatter.formatOutput(a, precision));
-                setAngleX(x);
-                setAreaPeri(h, o, a);
-
-            }*/
-
-/*            private void sa_ox(double h, double o, double a, double x, double y, double p, double area) {
-                if(x < 1 || x >= 90){
-                    setXToast();
-                    return;
-                }
-                if(xPos == 1){
-                    x = Math.toDegrees(x);
-                }
-                y = 90 - x;
-                h = a/ Math.sin(Math.toRadians(y));
-                a = h* Math.cos(Math.toRadians(x));
-                sideH.setText(Formatter.formatOutput(h, precision));
-                sideA.setText(Formatter.formatOutput(a, precision));
-                setAngleY(y);
-                setAreaPeri(h, o, a);
-            }*/
-
-/*            private void ss_oa(double h, double o, double a, double x, double y, double p, double area) {
-                h = Math.sqrt(o * o + a * a);
-                x = Math.toDegrees(Math.atan(o / a));
-                y = 90 - x;
-                sideH.setText(Formatter.formatOutput(h, precision));
-                setAngleX(x);
-                setAngleY(y);
-                setAreaPeri(h, o, a);
-            }*/
-
-/*            private void sa_hy(double h, double o, double a, double x, double y, double p, double area) {
-                if(yPos == 1){
-                    y = Math.toDegrees(x);
-                }
-                x = 90 - y;
-                o = h* Math.sin(Math.toRadians(x));
-                a = h* Math.cos(Math.toRadians(x));
-                sideO.setText(Formatter.formatOutput(o, precision));
-                sideA.setText(Formatter.formatOutput(a, precision));
-                setAngleX(x);
-                setAreaPeri(h, o, a);
-            }*/
-
-/*            private void sa_hx(double h, double o, double a, double x, double y, double p, double area) {
-                if(x < 1 || x >= 90){
-                    setXToast();
-                    return;
-                }
-                if(xPos == 1){
-                    x = Math.toDegrees(x);
-                }
-                y = 90 - x;
-                o = h* Math.sin(Math.toRadians(x));
-                a = h* Math.cos(Math.toRadians(x));
-                sideO.setText(Formatter.formatOutput(o, precision));
-                sideA.setText(Formatter.formatOutput(a, precision));
-                setAngleY(y);
-                setAreaPeri(h,o,a);
-            }*/
-
-/*            private void ss_ha(double h, double o, double a, double x, double y, double p, double area) {
-                if(h<a) {
-                    Toast.makeText(getActivity(), "Side H must always be longer than side A.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                o = Math.sqrt(h * h - a * a);
-                x = Math.toDegrees(Math.acos(a / h));
-                y = 90 - x;
-                sideO.setText(Formatter.formatOutput(o, precision));
-                setAngleX(x);
-                setAngleY(y);
-                setAreaPeri(h, o, a);
-            }*/
-
-/*            private void ss_ho(double h, double o, double a, double x, double y, double p, double area) {
-                Log.d("I'm in the HO, ", "big booty HO");
-                a = Math.sqrt(h * h - o * o);
-                x = Math.toDegrees(Math.asin(o / h));
-                y = 90 - x;
-                sideA.setText(Formatter.formatOutput(a, precision));
-                setAngleX(x);
-                setAngleY(y);
-                setAreaPeri(h, o, a);
-            }*/
-
-/*            public void setAngleX(double x){
-                if(xPos == 0){
-                    angleX.setText(Formatter.formatOutput(x, precision));
-                }else{
-                    angleX.setText(Formatter.formatOutput(Math.toRadians(x), precision));
-                }
-            }*/
-
-/*            public void setAngleY(double y){
-                if(yPos == 0){
-                    angleY.setText(Formatter.formatOutput(y, precision));
-                }else{
-                    angleY.setText(Formatter.formatOutput(Math.toRadians(y), precision));
-                }
-            }*/
-
-/*            private void setAreaPeri(double h, double o, double a) {
-                areaAnswer.setText(Formatter.formatOutput(getArea(o, a), precision));
-                perimeterAnswer.setText(Formatter.formatOutput(getPeri(h, o, a), precision));
-            }*/
-
-/*            private double getArea(double o, double a){
-                return (o+a)/2;
-            }
-
-            private double getPeri(double h, double o, double a){
-                return h+o+a;
-            }*/
-
-            /*            private void setYToast() {
-                            Toast.makeText(getActivity(), "Angle y can't be greater than 90 or less than 1", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        private void setXToast() {
-                            Toast.makeText(getActivity(), "Angle x can't be greater than 90 or less than 1", Toast.LENGTH_SHORT).show();
-                            return;
-                        }*/
             private void postAnswers() {
                 Toast.makeText(getActivity(), "I haz all the answers.", Toast.LENGTH_SHORT).show();
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -495,18 +272,13 @@ public class RightTriangleFragment extends Fragment {
         angleY = (EditText) rootView.findViewById(R.id.rt_y_input);
         areaAnswer = (RobotoTextView) rootView.findViewById(R.id.rt_area_answer);
         perimeterAnswer = (RobotoTextView) rootView.findViewById(R.id.rt_perimeter_answer);
-        //precisionView = (RobotoTextView) rootView.findViewById(R.id.rt_precision_view);
         angleXSpinner = (Spinner) rootView.findViewById(R.id.rt_x_spinner);
         angleYSpinner = (Spinner) rootView.findViewById(R.id.rt_y_spinner);
         calcButton = (RobotoButton) rootView.findViewById(R.id.rt_calc_button);
-        //addButton = (RobotoButton) rootView.findViewById(R.id.rt_add_button);
-        //minusButton = (RobotoButton) rootView.findViewById(R.id.rt_minus_button);
         clearButton = (RobotoButton) rootView.findViewById(R.id.rt_clear_button);
         questionButton = (RobotoButton) rootView.findViewById(R.id.rt_question_button);
         xPos = 0;
         yPos = 0;
-        //precision = 2;
-        //precisionView.setText(Integer.toString(precision));
     }
 
     private void clear() {

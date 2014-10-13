@@ -232,8 +232,8 @@ public class LengthFragment extends Fragment {
         //instantiates the database and the
         try {
             myDbHelper.createDataBase();
-        } catch (IOException ioe) {
-            throw new Error("Unable to create database");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

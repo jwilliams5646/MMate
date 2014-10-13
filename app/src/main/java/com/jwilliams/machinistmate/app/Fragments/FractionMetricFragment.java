@@ -18,28 +18,11 @@ import com.jwilliams.machinistmate.app.R;
  * Created by John on 4/20/2014.
  */
 public class FractionMetricFragment extends Fragment {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
+
     private static final String KEY_POSITION="position";
     private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private static AdView adView;
     private static AdRequest adRequest;
-
-    public static FractionMetricFragment newInstance(int position) {
-        FractionMetricFragment frag=new FractionMetricFragment();
-        Bundle args=new Bundle();
-
-        args.putInt(KEY_POSITION, position);
-        frag.setArguments(args);
-
-        return(frag);
-    }
-
-    public static String getTitle(Context ctxt, int position) {
-        return(String.format(ctxt.getString(R.string.fraction_metric_chart), position + 1));
-    }
 
     GridView referenceGridView;
 

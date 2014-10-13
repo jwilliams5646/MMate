@@ -8,6 +8,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
@@ -21,6 +22,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.jwilliams.machinistmate.app.Adapters.DbHelper;
+
 
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -29,12 +32,14 @@ public class MainActivity extends Activity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        context = this;
+        new createOrCheckDb().execute();
         if(isTablet()){
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }else{
@@ -107,6 +112,19 @@ public class MainActivity extends Activity
 
             // Load the preferences from an XML resource
             addPreferencesFromResource(R.xml.preferences);
+        }
+    }
+
+    public class createOrCheckDb extends AsyncTask{
+            DbHelper myDbHelper = new DbHelper(context);
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            try {
+                myDbHelper.createDataBase();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 
