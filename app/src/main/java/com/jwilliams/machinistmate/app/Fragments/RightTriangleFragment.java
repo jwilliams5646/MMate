@@ -97,7 +97,6 @@ public class RightTriangleFragment extends Fragment {
                 boolean cx = false;
                 boolean cy = false;
                 int count = 0;
-                String errorDetection = "";
                 Log.d("I'm in the clicker thingy", "");
                 Log.d("count = ", Integer.toString(count));
 
@@ -107,40 +106,33 @@ public class RightTriangleFragment extends Fragment {
                 } catch (NumberFormatException e) {
                     ch = true;
                     count++;
-                    errorDetection = errorDetection + "H" + " ";
                 }
                 try {
                     rt.setO(Double.parseDouble(sideO.getText().toString()));
                 } catch (NumberFormatException e) {
                     co = true;
                     count++;
-                    errorDetection = errorDetection + "O" + " ";
                 }
                 try {
                     rt.setA(Double.parseDouble(sideA.getText().toString()));
                 } catch (NumberFormatException e) {
                     ca = true;
                     count++;
-                    errorDetection = errorDetection + "A" + " ";
                 }
                 try {
                     rt.setX(Double.parseDouble(angleX.getText().toString()));
                 } catch (NumberFormatException e) {
                     cx = true;
                     count++;
-                    errorDetection = errorDetection + "X" + " ";
                 }
                 try {
                     rt.setY(Double.parseDouble(angleY.getText().toString()));
                 } catch (NumberFormatException e) {
                     cy = true;
                     count++;
-                    errorDetection = errorDetection + "Y" + " ";
                 }
 
                 Log.d("count = ", Integer.toString(count));
-                Log.d("error detection = ", errorDetection);
-                Toast.makeText(getActivity(), errorDetection, Toast.LENGTH_SHORT).show();
 
                 if (count > 4 || count < 2) {
                     Toast.makeText(getActivity(), "You must enter 2 values, and they cannot both be angles.", Toast.LENGTH_SHORT).show();

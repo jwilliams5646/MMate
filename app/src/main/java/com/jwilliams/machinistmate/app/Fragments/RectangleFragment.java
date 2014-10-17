@@ -35,14 +35,10 @@ public class RectangleFragment extends Fragment {
     private RobotoTextView inputView1;
     private RobotoTextView inputView2;
     private RobotoTextView inputView3;
-    private RobotoTextView precisionView;
     private EditText input1;
     private EditText input2;
     private EditText input3;
     private RobotoButton calcButton;
-    private RobotoButton addButton;
-    private RobotoButton minusButton;
-    private boolean check;
     private int answerPos;
     private int inputPos;
     private int precision;
@@ -75,7 +71,6 @@ public class RectangleFragment extends Fragment {
         setInputChoiceAdapter();
         setInputListener();
         setCalcListener();
-        setPrecisionListeners();
         return rootView;
     }
 
@@ -86,32 +81,6 @@ public class RectangleFragment extends Fragment {
                 .addTestDevice(TEST_DEVICE_ID)
                 .build();
         adView.loadAd(adRequest);
-    }
-
-    private void setPrecisionListeners() {
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(precision < 6) {
-                    precision++;
-                    precisionView.setText(Integer.toString(precision));
-                }else{
-                    Toast.makeText(getActivity(), "Max precision reached.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        minusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (precision > 1) {
-                    precision--;
-                    precisionView.setText(Integer.toString(precision));
-                } else {
-                    Toast.makeText(getActivity(), "You can't go down any farther.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     private void setCalcListener() {
@@ -400,18 +369,13 @@ public class RectangleFragment extends Fragment {
         inputView1 = (RobotoTextView)rootView.findViewById(R.id.rectangle_input_view1);
         inputView2 = (RobotoTextView)rootView.findViewById(R.id.rectangle_input_view2);
         inputView3 = (RobotoTextView)rootView.findViewById(R.id.rectangle_input_view3);
-        precisionView = (RobotoTextView)rootView.findViewById(R.id.rect_precision_view);
         input1 = (EditText)rootView.findViewById(R.id.rectangle_input1);
         input2 = (EditText)rootView.findViewById(R.id.rectangle_input2);
         input3 = (EditText)rootView.findViewById(R.id.rectangle_input3);
         calcButton = (RobotoButton)rootView.findViewById(R.id.rect_calc);
-        addButton = (RobotoButton)rootView.findViewById(R.id.rect_add_button);
-        minusButton = (RobotoButton)rootView.findViewById(R.id.rect_minus_button);
-        check = false;
         answerPos = 0;
         inputPos = 0;
         precision = 2;
-        precisionView.setText(Integer.toString(precision));
     }
 
     private void resetLayout() {
@@ -426,7 +390,6 @@ public class RectangleFragment extends Fragment {
         input1.setText("");
         input2.setText("");
         input3.setText("");
-        check = false;
         answerPos = 0;
         inputPos = 0;
 
@@ -437,16 +400,6 @@ public class RectangleFragment extends Fragment {
         inputView2.setText("Width (W)");
         inputLayout1.setVisibility(View.VISIBLE);
         inputLayout2.setVisibility(View.VISIBLE);
-    }
-
-    public static RectangleFragment newInstance(int position) {
-        RectangleFragment frag=new RectangleFragment();
-        Bundle args=new Bundle();
-
-        args.putInt(KEY_POSITION, position);
-        frag.setArguments(args);
-
-        return(frag);
     }
 
     @Override

@@ -30,12 +30,9 @@ public class SquareFragment extends Fragment {
     private static final String KEY_POSITION="position";
     private EditText input;
     private RobotoTextView inputView;
-    private RobotoTextView precisionView;
     private RobotoTextView answer;
     private Spinner answerChoice;
     private Spinner sideChoice;
-    private RobotoButton addButton;
-    private RobotoButton minusButton;
     private RobotoButton calcButton;
     private int precision;
     private int sidePos;
@@ -67,7 +64,6 @@ public class SquareFragment extends Fragment {
         setAnswerChoiceListener();
         setSideChoiceListener();
         setCalcListener();
-        setPrecisionListeners();
         return rootView;
 
     }
@@ -95,32 +91,6 @@ public class SquareFragment extends Fragment {
                 .addTestDevice(TEST_DEVICE_ID)
                 .build();
         adView.loadAd(adRequest);
-    }
-
-    private void setPrecisionListeners() {
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(precision < 6) {
-                    precision++;
-                    precisionView.setText(Integer.toString(precision));
-                }else{
-                    Toast.makeText(getActivity(), "Max precision reached.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        minusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(precision > 1) {
-                    precision--;
-                    precisionView.setText(Integer.toString(precision));
-                }else{
-                    Toast.makeText(getActivity(), "You can't go down any farther.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     private void setCalcListener() {
@@ -222,18 +192,14 @@ public class SquareFragment extends Fragment {
 
     private void initializeLayout(View rootView) {
         input = (EditText)rootView.findViewById(R.id.sq_input);
-        precisionView = (RobotoTextView)rootView.findViewById(R.id.sq_precision_view);
         inputView = (RobotoTextView)rootView.findViewById(R.id.sq_input_view);
         answer = (RobotoTextView)rootView.findViewById(R.id.sq_answer);
         answerChoice = (Spinner)rootView.findViewById(R.id.sq_choice);
         sideChoice = (Spinner)rootView.findViewById(R.id.sq_side_choice);
         calcButton = (RobotoButton)rootView.findViewById(R.id.sq_calc);
-        addButton = (RobotoButton)rootView.findViewById(R.id.sq_add_button);
-        minusButton = (RobotoButton)rootView.findViewById(R.id.sq_minus_button);
         sidePos = 0;
         answerPos = 0;
         precision = 2;
-        precisionView.setText(Integer.toString(precision));
         setBasicLayout();
     }
 
@@ -250,16 +216,6 @@ public class SquareFragment extends Fragment {
 
     private void clearInput(){
         input.setText("");
-    }
-
-    public static SquareFragment newInstance(int position) {
-        SquareFragment frag=new SquareFragment();
-        Bundle args=new Bundle();
-
-        args.putInt(KEY_POSITION, position);
-        frag.setArguments(args);
-
-        return(frag);
     }
 
     @Override

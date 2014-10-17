@@ -34,12 +34,9 @@ public class CircleFragment extends Fragment {
     private double inputValue;
     private RobotoTextView circleView;
     private RobotoTextView answer;
-    private RobotoTextView precisionView;
     private Spinner answerSpinner;
     private Spinner radiusSpinner;
     private RobotoButton calcButton;
-    private RobotoButton addButton;
-    private RobotoButton minusButton;
     private int pos;
     private int radiusChoice;
     private int precision;
@@ -70,7 +67,6 @@ public class CircleFragment extends Fragment {
         setCircleSpinnerListener();
         setCircleRadiusListener();
         setCalcListener();
-        setPrecisionListeners();
 
         return rootView;
     }
@@ -98,32 +94,6 @@ public class CircleFragment extends Fragment {
                 .addTestDevice(TEST_DEVICE_ID)
                 .build();
         adView.loadAd(adRequest);
-    }
-
-    private void setPrecisionListeners() {
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(precision < 6) {
-                    precision++;
-                    precisionView.setText(Integer.toString(precision));
-                }else{
-                    Toast.makeText(getActivity(), "Max precision reached.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        minusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (precision > 1) {
-                    precision--;
-                    precisionView.setText(Integer.toString(precision));
-                } else {
-                    Toast.makeText(getActivity(), "You can't go down any farther.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     private void setCalcListener() {
@@ -233,28 +203,15 @@ public class CircleFragment extends Fragment {
     private void initializeLayout(View rootView) {
         input = (EditText)rootView.findViewById(R.id.circle_input);
         circleView = (RobotoTextView)rootView.findViewById(R.id.circle_view);
-        precisionView = (RobotoTextView)rootView.findViewById(R.id.c_precision_view);
         answer = (RobotoTextView)rootView.findViewById(R.id.circle_answer);
         answerSpinner = (Spinner)rootView.findViewById(R.id.circle_choice);
         radiusSpinner = (Spinner)rootView.findViewById(R.id.circle_radius_choice);
         calcButton = (RobotoButton)rootView.findViewById(R.id.c_calc);
-        addButton = (RobotoButton)rootView.findViewById(R.id.c_add_button);
-        minusButton = (RobotoButton)rootView.findViewById(R.id.c_minus_button);
         pos = 0;
         radiusChoice = 0;
         precision = 2;
-        precisionView.setText(Integer.toString(precision));
     }
 
-    static CircleFragment newInstance(int position) {
-        CircleFragment frag=new CircleFragment();
-        Bundle args=new Bundle();
-
-        args.putInt(KEY_POSITION, position);
-        frag.setArguments(args);
-
-        return(frag);
-    }
     @Override
     public void onPause(){
         if (adView != null) {

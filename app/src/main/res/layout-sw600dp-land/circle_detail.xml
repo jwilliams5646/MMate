@@ -4,19 +4,19 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:id="@+id/circle_image"
         android:layout_margin="4dp"/>
 
 <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="3"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
     android:layout_margin="4dp"
     android:layout_gravity="center_horizontal">
 
@@ -89,9 +89,9 @@
             android:layout_height="40dp"
             android:text="@string/calculate"
             android:id="@+id/c_calc"
-            android:layout_margin="4dp"
             style="@style/calc_buttons"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_below="@+id/circle_radius_layout" />
 
     <com.google.android.gms.ads.AdView
@@ -102,8 +102,7 @@
         ads:adSize="BANNER"
         android:layout_below="@+id/c_calc"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
 

@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
-<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
     <ImageView
-        android:layout_width="400dp"
-        android:layout_height="125dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:id="@+id/rectangle_image"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_margin="4dp"
         android:src="@drawable/rectangle" />
+
+<RelativeLayout
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rectangle_image"
-        android:layout_alignLeft="@+id/rectangle_image"
         android:layout_marginRight="4dp"
         android:id="@+id/rectangle_answer_layout">
 
@@ -64,7 +61,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/rectangle_input_layout1"
         android:layout_below="@+id/rectangle_answer_layout"
-        android:layout_alignLeft="@+id/rectangle_image"
         android:layout_marginRight="4dp">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -92,7 +88,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/rectangle_input_layout2"
         android:layout_below="@+id/rectangle_input_layout1"
-        android:layout_alignLeft="@+id/rectangle_image"
         android:layout_marginRight="4dp">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -120,7 +115,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/rectangle_input_layout3"
         android:layout_below="@+id/rectangle_input_layout2"
-        android:layout_alignLeft="@+id/rectangle_image"
         android:layout_marginRight="4dp">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -149,7 +143,9 @@
         android:id="@+id/rect_calc"
         style="@style/buttons"
         android:layout_below="@+id/rectangle_input_layout3"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="4dp" />
 
     <com.google.android.gms.ads.AdView
     android:id="@+id/rect_adView"
@@ -157,10 +153,9 @@
     android:layout_height="wrap_content"
     ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
     ads:adSize="BANNER"
-    android:layout_below="@+id/rect_calc"
-    android:layout_centerHorizontal="true"
-    android:layout_marginBottom="20dp"
-    android:layout_marginTop="10dp"/>
+        android:layout_below="@+id/rect_calc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
-</ScrollView>
+</LinearLayout>
