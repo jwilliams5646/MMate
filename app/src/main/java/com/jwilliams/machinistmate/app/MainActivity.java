@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
@@ -33,6 +34,8 @@ public class MainActivity extends Activity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private Context context;
+    SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +43,17 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
         context = this;
         new createOrCheckDb().execute();
+        sharedPref = getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
+
         if(isTablet()){
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            editor.putBoolean("isTablet", true);
+            editor.commit();
         }else{
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            editor.putBoolean("isTablet", false);
+            editor.commit();
         }
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)

@@ -4,17 +4,17 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/oblique_image"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
 <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="4"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
     android:orientation="vertical">
     <LinearLayout
         android:id="@+id/oblique_view1_layout"
@@ -246,6 +246,8 @@
         android:id="@+id/oblique_adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/oblique_calc_button"
+        android:layout_centerHorizontal="true"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
         android:layout_gravity="center_horizontal"
