@@ -19,7 +19,7 @@
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:text="G Codes"
             android:id="@+id/gm_g_button"
             style="@style/buttons"/>
@@ -27,7 +27,7 @@
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:text="M Codes"
             android:id="@+id/gm_m_button"
             style="@style/buttons" />
@@ -35,7 +35,7 @@
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:text="Letter Address"
             android:id="@+id/gm_address_button"
             style="@style/buttons" />

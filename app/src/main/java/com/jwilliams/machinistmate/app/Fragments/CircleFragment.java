@@ -1,7 +1,9 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +46,7 @@ public class CircleFragment extends Fragment {
     private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private AdRequest adRequest;
+    private SharedPreferences sp;
 
 
     public CircleFragment() {
@@ -100,6 +103,7 @@ public class CircleFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
                 if (validInput()) {
                     Circle circle = new Circle(inputValue);
                     switch (pos) {
@@ -209,7 +213,7 @@ public class CircleFragment extends Fragment {
         calcButton = (RobotoButton)rootView.findViewById(R.id.c_calc);
         pos = 0;
         radiusChoice = 0;
-        precision = 2;
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
     @Override

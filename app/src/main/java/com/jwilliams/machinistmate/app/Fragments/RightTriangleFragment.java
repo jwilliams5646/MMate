@@ -190,7 +190,7 @@ public class RightTriangleFragment extends Fragment {
             private void postAnswers() {
                 Toast.makeText(getActivity(), "I haz all the answers.", Toast.LENGTH_SHORT).show();
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                int precision = Integer.parseInt(sp.getString("pref_key_feeds_precision", "4"));
+                int precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
                 sideH.setText(Formatter.formatOutput(rt.getH(), precision));
                 sideO.setText(Formatter.formatOutput(rt.getO(), precision));
                 sideA.setText(Formatter.formatOutput(rt.getA(), precision));

@@ -1,7 +1,9 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +53,7 @@ public class RectangleFragment extends Fragment {
     private double inputValue1;
     private double inputValue2;
     private double inputValue3;
+    private SharedPreferences sp;
 
     public RectangleFragment() {
     }
@@ -88,6 +91,7 @@ public class RectangleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 rectangle = new Rectangle();
+                precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
                 switch(answerPos){
                     case 0:
                         calcArea();
@@ -319,7 +323,7 @@ public class RectangleFragment extends Fragment {
                 answerPos = i;
                 inputChoice.setSelection(0);
                 resetLayout();
-                switch(i){
+                switch (i) {
                     case 0:
                         setInitialLayout();
                         break;
@@ -375,7 +379,7 @@ public class RectangleFragment extends Fragment {
         calcButton = (RobotoButton)rootView.findViewById(R.id.rect_calc);
         answerPos = 0;
         inputPos = 0;
-        precision = 2;
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
     private void resetLayout() {

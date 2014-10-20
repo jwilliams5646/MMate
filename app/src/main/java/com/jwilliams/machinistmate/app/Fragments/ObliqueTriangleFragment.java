@@ -19,6 +19,7 @@ import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.Formatter;
+import com.jwilliams.machinistmate.app.GeometryClasses.ObliqueTriangle;
 import com.jwilliams.machinistmate.app.R;
 
 import java.text.DecimalFormat;
@@ -28,7 +29,6 @@ import java.text.DecimalFormat;
  */
 public class ObliqueTriangleFragment extends Fragment {
 
-    private static final String KEY_POSITION="position";
     private EditText sideAInput;
     private EditText sideBInput;
     private EditText sideCInput;
@@ -38,13 +38,10 @@ public class ObliqueTriangleFragment extends Fragment {
     private RobotoTextView areaAnswer;
     private RobotoTextView heightAnswer;
     private RobotoTextView perimeterAnswer;
-    private RobotoTextView precisionView;
     private Spinner angleXSpinner;
     private Spinner angleYSpinner;
     private Spinner angleZSpinner;
     private RobotoButton calcButton;
-    private RobotoButton addButton;
-    private RobotoButton minusButton;
     private RobotoButton clearButton;
     private RobotoButton questionButton;
     private int spinnerX;
@@ -92,15 +89,12 @@ public class ObliqueTriangleFragment extends Fragment {
         angleYInput = (EditText)rootView.findViewById(R.id.oblique_y_input);
         angleZInput = (EditText)rootView.findViewById(R.id.oblique_z_input);
         areaAnswer = (RobotoTextView)rootView.findViewById(R.id.oblique_area_answer);
-        precisionView = (RobotoTextView)rootView.findViewById(R.id.o_precision);
         heightAnswer = (RobotoTextView)rootView.findViewById(R.id.oblique_height_answer);
         perimeterAnswer = (RobotoTextView)rootView.findViewById(R.id.oblique_perimeter_answer);
         angleXSpinner = (Spinner)rootView.findViewById(R.id.oblique_x_spinner);
         angleYSpinner = (Spinner)rootView.findViewById(R.id.oblique_y_spinner);
         angleZSpinner = (Spinner)rootView.findViewById(R.id.oblique_z_spinner);
         calcButton = (RobotoButton)rootView.findViewById(R.id.oblique_calc_button);
-        addButton = (RobotoButton)rootView.findViewById(R.id.o_add_button);
-        minusButton = (RobotoButton)rootView.findViewById(R.id.o_minus_button);
         clearButton = (RobotoButton)rootView.findViewById(R.id.oblique_clear_button);
         questionButton = (RobotoButton)rootView.findViewById(R.id.ot_question_button);
         spinnerX = 0;
@@ -114,34 +108,6 @@ public class ObliqueTriangleFragment extends Fragment {
         setCalcButtonListener();
         setQuestionButtonListener();
         precision = 2;
-        precisionView.setText(Integer.toString(precision));
-        setPrecisionListeners();
-    }
-
-    private void setPrecisionListeners() {
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(precision < 6) {
-                    precision++;
-                    precisionView.setText(Integer.toString(precision));
-                }else{
-                    Toast.makeText(getActivity(), "Max precision reached.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        minusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (precision > 1) {
-                    precision--;
-                    precisionView.setText(Integer.toString(precision));
-                } else {
-                    Toast.makeText(getActivity(), "You can't go down any farther.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     private void setQuestionButtonListener() {
@@ -167,6 +133,7 @@ public class ObliqueTriangleFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ObliqueTriangle ot = new ObliqueTriangle();
                 double a = 0.0;
                 double b = 0.0;
                 double c = 0.0;
@@ -180,10 +147,11 @@ public class ObliqueTriangleFragment extends Fragment {
                 boolean cy = true;
                 boolean cz = true;
                 int count = 0;
-                DecimalFormat df = new DecimalFormat("##.####");
+                //DecimalFormat df = new DecimalFormat("##.####");
 
                 try {
                     a = Double.parseDouble(sideAInput.getText().toString());
+                    ot.setA(Double.parseDouble(sideAInput.getText().toString()));
                 } catch (NumberFormatException e) {
                     ca=false;
                     count++;
@@ -192,6 +160,7 @@ public class ObliqueTriangleFragment extends Fragment {
 
                 try {
                     b = Double.parseDouble(sideBInput.getText().toString());
+                    ot.setB(Double.parseDouble(sideBInput.getText().toString()));
                 } catch (NumberFormatException e) {
                     cb=false;
                     count++;
@@ -200,6 +169,7 @@ public class ObliqueTriangleFragment extends Fragment {
 
                 try {
                     c = Double.parseDouble(sideCInput.getText().toString());
+                    ot.setC(Double.parseDouble(sideCInput.getText().toString()));
                 } catch (NumberFormatException e) {
                     cc=false;
                     count++;
@@ -208,6 +178,7 @@ public class ObliqueTriangleFragment extends Fragment {
 
                 try {
                     x = Double.parseDouble(angleXInput.getText().toString());
+                    ot.setX(Double.parseDouble(angleXInput.getText().toString()));
                 } catch (NumberFormatException e) {
                     cx=false;
                     count++;
@@ -216,6 +187,7 @@ public class ObliqueTriangleFragment extends Fragment {
 
                 try {
                     y = Double.parseDouble(angleYInput.getText().toString());
+                    ot.setY(Double.parseDouble(angleYInput.getText().toString()));
                 } catch (NumberFormatException e) {
                     cy=false;
                     count++;
@@ -224,6 +196,7 @@ public class ObliqueTriangleFragment extends Fragment {
 
                 try {
                     z = Double.parseDouble(angleZInput.getText().toString());
+                    ot.setZ(Double.parseDouble(angleZInput.getText().toString()));
                 } catch (NumberFormatException e) {
                     cz=false;
                     count++;
@@ -240,7 +213,7 @@ public class ObliqueTriangleFragment extends Fragment {
                     return;
                 }
 
-                if(cx && cy && cz && !ca && !cb && !cc){
+                if(cx && cy && cz){
                     Toast.makeText(getActivity(), "Triangle can not be solved with only angles.  This is the triangle equivalent of dividing by zero.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -250,8 +223,16 @@ public class ObliqueTriangleFragment extends Fragment {
                 }
 
                 //a-b-c -> x-y-z
-                if (cc && ca && cb && !cy && !cx && !cz){
-                    sss_abc(a, b, c, x, y ,z);
+                if (cc && ca && cb){
+                    if(b < c || b < a){
+                        Toast.makeText(getActivity(), "Side (b) is the base of the triangle and must be the longest side.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    ot.calcFromABC();
+                    if(ot.isXNaN() || ot.isYNaN() || ot.isZNaN()){
+                        Toast.makeText(getActivity(), "This is not a triangle.", Toast.LENGTH_SHORT).show();
+                        return;
+                    //sss_abc(a, b, c, x, y ,z);
                 }
                 //a-c-z -> x-y-b
                 else if (cc && ca && !cb && !cy && !cx && cz){
@@ -795,20 +776,6 @@ public class ObliqueTriangleFragment extends Fragment {
         angleYSpinner.setAdapter(angleAdapter);
         angleZSpinner.setAdapter(angleAdapter);
     }
-
-    public static ObliqueTriangleFragment newInstance(int position) {
-        ObliqueTriangleFragment frag=new ObliqueTriangleFragment();
-        Bundle args=new Bundle();
-
-        args.putInt(KEY_POSITION, position);
-        frag.setArguments(args);
-
-        return(frag);
-    }
-
-/*    static String getTitle(Context ctxt, int position) {
-        return(String.format(ctxt.getString(R.string.oblique), position + 1));
-    }*/
 
     @Override
     public void onPause(){

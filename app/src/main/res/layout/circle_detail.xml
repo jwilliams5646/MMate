@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/circle_image"
-        android:layout_margin="4dp"/>
+        android:id="@+id/circle_image" />
 
 <RelativeLayout
     android:layout_width="match_parent"
@@ -22,7 +21,7 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="4dp"
         android:id="@+id/circle_answer_layout">
@@ -30,10 +29,7 @@
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/circle_choice"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"/>
+            android:id="@+id/circle_choice" />
 
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -41,46 +37,38 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:id="@+id/circle_answer"
-            android:layout_margin="4dp"
             style="@style/TextViewStyle"
-            android:textSize="32sp" />
+            android:textSize="20sp"
+            android:padding="10dp" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/circle_answer_layout"
-        android:layout_marginRight="4dp"
         android:id="@+id/circle_radius_layout">
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/circle_radius_choice"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp" />
+            android:id="@+id/circle_radius_choice" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/circle_view"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
             style="@style/TextViewStyle"
             android:visibility="gone"/>
 
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:id="@+id/circle_input"
-            android:layout_margin="4dp"
             style="@style/EditTextStyle"/>
     </LinearLayout>
 

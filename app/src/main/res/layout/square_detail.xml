@@ -10,17 +10,15 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:id="@+id/square_image"
-        android:layout_margin="4dp"/>
+        android:layout_weight="1" />
         <!--android:src="@drawable/square" -->
 
-<RelativeLayout
+    <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="3"
-    android:layout_margin="4dp"
-    android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
     android:gravity="center_horizontal">
     <LinearLayout
         android:orientation="horizontal"
@@ -30,22 +28,17 @@
 
         <Spinner
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/sq_choice"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp" />
+            android:layout_height="wrap_content"
+            android:id="@+id/sq_choice" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:id="@+id/sq_answer"
-            android:textSize="32sp"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginBottom="4dp"
-            style="@style/TextViewStyle"/>
+            android:textSize="20sp"
+            style="@style/TextViewStyle"
+            android:padding="10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,36 +46,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/square_answer_layout"
-        android:layout_marginRight="4dp"
-        android:layout_marginLeft="4dp"
-        android:id="@+id/sq_input_layout">
+        android:id="@+id/sq_input_layout"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/sq_input_view"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
             style="@style/TextViewStyle"/>
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/sq_side_choice"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
             android:visibility="gone"/>
 
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:id="@+id/sq_input"
-            android:layout_margin="4dp"
             style="@style/EditTextStyle"/>
     </LinearLayout>
 

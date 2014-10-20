@@ -37,18 +37,14 @@
                 android:id="@+id/rt_h_view"
                 style="@style/TextViewStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginTop="4dp"
+                android:layout_height="wrap_content"
                 android:text="H" />
 
             <EditText
                 android:id="@+id/rt_h_input"
                 style="@style/EditTextStyle"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="numberDecimal" />
 
@@ -56,16 +52,14 @@
                 android:id="@+id/rt_x_view"
                 style="@style/TextViewStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
                 android:text="x" />
 
             <EditText
                 android:id="@+id/rt_x_input"
                 style="@style/EditTextStyle"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="numberDecimal" />
 
@@ -85,18 +79,14 @@
                 android:id="@+id/rt_o_view"
                 style="@style/TextViewStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginTop="4dp"
+                android:layout_height="wrap_content"
                 android:text="O" />
 
             <EditText
                 android:id="@+id/rt_o_input"
                 style="@style/EditTextStyle"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="numberDecimal" />
 
@@ -104,16 +94,14 @@
                 android:id="@+id/rt_y_view"
                 style="@style/TextViewStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
                 android:text="y" />
 
             <EditText
                 android:id="@+id/rt_y_input"
                 style="@style/EditTextStyle"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="numberDecimal" />
 
@@ -136,18 +124,14 @@
                 android:id="@+id/rt_a_view"
                 style="@style/TextViewStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginTop="4dp"
+                android:layout_height="wrap_content"
                 android:text="A" />
 
             <EditText
                 android:id="@+id/rt_a_input"
                 style="@style/EditTextStyle"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="numberDecimal" />
 
@@ -155,16 +139,14 @@
                 android:id="@+id/rt_area_view"
                 style="@style/TextViewStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
                 android:text="Area" />
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
                 android:id="@+id/rt_area_answer"
                 style="@style/TextViewStyle"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="" />
         </LinearLayout>
@@ -179,18 +161,14 @@
                 android:id="@+id/rt_perimeter_view"
                 style="@style/TextViewStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginTop="4dp"
+                android:layout_height="wrap_content"
                 android:text="Perimeter" />
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
                 android:id="@+id/rt_perimeter_answer"
                 style="@style/TextViewStyle"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="" />
         </LinearLayout>
@@ -205,24 +183,24 @@
                 style="@style/buttons"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="\?" />
+                android:text="\?"
+                android:layout_margin="16dp" />
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
                 android:id="@+id/rt_calc_button"
                 style="@style/buttons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="@string/calculate" />
+                android:text="@string/calculate"
+                android:layout_margin="16dp" />
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
                 android:id="@+id/rt_clear_button"
                 style="@style/buttons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="Clear" />
+                android:text="Clear"
+                android:layout_margin="16dp" />
         </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
