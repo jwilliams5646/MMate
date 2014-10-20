@@ -2,6 +2,7 @@ package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Dialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,16 +14,18 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.Formatter;
 import com.jwilliams.machinistmate.app.GeometryClasses.RightTriangle;
+import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by John Williams
@@ -50,7 +53,9 @@ public class RightTriangleFragment extends Fragment {
     private AdView adView;
     private AdRequest adRequest;
     private RightTriangle rt;
-
+    private ImageView rtImage;
+    private SharedPreferences sharedPref;
+    private Boolean isTablet;
 
     public RightTriangleFragment() {
     }
@@ -73,6 +78,24 @@ public class RightTriangleFragment extends Fragment {
         setQuestionButtonListener();
         setCalcButtonListener();
         return rootView;
+    }
+
+    private void setImage() {
+        Picasso.with(getActivity())
+                .load(R.drawable.right_triangle)
+                .fit()
+                .centerInside()
+                .into(rtImage);
+
+        if(!isTablet){
+            rtImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ShowImage enlarge = new ShowImage(getActivity(), R.drawable.right_triangle);
+                    enlarge.setDialog();
+                }
+            });
+        }
     }
 
     private void setAd(View rootView) {
@@ -256,6 +279,7 @@ public class RightTriangleFragment extends Fragment {
     }
 
     private void initializeLayout(View rootView) {
+        rtImage = (ImageView)rootView.findViewById(R.id.rt_image);
         sideH = (EditText) rootView.findViewById(R.id.rt_h_input);
         sideO = (EditText) rootView.findViewById(R.id.rt_o_input);
         sideA = (EditText) rootView.findViewById(R.id.rt_a_input);
@@ -270,6 +294,9 @@ public class RightTriangleFragment extends Fragment {
         questionButton = (RobotoButton) rootView.findViewById(R.id.rt_question_button);
         xPos = 0;
         yPos = 0;
+        sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        isTablet = sharedPref.getBoolean("isTablet", false);
+        setImage();
     }
 
     private void clear() {

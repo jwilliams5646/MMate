@@ -55,13 +55,12 @@ public class ObliqueTriangleFragment extends Fragment {
     private int spinnerZ;
     private ArrayAdapter<CharSequence> angleAdapter;
     private View rootView;
-    private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
+    //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private AdRequest adRequest;
     private ObliqueTriangle ot;
     private SharedPreferences sharedPref;
     private Boolean isTablet;
-    //private static final String AD_UNIT_ID = "ca-app-pub-6986976933268044/5924552212";
 
     public ObliqueTriangleFragment() {
     }
@@ -83,8 +82,8 @@ public class ObliqueTriangleFragment extends Fragment {
     private void setAd(View rootView){
         adView = (AdView)rootView.findViewById(R.id.oblique_adView);
         adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice(TEST_DEVICE_ID)
+/*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
         adView.loadAd(adRequest);
     }
@@ -137,7 +136,6 @@ public class ObliqueTriangleFragment extends Fragment {
                 }
             });
         }
-
     }
 
     private void setQuestionButtonListener() {
