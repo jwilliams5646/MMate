@@ -3,10 +3,10 @@
 <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/textView1"
-    style="@style/TextViewStyle"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="adfbadfg"
-    android:layout_gravity="bottom"/>
+    android:textSize="16sp"
+    android:padding="4dp"
+    android:text="adfbadfg"/>
 
 

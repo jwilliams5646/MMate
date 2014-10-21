@@ -64,7 +64,6 @@ public class CircleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.circle_detail, container, false);
-        //setCircle(rootView);
         setAd(rootView);
         initializeLayout(rootView);
         initialLayout();

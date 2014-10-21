@@ -5,7 +5,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.jwilliams.machinistmate.app.R;
@@ -26,7 +28,7 @@ public class ShowImage extends Dialog {
     }
 
     public void setDialog(){
-        Dialog dialog = new Dialog(maContext);
+        final Dialog dialog = new Dialog(maContext);
 
         //No title
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -35,7 +37,6 @@ public class ShowImage extends Dialog {
         dialog.setCancelable(true);
 
         ImageView img = (ImageView)dialog.findViewById(R.id.geometry_image);
-
         Picasso.with(maContext)
                 .load(drawable)
                 .fit()
@@ -44,12 +45,20 @@ public class ShowImage extends Dialog {
 
         dialog.show();
 
-        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+        Button cancel = (Button)dialog.findViewById(R.id.cancel_button);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+/*        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
                 dialog.dismiss();
             }
-        });
+        });*/
 
     }
 }

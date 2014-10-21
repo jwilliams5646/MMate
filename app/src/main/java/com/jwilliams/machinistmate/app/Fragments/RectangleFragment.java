@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,14 +21,16 @@ import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.Formatter;
 import com.jwilliams.machinistmate.app.GeometryClasses.Rectangle;
+import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by John on 5/27/2014.
  */
 public class RectangleFragment extends Fragment {
 
-    private static final String KEY_POSITION = "position";
+    private ImageView rectangleImage;
     private LinearLayout inputLayout1;
     private LinearLayout inputLayout2;
     private LinearLayout inputLayout3;
@@ -54,6 +57,8 @@ public class RectangleFragment extends Fragment {
     private double inputValue2;
     private double inputValue3;
     private SharedPreferences sp;
+    private boolean isTablet;
+
 
     public RectangleFragment() {
     }
@@ -92,7 +97,7 @@ public class RectangleFragment extends Fragment {
             public void onClick(View view) {
                 rectangle = new Rectangle();
                 precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
-                switch(answerPos){
+                switch (answerPos) {
                     case 0:
                         calcArea();
                         break;
@@ -100,7 +105,7 @@ public class RectangleFragment extends Fragment {
                         calcDiagonal();
                         break;
                     case 2:
-                        switch(inputPos) {
+                        switch (inputPos) {
                             case 0:
                                 calcWidthByArea();
                                 break;
@@ -113,7 +118,7 @@ public class RectangleFragment extends Fragment {
                         }
                         break;
                     case 3:
-                        switch(inputPos){
+                        switch (inputPos) {
                             case 0:
                                 calcLengthByArea();
                                 break;
@@ -364,6 +369,7 @@ public class RectangleFragment extends Fragment {
     }
 
     private void initializeLayout(View rootView) {
+        rectangleImage = (ImageView)rootView.findViewById(R.id.rectangle_image);
         inputLayout1 = (LinearLayout)rootView.findViewById(R.id.rectangle_input_layout1);
         inputLayout2 = (LinearLayout)rootView.findViewById(R.id.rectangle_input_layout2);
         inputLayout3 = (LinearLayout)rootView.findViewById(R.id.rectangle_input_layout3);
@@ -380,6 +386,25 @@ public class RectangleFragment extends Fragment {
         answerPos = 0;
         inputPos = 0;
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        isTablet = sp.getBoolean("isTablet", false);
+        showRectangle();
+    }
+
+    private void showRectangle() {
+        Picasso.with(getActivity())
+                .load(R.drawable.rectangle)
+                .fit()
+                .centerInside()
+                .into(rectangleImage);
+        if(!isTablet) {
+            rectangleImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShowImage enlarge = new ShowImage(getActivity(), R.drawable.rectangle);
+                    enlarge.setDialog();
+                }
+            });
+        }
     }
 
     private void resetLayout() {

@@ -17,6 +17,7 @@ import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.Formatter;
+import com.jwilliams.machinistmate.app.GeometryClasses.Parallelogram;
 import com.jwilliams.machinistmate.app.R;
 
 /**
@@ -24,7 +25,6 @@ import com.jwilliams.machinistmate.app.R;
  */
 public class ParallelogramFragment extends Fragment {
 
-    private static final String KEY_POSITION="position";
     private LinearLayout inputLayout1;
     private LinearLayout inputLayout2;
     private RobotoTextView inputView1;
@@ -44,6 +44,7 @@ public class ParallelogramFragment extends Fragment {
     private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private AdRequest adRequest;
+    private Parallelogram pg;
 
     public ParallelogramFragment() {
     }
@@ -106,6 +107,7 @@ public class ParallelogramFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pg = new Parallelogram();
                 check = false;
                 switch (setCalc) {
                     case 0:
@@ -115,41 +117,60 @@ public class ParallelogramFragment extends Fragment {
                         calcBase();
                         break;
                     case 2:
-                        calcHeight();
+                        if(pg.calcHeight(input1, input2)){
+                            answer.setText(Formatter.formatOutput(pg.getH(), precision));
+                        }else{
+                            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 3:
-                        calcSide();
+                        if(pg.calcSide(input1, input2)){
+                            answer.setText(Formatter.formatOutput(pg.getA(), precision));
+                        }else{
+                            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 4:
-                        calcPerimeter();
+                        if(pg.calcPerimeter(input1, input2)){
+                            answer.setText(Formatter.formatOutput(pg.getPerimeter(), precision));
+                        }else{
+                            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 5:
-                        calcX();
+                        if(pg.calcX(input1)){
+                            answer.setText(Formatter.formatOutput(pg.getX(), precision));
+                        }else{
+                            Toast.makeText(getActivity(), "Invalid Input", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 6:
-                        calcY();
+                        if(pg.calcY(input1)){
+                          answer.setText(Formatter.formatOutput(pg.getY(), precision));
+                        }else{
+                            Toast.makeText(getActivity(), "Invalid Input", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                 }
             }
         });
     }
 
-    private void calcY() {
-        double x = 0.0;
+/*    private void calcY(EditText input1) {
         try{
-            x = Double.parseDouble(input1.getText().toString());
+            pg.setX(Double.parseDouble(this.input1.getText().toString()));
         }catch(NumberFormatException e){
             check = true;
         }
 
         if(!check){
-            answer.setText(Formatter.formatOutput(180 - x, precision));
+            answer.setText(Formatter.formatOutput(pg.calcY(input1), precision));
         }else{
             Toast.makeText(getActivity(), "Invalid Input", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
-    private void calcX() {
+/*    private void calcX() {
         double y = 0.0;
         try{
             y = Double.parseDouble(input1.getText().toString());
@@ -162,8 +183,9 @@ public class ParallelogramFragment extends Fragment {
         }else{
             Toast.makeText(getActivity(), "Invalid Input", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
+/*
     private void calcPerimeter() {
         double a = 0.0;
         double b = 0.0;
@@ -186,8 +208,9 @@ public class ParallelogramFragment extends Fragment {
         }
 
     }
+*/
 
-    private void calcSide() {
+/*    private void calcSide() {
         double p = 0.0;
         double b = 0.0;
         try{
@@ -207,9 +230,9 @@ public class ParallelogramFragment extends Fragment {
         }else{
             Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
-    private void calcHeight() {
+/*    private void calcHeight() {
         double a = 0.0;
         double b = 0.0;
         try{
@@ -228,8 +251,8 @@ public class ParallelogramFragment extends Fragment {
             answer.setText(Formatter.formatOutput(a / b, precision));
         }else{
             Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-    }
+        }*/
+    //}
 
     private void calcBase() {
         double a = 0.0;
@@ -357,20 +380,6 @@ public class ParallelogramFragment extends Fragment {
         check = false;
         precisionView.setText(Integer.toString(precision));
     }
-
-    public static ParallelogramFragment newInstance(int position) {
-        ParallelogramFragment frag=new ParallelogramFragment();
-        Bundle args=new Bundle();
-
-        args.putInt(KEY_POSITION, position);
-        frag.setArguments(args);
-
-        return(frag);
-    }
-
- /*   static String getTitle(Context ctxt, int position) {
-        return(String.format(ctxt.getString(R.string.parallelogram), position + 1));
-    }*/
 
     @Override
     public void onPause(){
