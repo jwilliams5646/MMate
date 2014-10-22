@@ -1,50 +1,54 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.Formatter;
 import com.jwilliams.machinistmate.app.GeometryClasses.Parallelogram;
+import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
+import com.squareup.picasso.Picasso;
 
 /**
- * Created by John on 5/12/2014.
+ * Created by John Williams
+ * View-controller for the Geometry option Parallelogram.
  */
 public class ParallelogramFragment extends Fragment {
 
+    private ImageView paragramImage;
     private LinearLayout inputLayout1;
     private LinearLayout inputLayout2;
     private RobotoTextView inputView1;
     private RobotoTextView inputView2;
     private RobotoTextView answer;
-    private RobotoTextView precisionView;
     private EditText input1;
     private EditText input2;
     private Spinner paraSpinner;
     private RobotoButton calcButton;
-    private RobotoButton addButton;
-    private RobotoButton minusButton;
     private int setCalc;
     private int precision;
-    private boolean check;
     private ArrayAdapter<CharSequence> paraAdapter;
-    private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
+    //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private AdRequest adRequest;
     private Parallelogram pg;
+    private SharedPreferences sp;
 
     public ParallelogramFragment() {
     }
@@ -64,7 +68,6 @@ public class ParallelogramFragment extends Fragment {
         setSpinnerAdapter();
         setSpinnerListener();
         setCalcListener();
-        setPrecisionListeners();
         return rootView;
     }
 
@@ -77,44 +80,26 @@ public class ParallelogramFragment extends Fragment {
         adView.loadAd(adRequest);
     }
 
-    private void setPrecisionListeners() {
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(precision < 6) {
-                    precision++;
-                    precisionView.setText(Integer.toString(precision));
-                }else{
-                    Toast.makeText(getActivity(), "Max precision reached.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        minusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (precision > 1) {
-                    precision--;
-                    precisionView.setText(Integer.toString(precision));
-                } else {
-                    Toast.makeText(getActivity(), "You can't go down any farther.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
     private void setCalcListener() {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pg = new Parallelogram();
-                check = false;
+                precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
                 switch (setCalc) {
                     case 0:
-                        calcArea();
+                        if(pg.calcArea(input1, input2)){
+                            answer.setText(Formatter.formatOutput(pg.getArea(), precision));
+                        }else{
+                            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 1:
-                        calcBase();
+                        if(pg.calcBase(input1, input2)){
+                            answer.setText(Formatter.formatOutput(pg.getB(), precision));
+                        }else{
+                            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 2:
                         if(pg.calcHeight(input1, input2)){
@@ -154,148 +139,6 @@ public class ParallelogramFragment extends Fragment {
                 }
             }
         });
-    }
-
-/*    private void calcY(EditText input1) {
-        try{
-            pg.setX(Double.parseDouble(this.input1.getText().toString()));
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Formatter.formatOutput(pg.calcY(input1), precision));
-        }else{
-            Toast.makeText(getActivity(), "Invalid Input", Toast.LENGTH_SHORT).show();
-        }
-    }*/
-
-/*    private void calcX() {
-        double y = 0.0;
-        try{
-            y = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Formatter.formatOutput(180 - y, precision));
-        }else{
-            Toast.makeText(getActivity(), "Invalid Input", Toast.LENGTH_SHORT).show();
-        }
-    }*/
-
-/*
-    private void calcPerimeter() {
-        double a = 0.0;
-        double b = 0.0;
-        try{
-            a = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            b = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Formatter.formatOutput(2 * (a + b), precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-*/
-
-/*    private void calcSide() {
-        double p = 0.0;
-        double b = 0.0;
-        try{
-            p = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            b = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Formatter.formatOutput((p / 2) - b, precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-    }*/
-
-/*    private void calcHeight() {
-        double a = 0.0;
-        double b = 0.0;
-        try{
-            a = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            b = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Formatter.formatOutput(a / b, precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }*/
-    //}
-
-    private void calcBase() {
-        double a = 0.0;
-        double h = 0.0;
-        try{
-            a = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            h = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Formatter.formatOutput(a / h, precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void calcArea() {
-        double b = 0.0;
-        double h = 0.0;
-        try{
-            b = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            h = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Formatter.formatOutput(b * h, precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void setSpinnerListener() {
@@ -363,22 +206,36 @@ public class ParallelogramFragment extends Fragment {
     }
 
     private void initializeLayout(View rootView) {
+        paragramImage = (ImageView)rootView.findViewById(R.id.para_image);
         inputLayout1 = (LinearLayout)rootView.findViewById(R.id.para_input1_layout);
         inputLayout2 = (LinearLayout)rootView.findViewById(R.id.para_layout2);
         inputView1 = (RobotoTextView)rootView.findViewById(R.id.para_view1);
         inputView2 = (RobotoTextView)rootView.findViewById(R.id.para_view2);
-        precisionView = (RobotoTextView)rootView.findViewById(R.id.para_precision_view);
         answer = (RobotoTextView)rootView.findViewById(R.id.para_answer);
         input1 = (EditText)rootView.findViewById(R.id.para_input1);
         input2 = (EditText)rootView.findViewById(R.id.para_input2);
         paraSpinner = (Spinner)rootView.findViewById(R.id.para_spinner);
         calcButton = (RobotoButton)rootView.findViewById(R.id.para_calc_button);
-        addButton = (RobotoButton)rootView.findViewById(R.id.para_add_button);
-        minusButton = (RobotoButton)rootView.findViewById(R.id.para_minus_button);
         setCalc = 0;
-        precision = 2;
-        check = false;
-        precisionView.setText(Integer.toString(precision));
+        sp = getActivity().getPreferences(Context.MODE_PRIVATE);
+        showParallelogram();
+    }
+
+    private void showParallelogram() {
+        Picasso.with(getActivity())
+                .load(R.drawable.parallelogram)
+                .fit()
+                .centerInside()
+                .into(paragramImage);
+        if(!sp.getBoolean("isTablet", false)) {
+            paragramImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShowImage enlarge = new ShowImage(getActivity(), R.drawable.parallelogram);
+                    enlarge.setDialog();
+                }
+            });
+        }
     }
 
     @Override

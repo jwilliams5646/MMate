@@ -1,6 +1,7 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -78,13 +79,15 @@ public class SquareFragment extends Fragment {
                 .fit()
                 .centerInside()
                 .into(image);
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowImage enlarge = new ShowImage(getActivity(), R.drawable.square);
-                enlarge.setDialog();
-            }
-        });
+        if(!sp.getBoolean("isTablet", false)) {
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShowImage enlarge = new ShowImage(getActivity(), R.drawable.square);
+                    enlarge.setDialog();
+                }
+            });
+        }
     }
 
     private void setAd(View rootView){

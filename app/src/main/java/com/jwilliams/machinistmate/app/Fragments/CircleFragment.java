@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
@@ -43,13 +42,9 @@ public class CircleFragment extends Fragment {
     private int pos;
     private int radiusChoice;
     private int precision;
-    private ArrayAdapter<CharSequence> circleAdapter;
     private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
-    private AdRequest adRequest;
     private SharedPreferences sp;
-    private SharedPreferences sharedPref;
-    private boolean isTablet;
 
 
     public CircleFragment() {
@@ -81,7 +76,7 @@ public class CircleFragment extends Fragment {
                 .fit()
                 .centerInside()
                 .into(circleImage);
-        if(!isTablet) {
+        if(!sp.getBoolean("isTablet", false)) {
             circleImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -94,7 +89,7 @@ public class CircleFragment extends Fragment {
 
     private void setAd(View rootView){
         adView = (AdView)rootView.findViewById(R.id.c_adView);
-        adRequest = new AdRequest.Builder()
+        AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice(TEST_DEVICE_ID)
                 .build();
@@ -178,7 +173,7 @@ public class CircleFragment extends Fragment {
     }
 
     private void setCircleSpinnerAdapter() {
-        circleAdapter = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> circleAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.circle_calc_array, R.layout.spinner_background);
         circleAdapter.setDropDownViewResource(R.layout.spinner_drop_down);
         answerSpinner.setAdapter(circleAdapter);
@@ -217,8 +212,7 @@ public class CircleFragment extends Fragment {
         pos = 0;
         radiusChoice = 0;
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        isTablet = sharedPref.getBoolean("isTablet", false);
+        sp = getActivity().getPreferences(Context.MODE_PRIVATE);
         showCircle();
     }
 

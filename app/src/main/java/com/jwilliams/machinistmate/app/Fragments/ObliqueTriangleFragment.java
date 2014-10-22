@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
@@ -53,14 +50,11 @@ public class ObliqueTriangleFragment extends Fragment {
     private int spinnerX;
     private int spinnerY;
     private int spinnerZ;
-    private ArrayAdapter<CharSequence> angleAdapter;
     private View rootView;
     //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
-    private AdRequest adRequest;
     private ObliqueTriangle ot;
-    private SharedPreferences sharedPref;
-    private Boolean isTablet;
+    private SharedPreferences sp;
 
     public ObliqueTriangleFragment() {
     }
@@ -81,7 +75,7 @@ public class ObliqueTriangleFragment extends Fragment {
 
     private void setAd(View rootView){
         adView = (AdView)rootView.findViewById(R.id.oblique_adView);
-        adRequest = new AdRequest.Builder()
+        AdRequest adRequest = new AdRequest.Builder()
 /*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
@@ -108,8 +102,7 @@ public class ObliqueTriangleFragment extends Fragment {
         spinnerX = 0;
         spinnerY = 0;
         spinnerZ = 0;
-        sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        isTablet = sharedPref.getBoolean("isTablet", false);
+        sp = getActivity().getPreferences(Context.MODE_PRIVATE);
         setAngleAdapters();
         setAngleXListener();
         setAngleYListener();
@@ -127,7 +120,7 @@ public class ObliqueTriangleFragment extends Fragment {
                 .centerInside()
                 .into(ObTriangle);
 
-        if(!isTablet){
+        if(!sp.getBoolean("isTablet", false)){
             ObTriangle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -161,172 +154,10 @@ public class ObliqueTriangleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ot = new ObliqueTriangle();
-                int errorCode = 0;
-                boolean ca = true;
-                boolean cb = true;
-                boolean cc = true;
-                boolean cx = true;
-                boolean cy = true;
-                boolean cz = true;
-                int count = 0;
-                ot.setxPos(spinnerX);
-                ot.setyPos(spinnerY);
-                ot.setzPos(spinnerZ);
-
-                try {
-                    ot.setA(Double.parseDouble(sideAInput.getText().toString()));
-                } catch (NumberFormatException e) {
-                    ca=false;
-                    count++;
-                }
-
-                try {
-                    ot.setB(Double.parseDouble(sideBInput.getText().toString()));
-                } catch (NumberFormatException e) {
-                    cb=false;
-                    count++;
-                }
-
-                try {
-                    ot.setC(Double.parseDouble(sideCInput.getText().toString()));
-                } catch (NumberFormatException e) {
-                    cc=false;
-                    count++;
-                }
-
-                try {
-                    ot.setX(Double.parseDouble(angleXInput.getText().toString()));
-                } catch (NumberFormatException e) {
-                    cx=false;
-                    count++;
-                }
-
-                try {
-                    ot.setY(Double.parseDouble(angleYInput.getText().toString()));
-                } catch (NumberFormatException e) {
-                    cy=false;
-                    count++;
-                }
-
-                try {
-                    ot.setZ(Double.parseDouble(angleZInput.getText().toString()));
-                } catch (NumberFormatException e) {
-                    cz=false;
-                    count++;
-                }
-
-                if(count > 3){
-                    Toast.makeText(getActivity(), "You need at least 3 values to proceed", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if(count < 3){
-                    Toast.makeText(getActivity(), "Input a maximum of 3 values", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if(cx && cy && cz){
-                    Toast.makeText(getActivity(), "Triangle can not be solved with only angles.  This is the triangle equivalent of dividing by zero.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(ot.getDegree(spinnerX,ot.getX()) >= 90 || ot.getDegree(spinnerY,ot.getY()) >= 90){
-                    Toast.makeText(getActivity(), "Only angle (z) can be 90 degrees or greater", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                //a-b-c -> x-y-z
-                if (cc && ca && cb){
-                    errorCode = ot.calcFromABC();
-                }
-                //a-c-z -> x-y-b
-                else if (cc && ca && cz){
-                    errorCode = ot.calcFromCAZ();
-                }
-                //c-b-x -> a-y-z
-                else if (cc && cb && cx){
-                    errorCode = ot.calcFromCBX();
-                }
-                //a-b-y -> c-x-z
-                else if (ca && cb && cy){
-                    errorCode = ot.calcFromABY();
-                }
-                //c-a-y -> b-x-z
-                else if (cc && ca && cy){
-                    errorCode = ot.calcFromCAY();
-                }
-                //c-a-x -> b-y-z
-                else if (cc && ca && cx){
-                    errorCode = ot.calcFromCAX();
-                }
-                   //c-b-y -> a-x-z
-                else if (cc && cb && cy){
-                    errorCode = ot.calcFromCBY();
-                }
-                //c-b-z -> a-x-y
-                else if (cc && cb && cz){
-                    errorCode = ot.calcFromCBZ();
-                }
-                //a-b-x -> c-y-z
-                else if (ca && cb && cx){
-                    errorCode = ot.calcFromABX();
-                }
-                //a-b-z -> c-x-y
-                else if (ca && cb && cz){
-                    errorCode = ot.calcFromABZ();
-                }
-                //c-y-x -> a-b-z
-                else if (cc && cy && cx){
-                    errorCode = ot.calcFromCYX();
-                }
-
-                else if (cc && cy && cz){
-                    errorCode = ot.calcFromCYZ();
-                }
-
-                else if (cc && cx && cz){
-                    errorCode = ot.calcFromCXZ();
-                }
-
-                else if (ca && cy && cx){
-                    errorCode = ot.calcFromAYX();
-                }
-
-                else if (ca && cy && cz){
-                    errorCode = ot.calcFromAYZ();
-                }
-
-                else if (ca && cx && cz){
-                    errorCode = ot.calcFromAXZ();
-                }
-
-                else if (cb && cy && cx){
-                    errorCode = ot.calcFromBYX();
-                }
-
-                else if (cb && cy && cz){
-                    errorCode = ot.calcFromBYZ();
-                }
-
-                else if (cb && cx && cz){
-                    errorCode = ot.calcFromBXZ();
-                }
-
-                switch(errorCode){
-                    case 0:
-                        postAnswers();
-                        break;
-                    case 1:
-                        Toast.makeText(getActivity(), "This is not a triangle", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        Toast.makeText(getActivity(), "Side(b) is the base of the triangle and must be the longest side and greater than the sum of Side(a) and Side(c).", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 3:
-                        Toast.makeText(getActivity(), "Side b cannot be shorter than side c if angle (z) is greater than 90 degrees", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                        break;
+                if(ot.calcObliqueTriangle(sideAInput, sideBInput, sideCInput,
+                        angleXInput, angleYInput, angleZInput,
+                        spinnerX, spinnerY, spinnerZ, getActivity())){
+                    postAnswers();
                 }
             }
         });
@@ -406,7 +237,7 @@ public class ObliqueTriangleFragment extends Fragment {
     }
 
     private void setAngleAdapters() {
-        angleAdapter = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> angleAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.degree_rad_array, R.layout.spinner_background);
         angleAdapter.setDropDownViewResource(R.layout.spinner_drop_down);
         angleXSpinner.setAdapter(angleAdapter);

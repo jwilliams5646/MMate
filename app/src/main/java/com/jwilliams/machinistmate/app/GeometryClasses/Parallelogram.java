@@ -46,29 +46,9 @@ public class Parallelogram {
         return x;
     }
 
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public void setA(double a) {
-        this.a = a;
-    }
-
-    public void setB(double b) {
-        this.b = b;
-    }
-
-    public void setH(double h) {
-        this.h = h;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
     public boolean calcY(EditText input1){
         try{
-            this.y = 180 - Double.parseDouble(input1.getText().toString());
+            y = 180 - Double.parseDouble(input1.getText().toString());
         }catch(NumberFormatException e){
             return false;
         }
@@ -77,7 +57,7 @@ public class Parallelogram {
 
     public boolean calcX(EditText input1){
         try{
-            this.x = 180 - Double.parseDouble(input1.getText().toString());
+            x = 180 - Double.parseDouble(input1.getText().toString());
         }catch(NumberFormatException e){
             return false;
         }
@@ -85,8 +65,6 @@ public class Parallelogram {
     }
 
     public boolean calcPerimeter(EditText input1, EditText input2){
-        double a;
-        double b;
         try{
             a = Double.parseDouble(input1.getText().toString());
         }catch(NumberFormatException e){
@@ -98,15 +76,13 @@ public class Parallelogram {
         }catch(NumberFormatException e){
             return false;
         }
-        this.perimeter = 2*(a+b);
+        perimeter = 2*(a+b);
         return true;
     }
 
     public boolean calcSide(EditText input1, EditText input2){
-        double p;
-        double b;
         try{
-            p = Double.parseDouble(input1.getText().toString());
+            perimeter = Double.parseDouble(input1.getText().toString());
         }catch(NumberFormatException e){
             return false;
         }
@@ -116,13 +92,11 @@ public class Parallelogram {
         }catch(NumberFormatException e){
             return false;
         }
-        this.a = (p/2)-b;
+        this.a = (perimeter/2)-b;
         return true;
     }
 
     public boolean calcHeight(EditText input1, EditText input2){
-        double a;
-        double b;
         try{
             a = Double.parseDouble(input1.getText().toString());
         }catch(NumberFormatException e){
@@ -138,4 +112,35 @@ public class Parallelogram {
         return true;
     }
 
+    public boolean calcBase(EditText input1, EditText input2){
+        try{
+            a = Double.parseDouble(input1.getText().toString());
+        }catch(NumberFormatException e){
+            return false;
+        }
+
+        try{
+            h = Double.parseDouble(input2.getText().toString());
+        }catch(NumberFormatException e){
+            return false;
+        }
+        b = a/h;
+        return true;
+    }
+
+    public boolean calcArea(EditText input1, EditText input2){
+        try{
+            b = Double.parseDouble(input1.getText().toString());
+        }catch(NumberFormatException e){
+            return false;
+        }
+
+        try{
+            h = Double.parseDouble(input2.getText().toString());
+        }catch(NumberFormatException e){
+            return false;
+        }
+        area = b*h;
+        return true;
+    }
 }

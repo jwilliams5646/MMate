@@ -1,6 +1,7 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -385,7 +386,7 @@ public class RectangleFragment extends Fragment {
         calcButton = (RobotoButton)rootView.findViewById(R.id.rect_calc);
         answerPos = 0;
         inputPos = 0;
-        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        sp = getActivity().getPreferences(Context.MODE_PRIVATE);
         isTablet = sp.getBoolean("isTablet", false);
         showRectangle();
     }
