@@ -65,7 +65,6 @@ public class LengthFragment extends Fragment {
         setInputListener();
         setOutputListener();
         setCalcListener();
-        setPrecisionListeners();
 
         return rootView;
     }
@@ -77,32 +76,6 @@ public class LengthFragment extends Fragment {
                 .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
         adView.loadAd(adRequest);
-    }
-
-    private void setPrecisionListeners() {
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(precision < 6) {
-                    precision++;
-                    precisionView.setText(Integer.toString(precision));
-                }else{
-                    Toast.makeText(getActivity(), "Max precision reached.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        minusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (precision > 1) {
-                    precision--;
-                    precisionView.setText(Integer.toString(precision));
-                } else {
-                    Toast.makeText(getActivity(), "You can't go down any farther.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     private void setCalcListener() {
@@ -174,17 +147,14 @@ public class LengthFragment extends Fragment {
     private void setLayoutVariables(View rootView){
         answer = (RobotoTextView) rootView.findViewById(R.id.conv_answer);
         answerType = (RobotoTextView) rootView.findViewById(R.id.conv_answer_type);
-        precisionView = (RobotoTextView) rootView.findViewById(R.id.conv_precision_view);
         inputSpinner = (Spinner) rootView.findViewById(R.id.conv_input_spinner);
         outputSpinner = (Spinner) rootView.findViewById(R.id.conv_output_spinner);
         input = (EditText) rootView.findViewById(R.id.conv_input);
         calcButton = (RobotoButton) rootView.findViewById(R.id.conv_calc_button);
-        addButton = (RobotoButton) rootView.findViewById(R.id.conv_add_button);
-        minusButton = (RobotoButton) rootView.findViewById(R.id.conv_minus_button);
         answerLayout = (LinearLayout) rootView.findViewById(R.id.conv_answer_layout);
         inputPos = 0;
         precision = 2;
-        precisionView.setText(Integer.toString(precision));
+        //precisionView.setText(Integer.toString(precision));
     }
 
     private void setSpinnerAdapter(){

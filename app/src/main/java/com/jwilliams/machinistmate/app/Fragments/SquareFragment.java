@@ -47,6 +47,7 @@ public class SquareFragment extends Fragment {
     private AdView adView;
     private AdRequest adRequest;
     private SharedPreferences sp;
+    private ImageView image;
 
     public SquareFragment() {
     }
@@ -60,7 +61,6 @@ public class SquareFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.square_detail, container, false);
-        setSquare(rootView);
         setAd(rootView);
         initializeLayout(rootView);
         setAnswerChoiceAdapter();
@@ -73,7 +73,7 @@ public class SquareFragment extends Fragment {
     }
 
     private void setSquare(View rootView) {
-        ImageView image = (ImageView)rootView.findViewById(R.id.square_image);
+        image = (ImageView)rootView.findViewById(R.id.square_image);
         Picasso.with(getActivity())
                 .load(R.drawable.square)
                 .fit()
@@ -207,6 +207,7 @@ public class SquareFragment extends Fragment {
         sidePos = 0;
         answerPos = 0;
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        setSquare(rootView);
         setBasicLayout();
     }
 

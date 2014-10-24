@@ -13,11 +13,12 @@
         <ImageView
             android:id="@+id/speeds_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
     </RelativeLayout>
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="0dp"
+    android:layout_weight="2">
     <LinearLayout
         android:id="@+id/speed_answer_layout"
         android:layout_width="match_parent"
@@ -131,7 +132,6 @@
         android:layout_margin="4dp"
         android:text="@string/calculate"
         android:layout_below="@+id/diameter_view" />
-</RelativeLayout>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/speeds_adView"
@@ -139,6 +139,9 @@
         android:layout_height="wrap_content"
         ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
         ads:adSize="BANNER"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
 
 </LinearLayout>

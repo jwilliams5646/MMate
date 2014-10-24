@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
-import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoRadioButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.Formatter;
 import com.jwilliams.machinistmate.app.R;
@@ -34,16 +33,14 @@ public class SpeedsFragment extends Fragment {
     private RobotoTextView surfaceType;
     private EditText surfaceInput;
     private EditText diameterInput;
-    private boolean speedsType;
+    private boolean isStandard;
     private RadioGroup speedRadioGroup;
     private RobotoButton speedsCalc;
-    private RobotoRadioButton standardButton;
-    private RobotoRadioButton metricButton;
     private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
-    private AdRequest adRequest;
     private Speeds speeds;
     private Context context;
+    private View rootView;
 
     public SpeedsFragment() {
     }
@@ -56,27 +53,24 @@ public class SpeedsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.speeds_item_detail, container, false);
+        rootView = inflater.inflate(R.layout.speeds_item_detail, container, false);
         try {
-            setAd(rootView);
+            setAd();
         }catch(Exception e){
             e.printStackTrace();
         }
-        setLayout(rootView);
+        setLayout();
         setRadioGroupListener();
         setCalcButtonListener();
         return rootView;
-    }
-
-    public void getContext(){
-        context = getActivity();
     }
 
     private void setCalcButtonListener() {
         speedsCalc.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validInput()) {
+                speeds = new Speeds();
+                if (speeds.calcSpeed(surfaceInput,diameterInput,isStandard)) {
                     speedAnswer.setText(Formatter.formatOutput(speeds.getSpeed(), 0));
                 } else {
                     Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
@@ -93,21 +87,21 @@ public class SpeedsFragment extends Fragment {
                     case R.id.speeds_standard_radio:
                         surfaceType.setText(getText(R.string.surface_standard));
                         diameterInput.setHint(getText(R.string.in));
-                        speedsType = true;
+                        isStandard = true;
                         break;
                     case R.id.speeds_metric_radio:
                         surfaceType.setText(getText(R.string.surface_metric));
                         diameterInput.setHint(getText(R.string.mm));
-                        speedsType = false;
+                        isStandard = false;
                         break;
                 }
             }
         });
     }
 
-    private void setAd(View rootView) {
+    private void setAd() {
         adView = (AdView) rootView.findViewById(R.id.speeds_adView);
-        adRequest = new AdRequest.Builder()
+        AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice(TEST_DEVICE_ID)
                 .build();
@@ -118,46 +112,25 @@ public class SpeedsFragment extends Fragment {
         }
     }
 
-    private void setLayout(View rootView) {
+    private void setLayout() {
         speedRadioGroup = (RadioGroup) rootView.findViewById(R.id.speed_radio_group);
         surfaceType = (RobotoTextView) rootView.findViewById(R.id.surface_view);
         surfaceInput = (EditText) rootView.findViewById(R.id.surfaceInput);
         diameterInput = (EditText) rootView.findViewById(R.id.diameterInput);
         speedsCalc = (RobotoButton) rootView.findViewById(R.id.speed_calc);
         speedAnswer = (RobotoTextView) rootView.findViewById(R.id.speed_answer);
-        standardButton = (RobotoRadioButton) rootView.findViewById(R.id.speeds_standard_radio);
-        metricButton = (RobotoRadioButton) rootView.findViewById(R.id.speeds_metric_radio);
-        speedsType = true;
+        isStandard = true;
+        context = getActivity();
         showImage(rootView);
     }
 
     private void showImage(View rootView) {
         ImageView speedsImage = (ImageView) rootView.findViewById(R.id.speeds_image);
-        Picasso.with(getActivity())
+        Picasso.with(context)
                 .load(R.drawable.speeds)
                 .fit()
                 .centerInside()
                 .into(speedsImage);
-    }
-
-    private boolean validInput() {
-        speeds = new Speeds(speedsType);
-        boolean valid = true;
-
-        try {
-            speeds.setSurface(Double.parseDouble(surfaceInput.getText().toString()));
-        } catch (NumberFormatException e) {
-            surfaceInput.setHint("Invalid");
-            valid = false;
-        }
-
-        try {
-            speeds.setDiameter(Double.parseDouble(diameterInput.getText().toString()));
-        } catch (NumberFormatException e) {
-            diameterInput.setHint("Invalid");
-            valid = false;
-        }
-        return valid;
     }
 
     @Override

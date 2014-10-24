@@ -1,27 +1,39 @@
 package com.jwilliams.machinistmate.app.SpeedsandFeedsClasses;
 
+import android.widget.EditText;
+
 /**
  * Created by john.williams on 9/11/2014.
  */
 public class Feeds {
 
-    private int speed = 0;
-    private double fpt = 0.0;
-    private int numTeeth = 0;
-
-    public void setSpeed(int speed){
-        this.speed = speed;
-    }
-
-    public void setFpt(double fpt){
-        this.fpt = fpt;
-    }
-
-    public void setNumTeeth(int numTeeth){
-        this.numTeeth = numTeeth;
-    }
+    private int speed;
+    private double fpt;
+    private int numTeeth;
+    private double feed;
 
     public double getFeedRate(){
-        return speed * fpt * numTeeth;
+        return feed;
+    }
+
+    public boolean calcFeed(EditText speedInput, EditText fptInput, EditText ntInput){
+        try {
+            speed = (Integer.parseInt(speedInput.getText().toString()));
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        try {
+            fpt = (Double.parseDouble(fptInput.getText().toString()));
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        try {
+            numTeeth = (Integer.parseInt(ntInput.getText().toString()));
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        feed = speed * fpt * numTeeth;
+        return true;
     }
 }

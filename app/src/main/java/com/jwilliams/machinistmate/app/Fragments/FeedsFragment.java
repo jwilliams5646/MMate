@@ -29,6 +29,7 @@ import com.squareup.picasso.Picasso;
  */
 public class FeedsFragment extends Fragment {
 
+    private View rootView;
     private RobotoTextView feedAnswer;
     private EditText feedSpeedInput;
     private EditText feedPerToothInput;
@@ -53,15 +54,15 @@ public class FeedsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.feeds_item_detail, container, false);
-        setAd(rootView);
-        setLayoutVariables(rootView);
+        rootView = inflater.inflate(R.layout.feeds_item_detail, container, false);
+        setAd();
+        setLayoutVariables();
         setRadioButtonListeners();
         setCalcButtonListener();
         return rootView;
     }
 
-    private void setAd(View rootView){
+    private void setAd(){
         adView = (AdView)rootView.findViewById(R.id.feeds_adView);
         AdRequest adRequest = new AdRequest.Builder()
 /*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
@@ -73,8 +74,9 @@ public class FeedsFragment extends Fragment {
     private void setCalcButtonListener() {
         feedCalc.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
-                if (validInput()) {
-                    precision = Integer.parseInt(sp.getString("pref_key_feeds_precision", "4"));
+                feeds = new Feeds();
+                precision = Integer.parseInt(sp.getString("pref_key_feeds_precision", "4"));
+                if (feeds.calcFeed(feedSpeedInput,feedPerToothInput,numberTeethInput)) {
                     feedAnswer.setText(Formatter.formatOutput(feeds.getFeedRate(), precision));
                 } else {
                     Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
@@ -100,7 +102,7 @@ public class FeedsFragment extends Fragment {
         });
     }
 
-    private void setLayoutVariables(View rootView){
+    private void setLayoutVariables(){
         feedAnswer = (RobotoTextView) rootView.findViewById(R.id.feed_answer);
         feedSpeedInput = (EditText) rootView.findViewById(R.id.feed_speed_input);
         feedPerToothInput = (EditText) rootView.findViewById(R.id.feed_per_tooth_input);
@@ -115,36 +117,11 @@ public class FeedsFragment extends Fragment {
 
     private void showImage(View rootView) {
         ImageView feedImage = (ImageView)rootView.findViewById(R.id.feeds_image);
-
         Picasso.with(getActivity())
                 .load(R.drawable.feeds)
                 .fit()
                 .centerInside()
                 .into(feedImage);
-    }
-
-    public boolean validInput(){
-        feeds = new Feeds();
-        boolean valid = true;
-        try {
-            feeds.setSpeed(Integer.parseInt(feedSpeedInput.getText().toString()));
-        } catch (NumberFormatException e) {
-            feedSpeedInput.setHint("Invalid");
-            valid = false;
-        }
-        try {
-            feeds.setFpt(Double.parseDouble(feedPerToothInput.getText().toString()));
-        } catch (NumberFormatException e) {
-            feedPerToothInput.setHint("Invalid");
-            valid = false;
-        }
-        try {
-            feeds.setNumTeeth(Integer.parseInt(numberTeethInput.getText().toString()));
-        } catch (NumberFormatException e) {
-            numberTeethInput.setHint("Invalid");
-            valid = false;
-        }
-        return valid;
     }
 
     @Override
