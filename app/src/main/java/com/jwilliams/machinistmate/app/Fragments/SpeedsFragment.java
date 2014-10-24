@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.Formatter;
 import com.jwilliams.machinistmate.app.R;
 import com.jwilliams.machinistmate.app.SpeedsandFeedsClasses.Speeds;
+import com.squareup.picasso.Picasso;
 
 
 /**
@@ -126,6 +128,16 @@ public class SpeedsFragment extends Fragment {
         standardButton = (RobotoRadioButton) rootView.findViewById(R.id.speeds_standard_radio);
         metricButton = (RobotoRadioButton) rootView.findViewById(R.id.speeds_metric_radio);
         speedsType = true;
+        showImage(rootView);
+    }
+
+    private void showImage(View rootView) {
+        ImageView speedsImage = (ImageView) rootView.findViewById(R.id.speeds_image);
+        Picasso.with(getActivity())
+                .load(R.drawable.speeds)
+                .fit()
+                .centerInside()
+                .into(speedsImage);
     }
 
     private boolean validInput() {

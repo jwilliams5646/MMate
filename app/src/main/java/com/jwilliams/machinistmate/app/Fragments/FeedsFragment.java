@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.Formatter;
 import com.jwilliams.machinistmate.app.R;
 import com.jwilliams.machinistmate.app.SpeedsandFeedsClasses.Feeds;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by John on 4/4/2014.
@@ -37,7 +39,6 @@ public class FeedsFragment extends Fragment {
     private int precision;
     private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
-    private AdRequest adRequest;
     private Feeds feeds;
     private SharedPreferences sp;
 
@@ -62,7 +63,7 @@ public class FeedsFragment extends Fragment {
 
     private void setAd(View rootView){
         adView = (AdView)rootView.findViewById(R.id.feeds_adView);
-        adRequest = new AdRequest.Builder()
+        AdRequest adRequest = new AdRequest.Builder()
 /*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
@@ -109,6 +110,17 @@ public class FeedsFragment extends Fragment {
         feedCalc = (RobotoButton) rootView.findViewById(R.id.feed_calc);
         feedAnswerType.setText(getText(R.string.ipm));
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        showImage(rootView);
+    }
+
+    private void showImage(View rootView) {
+        ImageView feedImage = (ImageView)rootView.findViewById(R.id.feeds_image);
+
+        Picasso.with(getActivity())
+                .load(R.drawable.feeds)
+                .fit()
+                .centerInside()
+                .into(feedImage);
     }
 
     public boolean validInput(){

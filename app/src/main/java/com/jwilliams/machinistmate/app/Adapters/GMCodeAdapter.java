@@ -52,14 +52,23 @@ public class GMCodeAdapter extends BaseAdapter {
         TextView code = (TextView)v.findViewById(R.id.codes_code);
         TextView desc = (TextView)v.findViewById(R.id.codes_desc);
         TextView mill = (TextView)v.findViewById(R.id.codes_mill);
-        TextView turn = (TextView)v.findViewById(R.id.codes_turn);
+        //TextView turn = (TextView)v.findViewById(R.id.codes_turn);
 
         GMCodeContent content = _data.get(position);
         Log.d("WTF", Integer.toString(position));
         code.setText(content.code);
         desc.setText(content.desc);
-        mill.setText(content.mill);
-        turn.setText(content.turn);
+        if(content.mill != null && content.turn != null){
+            mill.setText("both");
+        }
+        if(content.mill != null && content.turn == null){
+            mill.setText(content.mill);
+        }
+        if(content.mill == null && content.turn != null){
+            mill.setText(content.turn);
+        }
+        //mill.setText(content.mill);
+        //turn.setText(content.turn);
 
         return v;
     }

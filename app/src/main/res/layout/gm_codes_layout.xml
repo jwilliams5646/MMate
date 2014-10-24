@@ -12,42 +12,31 @@
 
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="60dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:gravity="center"
             android:id="@+id/codes_code"
-            android:layout_gravity="center_vertical|start"
-            android:gravity="center_vertical"
-            style="@style/HeaderStyle"/>
+            android:text="G05P10000"
+            style="@style/ListTextView"/>
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            style="@style/ListTextView"
+            android:text="afdbsdbgnsdgnsgnsgnsbsfgn"
+            android:id="@+id/codes_desc" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            style="@style/HeaderStyle"
-            android:text="afdbsdbgnsdgnsgnsgnsbsfgn"
-            android:layout_gravity="center_vertical|start"
-            android:gravity="center_vertical"
-            android:padding="5dp"
-            android:id="@+id/codes_desc" />
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="Milling (M)"
-            android:textSize="12sp"
-            android:layout_gravity="center"
-            style="@style/HeaderStyle"
+            android:text="M"
+            android:gravity="center"
+            style="@style/ListTextView"
             android:id="@+id/codes_mill"/>
 
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="Turning (T)"
-            android:textSize="12sp"
-            style="@style/HeaderStyle"
-            android:layout_gravity="center"
-            android:id="@+id/codes_turn"/>
+
     </LinearLayout>
 </LinearLayout>
