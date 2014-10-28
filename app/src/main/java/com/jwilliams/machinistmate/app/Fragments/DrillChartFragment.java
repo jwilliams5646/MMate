@@ -1,19 +1,15 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.Adapters.DbHelper;
@@ -21,16 +17,15 @@ import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.R;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by john.williams on 4/24/2014.
+ * Created by John Williams
+ * Drill Chart View-Controller
  */
 public class DrillChartFragment extends Fragment {
 
-    private static final String KEY_POSITION="position";
     private RobotoButton allInfo;
     private RobotoButton wiregaugeButton;
     private RobotoButton letterButton;
@@ -41,9 +36,8 @@ public class DrillChartFragment extends Fragment {
     private List<String> li;
     private ArrayAdapter<String> adapter;
     private int dbSwitch;
-    private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
+    //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
-    private AdRequest adRequest;
 
     public DrillChartFragment() {
     }
@@ -111,30 +105,13 @@ public class DrillChartFragment extends Fragment {
     }
 
     private void setAd(View rootView){
-        adView = (AdView)rootView.findViewById(R.id.drill_adView);
-        adRequest = new AdRequest.Builder()
+        adView = (AdView)rootView.findViewById(R.id.drill_chart_adView);
+        AdRequest adRequest = new AdRequest.Builder()
 /*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
         adView.loadAd(adRequest);
     }
-
-
-    //view pager setup info
-    public static DrillChartFragment newInstance(int position) {
-        DrillChartFragment frag=new DrillChartFragment();
-        Bundle args=new Bundle();
-
-        args.putInt(KEY_POSITION, position);
-        frag.setArguments(args);
-
-        return(frag);
-    }
-
-    public static String getTitle(Context ctxt, int position) {
-        return(String.format(ctxt.getString(R.string.drill_size_chart), position + 2));
-    }//end view pager setup info
-
 
     public void setLayout(View rootView){
         allInfo = (RobotoButton)rootView.findViewById(R.id.drill_all_button);
@@ -142,11 +119,8 @@ public class DrillChartFragment extends Fragment {
         letterButton = (RobotoButton)rootView.findViewById(R.id.drill_letter_button);
         fractionButton = (RobotoButton)rootView.findViewById(R.id.drill_fraction_button);
         metricButton = (RobotoButton)rootView.findViewById(R.id.drill_metric_button);
-
         typeHeader = (RobotoTextView)rootView.findViewById(R.id.type_header);
-
         referenceGridView = (GridView)rootView.findViewById(R.id.drill_chart_grid);
-
         typeHeader.setText("All");
     }
 
@@ -158,22 +132,22 @@ public class DrillChartFragment extends Fragment {
                 R.layout.grid_item_layout, li);
     }
 
-    private void setDatabase(DbHelper myDbHelper){
+/*    private void setDatabase(DbHelper myDbHelper){
         try {
             myDbHelper.createDataBase();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
-    public void openDb(DbHelper myDbHelper){
+/*    public void openDb(DbHelper myDbHelper){
         try {
             myDbHelper.openDataBase();
         }catch(SQLException sqle){
             throw sqle;
         }
-    }
+    }*/
 
     private class setGrid extends AsyncTask {
         Cursor c;
@@ -191,10 +165,8 @@ public class DrillChartFragment extends Fragment {
 
         @Override
         protected Object doInBackground(Object[] params) {
-            Log.d("DB Thread", "Starting work");
             myDbHelper = new DbHelper(getActivity());
-            setDatabase(myDbHelper);
-            openDb(myDbHelper);
+            myDbHelper.openDataBase();
 
             switch (dbSwitch){
                 case 0:
@@ -224,7 +196,6 @@ public class DrillChartFragment extends Fragment {
             }
 
             myDbHelper.close();
-            Log.d("DB Thread", "Ending work");
             return null;
         }
 

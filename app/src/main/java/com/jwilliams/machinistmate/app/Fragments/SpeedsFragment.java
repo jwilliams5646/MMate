@@ -17,9 +17,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.R;
 import com.jwilliams.machinistmate.app.SpeedsandFeedsClasses.Speeds;
+import com.jwilliams.machinistmate.app.Utility;
 import com.squareup.picasso.Picasso;
 
 

@@ -40,7 +40,7 @@ public class Trapezoid {
                 calcMedian(input1,input2,answer,context);
                 break;
             case 7:
-                calcPerimter(input1,input2,input3,input4,answer,context);
+                calcPerimeter(input1,input2,input3,input4,answer,context);
                 break;
             default:
                 calcArea(input1,input2,input3,answer,context);
@@ -48,7 +48,7 @@ public class Trapezoid {
         }
     }
 
-    private void calcPerimter(EditText input1, EditText input2, EditText input3, EditText input4, TextView answer, Activity context) {
+    private void calcPerimeter(EditText input1, EditText input2, EditText input3, EditText input4, TextView answer, Activity context) {
         double a = 0.0;
         double b = 0.0;
         double c = 0.0;

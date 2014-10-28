@@ -2,10 +2,8 @@ package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.Adapters.DbHelper;
 import com.jwilliams.machinistmate.app.Adapters.GMAddAdapter;
@@ -24,12 +21,12 @@ import com.jwilliams.machinistmate.app.Adapters.GMCodeContent;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.R;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
 /**
- * Created by john.williams on 6/6/2014.
+ * Created by John Williams
+ * G and M Codes View-Controller
  */
 public class GMFragment extends Fragment {
     private LinearLayout codeHeader;
@@ -37,16 +34,16 @@ public class GMFragment extends Fragment {
     private RobotoButton gButton;
     private RobotoButton mButton;
     private RobotoButton addressButton;
-    ListView codeList;
+    private ListView codeList;
     public ArrayList<GMCodeContent> codeContent;
     private GMCodeAdapter codeAdapter;
-    ListView addList;
+    private ListView addList;
     public ArrayList<GMAddContent> addContent;
     private GMAddAdapter addAdapter;
     private int dbSwitch;
-    private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
+    //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
-    private AdRequest adRequest;
+    private View rootView;
 
     DbHelper myDbHelper;
 
@@ -62,10 +59,10 @@ public class GMFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.g_m_codes, container, false);
+        rootView = inflater.inflate(R.layout.g_m_codes, container, false);
         dbSwitch = 0;
-        setAd(rootView);
-        setLayout(rootView);
+        setAd();
+        setLayout();
         setCodeAdapter();
         setAddressAdapter();
         setButtonListeners();
@@ -74,7 +71,7 @@ public class GMFragment extends Fragment {
         return rootView;
     }
 
-    private void setLayout(View rootView) {
+    private void setLayout() {
         codeHeader = (LinearLayout)rootView.findViewById(R.id.gm_codes_header);
         addressHeader = (LinearLayout)rootView.findViewById(R.id.gm_address_header);
         gButton = (RobotoButton)rootView.findViewById(R.id.gm_g_button);
@@ -108,11 +105,11 @@ public class GMFragment extends Fragment {
         });
     }
 
-    private void setAd(View rootView){
+    private void setAd(){
         adView = (AdView)rootView.findViewById(R.id.drill_adView);
-        adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice(TEST_DEVICE_ID)
+        AdRequest adRequest = new AdRequest.Builder()
+/*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
         adView.loadAd(adRequest);
     }
@@ -129,23 +126,6 @@ public class GMFragment extends Fragment {
         //instantiates the array list used for the adapter
         //the adapter, sets the list to the layout
         addAdapter = new GMAddAdapter(addContent, getActivity());
-    }
-
-    private void setDatabase(DbHelper myDbHelper){
-        try {
-            myDbHelper.createDataBase();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void openDb(DbHelper myDbHelper){
-        try {
-            myDbHelper.openDataBase();
-        }catch(SQLException sqle){
-            throw sqle;
-        }
     }
 
     public class setList extends AsyncTask {
@@ -170,25 +150,22 @@ public class GMFragment extends Fragment {
             }
 
             codeList.setAdapter(null);
+            addList.setAdapter(null);
             codeList.setVisibility(View.GONE);
             addList.setVisibility(View.GONE);
         }
 
         @Override
         protected Object doInBackground(Object[] params) {
-            Log.d("DB Thread", "Starting work");
             myDbHelper = new DbHelper(getActivity());
-            setDatabase(myDbHelper);
-            openDb(myDbHelper);
+            myDbHelper.openDataBase();
 
             switch (dbSwitch){
                 case 0:
-                    Log.d("do-inbackground", "case 0");
                     c = myDbHelper.getGCodes();
                     createListAdapter(c);
                     break;
                 case 1:
-                    Log.d("do-inbackground", "case 1");
                     c = myDbHelper.getMCodes();
                     createListAdapter(c);
                     break;
@@ -199,7 +176,6 @@ public class GMFragment extends Fragment {
             }
 
             myDbHelper.close();
-            Log.d("DB Thread", "Ending work");
             return null;
         }
 
@@ -230,14 +206,12 @@ public class GMFragment extends Fragment {
         protected void onPostExecute(Object result){
             switch(dbSwitch){
                 case 0:
-                    Log.d("post-execute", "codeAdapter0");
                     addressHeader.setVisibility(View.GONE);
                     codeList.setAdapter(codeAdapter);
                     codeHeader.setVisibility(View.VISIBLE);
                     codeList.setVisibility(View.VISIBLE);
                     break;
                 case 1:
-                    Log.d("post-execute", "codeAdapter1");
                     addressHeader.setVisibility(View.GONE);
                     codeList.setAdapter(codeAdapter);
                     codeHeader.setVisibility(View.VISIBLE);
@@ -253,9 +227,9 @@ public class GMFragment extends Fragment {
 
 
 
-/*            if(addAdapter!=null){
+           if(addAdapter!=null){
                 addAdapter=null;
-            }*/
+            }
             c = null;
             this.cancel(true);
         }

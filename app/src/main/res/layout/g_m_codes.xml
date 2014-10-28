@@ -2,7 +2,6 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <LinearLayout
@@ -11,7 +10,8 @@
     android:orientation="vertical"
     android:divider="@drawable/horizontal_separator"
     android:showDividers="middle"
-    android:layout_above="@id/drill_adView">
+    android:layout_above="@+id/drill_adView">
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -132,6 +132,7 @@
             android:fastScrollEnabled="true"
             android:visibility="gone"/>
 </LinearLayout>
+
     <com.google.android.gms.ads.AdView
         android:id="@+id/drill_adView"
         android:layout_width="match_parent"

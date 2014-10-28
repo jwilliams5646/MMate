@@ -72,7 +72,6 @@ public class NavigationDrawerFragment extends Fragment {
     private View mFragmentContainerView;
 
 
-    private ExpandableListAdapter listAdapter;
     private ExpandableListView mDrawerListView;
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
@@ -118,7 +117,7 @@ public class NavigationDrawerFragment extends Fragment {
         lastGroupExpandedPosition = -1;
         setHomeFragment();
         prepareListData();
-        listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
+        ExpandableListAdapter listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
         mDrawerListView.setAdapter(listAdapter);
         setGroupListener();
         setChildListener();

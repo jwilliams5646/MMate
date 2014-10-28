@@ -16,14 +16,15 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.RightTriangle;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
+import com.jwilliams.machinistmate.app.Utility;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -47,11 +48,10 @@ public class RightTriangleFragment extends Fragment {
     private int xPos;
     private int yPos;
     private View rootView;
-    private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
+    //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private RightTriangle rt;
     private ImageView rtImage;
-    private Boolean isTablet;
 
     public RightTriangleFragment() {
     }
@@ -83,7 +83,8 @@ public class RightTriangleFragment extends Fragment {
                 .centerInside()
                 .into(rtImage);
 
-        if(!isTablet){
+        SharedPreferences shpr = getActivity().getPreferences(Context.MODE_PRIVATE);
+        if(!shpr.getBoolean("isTablet", false)) {
             rtImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -97,8 +98,8 @@ public class RightTriangleFragment extends Fragment {
     private void setAd() {
         adView = (AdView) rootView.findViewById(R.id.rt_adView);
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice(TEST_DEVICE_ID)
+/*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
         adView.loadAd(adRequest);
     }
@@ -199,8 +200,6 @@ public class RightTriangleFragment extends Fragment {
         questionButton = (RobotoButton) rootView.findViewById(R.id.rt_question_button);
         xPos = 0;
         yPos = 0;
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        isTablet = sharedPref.getBoolean("isTablet", false);
         setImage();
     }
 

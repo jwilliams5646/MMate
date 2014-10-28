@@ -14,14 +14,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.Circle;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
+import com.jwilliams.machinistmate.app.Utility;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -42,9 +43,10 @@ public class CircleFragment extends Fragment {
     private int pos;
     private int radiusChoice;
     private int precision;
-    private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
+    //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private SharedPreferences sp;
+    private View rootView;
 
 
     public CircleFragment() {
@@ -58,9 +60,9 @@ public class CircleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.circle_detail, container, false);
-        setAd(rootView);
-        initializeLayout(rootView);
+        rootView = inflater.inflate(R.layout.circle_detail, container, false);
+        setAd();
+        initializeLayout();
         initialLayout();
         setCircleSpinnerAdapter();
         setCircleRadiusAdapter();
@@ -70,28 +72,11 @@ public class CircleFragment extends Fragment {
         return rootView;
     }
 
-    private void showCircle() {
-        Picasso.with(getActivity())
-                .load(R.drawable.circle)
-                .fit()
-                .centerInside()
-                .into(circleImage);
-        if(!sp.getBoolean("isTablet", false)) {
-            circleImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ShowImage enlarge = new ShowImage(getActivity(), R.drawable.circle);
-                    enlarge.setDialog();
-                }
-            });
-        }
-    }
-
-    private void setAd(View rootView){
+    private void setAd(){
         adView = (AdView)rootView.findViewById(R.id.c_adView);
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice(TEST_DEVICE_ID)
+/*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
         adView.loadAd(adRequest);
     }
@@ -100,6 +85,7 @@ public class CircleFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
                 if (validInput()) {
                     Circle circle = new Circle(inputValue);
@@ -201,7 +187,7 @@ public class CircleFragment extends Fragment {
         radiusSpinner.setAdapter(circleRadiusAdapter);
     }
 
-    private void initializeLayout(View rootView) {
+    private void initializeLayout() {
         circleImage = (ImageView)rootView.findViewById(R.id.circle_image);
         input = (EditText)rootView.findViewById(R.id.circle_input);
         circleView = (RobotoTextView)rootView.findViewById(R.id.circle_view);
@@ -211,9 +197,25 @@ public class CircleFragment extends Fragment {
         calcButton = (RobotoButton)rootView.findViewById(R.id.c_calc);
         pos = 0;
         radiusChoice = 0;
-        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        //sp = getActivity().getPreferences(Context.MODE_PRIVATE);
         showCircle();
+    }
+
+    private void showCircle() {
+        Picasso.with(getActivity())
+                .load(R.drawable.circle)
+                .fit()
+                .centerInside()
+                .into(circleImage);
+        SharedPreferences shpr = getActivity().getPreferences(Context.MODE_PRIVATE);
+        if(!shpr.getBoolean("isTablet", false)) {
+            circleImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShowImage enlarge = new ShowImage(getActivity(), R.drawable.circle);
+                    enlarge.setDialog();
+                }
+            });
+        }
     }
 
     @Override

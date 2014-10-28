@@ -1,9 +1,9 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +13,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.GeometryClasses.Trapezoid;
-import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.R;
 import com.squareup.picasso.Picasso;
 
@@ -48,8 +45,7 @@ public class TrapezoidFragment extends Fragment {
     private EditText input4;
     private RobotoButton calcButton;
     private int choice;
-    private SharedPreferences sp;
-    private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
+    //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
 
 
@@ -88,292 +84,12 @@ public class TrapezoidFragment extends Fragment {
             public void onClick(View view) {
                 Trapezoid trap = new Trapezoid();
                 trap.calcTrapezoid(input1, input2, input3, input4, answer, choice, getActivity());
-/*                switch(choice){
-                    case 0:
-                        calcArea();
-                        break;
-                    case 1:
-                        calcBaseA();
-                        break;
-                    case 2:
-                        calcBaseB();
-                        break;
-                    case 3:
-                        calcSideC();
-                        break;
-                    case 4:
-                        calcSideD();
-                        break;
-                    case 5:
-                        calcHeight();
-                        break;
-                    case 6:
-                        calcMedian();
-                        break;
-                    case 7:
-                        calcPerimter();
-                        break;
-                    default:
-                        calcArea();
-                        break;
-                }*/
+
             }
         });
     }
 
-/*    private void calcPerimter() {
-        double a = 0.0;
-        double b = 0.0;
-        double c = 0.0;
-        double d = 0.0;
 
-        try{
-            a = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            b = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            c = Double.parseDouble(input3.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            d = Double.parseDouble(input4.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Utility.formatOutput(a + b + c + d, precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void calcMedian() {
-        double a = 0.0;
-        double b = 0.0;
-
-        try{
-            a = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            b = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Utility.formatOutput((a + b) / 2, precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void calcHeight() {
-        double a = 0.0;
-        double b = 0.0;
-        double A = 0.0;
-
-        try{
-            a = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            b = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            A = Double.parseDouble(input3.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Utility.formatOutput(2 * (A / (a + b)), precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void calcSideD() {
-        double a = 0.0;
-        double b = 0.0;
-        double c = 0.0;
-        double p = 0.0;
-
-        try{
-            a = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            b = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            c = Double.parseDouble(input3.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            p = Double.parseDouble(input4.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Utility.formatOutput(p - a - b - c, precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void calcSideC() {
-        double a = 0.0;
-        double b = 0.0;
-        double d = 0.0;
-        double p = 0.0;
-
-        try{
-            a = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            b = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            d = Double.parseDouble(input3.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            p = Double.parseDouble(input4.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Utility.formatOutput(p - a - b - d, precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void calcBaseB() {
-        double a = 0.0;
-        double h = 0.0;
-        double A = 0.0;
-
-        try{
-            a = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            h = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            A = Double.parseDouble(input3.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Utility.formatOutput(2 * (A / h) - a, precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void calcBaseA() {
-        double b = 0.0;
-        double h = 0.0;
-        double A = 0.0;
-
-        try{
-            b = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            h = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            A = Double.parseDouble(input3.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Utility.formatOutput(2 * (A / h) - b, precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void calcArea() {
-        double a = 0.0;
-        double b = 0.0;
-        double h = 0.0;
-
-        try{
-            a = Double.parseDouble(input1.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            b = Double.parseDouble(input2.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        try{
-            h = Double.parseDouble(input3.getText().toString());
-        }catch(NumberFormatException e){
-            check = true;
-        }
-
-        if(!check){
-            answer.setText(Utility.formatOutput(((a + b) / 2) * h, precision));
-        }else{
-            Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
-        }
-    }*/
 
     private void setSpinnerListener() {
         AdapterView.OnItemSelectedListener trapSelectedListener = new AdapterView.OnItemSelectedListener() {
@@ -504,13 +220,14 @@ public class TrapezoidFragment extends Fragment {
 
     private void showImage() {
         ImageView trapImage = (ImageView)rootView.findViewById(R.id.trap_image);
-        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         Picasso.with(getActivity())
                 .load(R.drawable.trapezoid)
                 .fit()
                 .centerInside()
                 .into(trapImage);
-        if(!sp.getBoolean("isTablet", false)){
+
+        SharedPreferences shpr = getActivity().getPreferences(Context.MODE_PRIVATE);
+        if(!shpr.getBoolean("isTablet", false)) {
             trapImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

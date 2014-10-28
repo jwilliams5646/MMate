@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.Parallelogram;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
+import com.jwilliams.machinistmate.app.Utility;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -42,12 +44,11 @@ public class ParallelogramFragment extends Fragment {
     private RobotoButton calcButton;
     private int setCalc;
     private int precision;
-    private ArrayAdapter<CharSequence> paraAdapter;
     //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
-    private AdRequest adRequest;
     private Parallelogram pg;
     private SharedPreferences sp;
+    private View rootView;
 
     public ParallelogramFragment() {
     }
@@ -60,9 +61,9 @@ public class ParallelogramFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.parallelogram_detail, container, false);
-        setAd(rootView);
-        initializeLayout(rootView);
+        rootView = inflater.inflate(R.layout.parallelogram_detail, container, false);
+        setAd();
+        initializeLayout();
         initialLayout();
         setSpinnerAdapter();
         setSpinnerListener();
@@ -70,9 +71,9 @@ public class ParallelogramFragment extends Fragment {
         return rootView;
     }
 
-    private void setAd(View rootView){
+    private void setAd(){
         adView = (AdView)rootView.findViewById(R.id.para_adView);
-        adRequest = new AdRequest.Builder()
+        AdRequest adRequest = new AdRequest.Builder()
 /*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
@@ -84,8 +85,9 @@ public class ParallelogramFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 pg = new Parallelogram();
-                precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
-                switch (setCalc) {
+
+                sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));                switch (setCalc) {
                     case 0:
                         if(pg.calcArea(input1, input2)){
                             answer.setText(Utility.formatOutput(pg.getArea(), precision));
@@ -191,7 +193,7 @@ public class ParallelogramFragment extends Fragment {
     }
 
     private void setSpinnerAdapter() {
-        paraAdapter = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> paraAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.para_calc_array, R.layout.spinner_background);
                 paraAdapter.setDropDownViewResource(R.layout.spinner_drop_down);
         paraSpinner.setAdapter(paraAdapter);
@@ -204,7 +206,7 @@ public class ParallelogramFragment extends Fragment {
         inputView2.setText("Height");
     }
 
-    private void initializeLayout(View rootView) {
+    private void initializeLayout() {
         paragramImage = (ImageView)rootView.findViewById(R.id.para_image);
         inputLayout1 = (LinearLayout)rootView.findViewById(R.id.para_input1_layout);
         inputLayout2 = (LinearLayout)rootView.findViewById(R.id.para_layout2);
@@ -216,7 +218,6 @@ public class ParallelogramFragment extends Fragment {
         paraSpinner = (Spinner)rootView.findViewById(R.id.para_spinner);
         calcButton = (RobotoButton)rootView.findViewById(R.id.para_calc_button);
         setCalc = 0;
-        sp = getActivity().getPreferences(Context.MODE_PRIVATE);
         showParallelogram();
     }
 
@@ -226,7 +227,9 @@ public class ParallelogramFragment extends Fragment {
                 .fit()
                 .centerInside()
                 .into(paragramImage);
-        if(!sp.getBoolean("isTablet", false)) {
+
+        SharedPreferences shpr = getActivity().getPreferences(Context.MODE_PRIVATE);
+        if(!shpr.getBoolean("isTablet", false)) {
             paragramImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

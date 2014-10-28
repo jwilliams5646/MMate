@@ -44,7 +44,8 @@
         android:layout_below="@+id/para_answer_layout">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/para_view1"
@@ -66,7 +67,8 @@
         android:layout_below="@+id/para_input1_layout">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/para_view2"
@@ -87,7 +89,7 @@
         android:id="@+id/para_calc_button"
         android:layout_below="@+id/para_layout2"
         android:layout_centerHorizontal="true"
-        style="@style/buttons"
+        style="@style/calc_buttons"
         android:layout_margin="4dp"/>
 
     <com.google.android.gms.ads.AdView
@@ -96,8 +98,7 @@
     android:layout_height="wrap_content"
     ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
     ads:adSize="BANNER"
-    android:layout_below="@+id/para_calc_button"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="10dp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
 </LinearLayout>

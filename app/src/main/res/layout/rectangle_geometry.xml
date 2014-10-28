@@ -51,7 +51,8 @@
         android:layout_below="@+id/rectangle_answer_layout">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/rectangle_input_view1"
@@ -62,6 +63,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/rectangle_input1"
             android:layout_weight="1"
+            android:inputType="numberDecimal"
             style="@style/EditTextStyle"/>
     </LinearLayout>
 
@@ -73,7 +75,8 @@
         android:layout_below="@+id/rectangle_input_layout1">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/rectangle_input_view2"
@@ -84,6 +87,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/rectangle_input2"
             android:layout_weight="1"
+            android:inputType="numberDecimal"
             style="@style/EditTextStyle"/>
     </LinearLayout>
 
@@ -95,7 +99,8 @@
         android:layout_below="@+id/rectangle_input_layout2">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/rectangle_input_view3"
@@ -106,6 +111,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/rectangle_input3"
             android:layout_weight="1"
+            android:inputType="numberDecimal"
             style="@style/EditTextStyle"/>
     </LinearLayout>
 
@@ -114,7 +120,7 @@
         android:layout_height="wrap_content"
         android:text="@string/calculate"
         android:id="@+id/rect_calc"
-        style="@style/buttons"
+        style="@style/calc_buttons"
         android:layout_below="@+id/rectangle_input_layout3"
         android:layout_centerHorizontal="true" />
 

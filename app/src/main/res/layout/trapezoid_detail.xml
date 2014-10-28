@@ -46,14 +46,16 @@
         android:id="@+id/trap_input1_layout">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/trap_input1_view"
             style="@style/TextViewStyle" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:id="@+id/trap_input1"
@@ -69,14 +71,16 @@
         android:id="@+id/trap_input2_layout">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/trap_input2_view"
             style="@style/TextViewStyle" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:id="@+id/trap_input2"
@@ -92,14 +96,16 @@
         android:id="@+id/trap_input3_layout">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/trap_input3_view"
             style="@style/TextViewStyle" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:id="@+id/trap_input3"
@@ -116,7 +122,8 @@
         android:visibility="invisible">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/trap_input4_view"
@@ -124,10 +131,11 @@
 
         <EditText
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:id="@+id/trap_input4"
-            android:layout_weight="1"
+            android:ems="10"
             style="@style/EditTextStyle"/>
     </LinearLayout>
 

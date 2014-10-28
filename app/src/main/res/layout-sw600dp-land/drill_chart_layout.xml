@@ -1,29 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:divider="@drawable/horizontal_separator"
-        android:showDividers="middle|beginning|end"
-        android:layout_above="@+id/drill_chart_adView">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/linearLayout"
-        android:divider="@drawable/vertical_separator"
-        android:showDividers="middle">
-
+        android:divider="@drawable/horizontal_separator"
+        android:showDividers="middle|beginning|end">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="All"
             android:id="@+id/drill_all_button"
@@ -31,8 +23,7 @@
             style="@style/buttons"/>
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:text="#"
@@ -40,8 +31,7 @@
             style="@style/buttons" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:text="ABC"
@@ -49,8 +39,7 @@
             style="@style/buttons" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:text="1/2"
@@ -58,14 +47,28 @@
             style="@style/buttons" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:text="MM"
             android:id="@+id/drill_metric_button"
             style="@style/buttons" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/drill_chart_adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+            ads:adSize="BANNER"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:divider="@drawable/horizontal_separator"
+        android:showDividers="middle|beginning|end">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -117,13 +120,4 @@
         android:numColumns="3"
         android:clickable="false" />
     </LinearLayout>
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/drill_chart_adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-        ads:adSize="BANNER"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
-</RelativeLayout>
+</LinearLayout>

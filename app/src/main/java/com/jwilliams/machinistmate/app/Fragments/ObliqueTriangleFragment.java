@@ -15,14 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.ObliqueTriangle;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
+import com.jwilliams.machinistmate.app.Utility;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -54,7 +55,6 @@ public class ObliqueTriangleFragment extends Fragment {
     //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private ObliqueTriangle ot;
-    private SharedPreferences sp;
 
     public ObliqueTriangleFragment() {
     }
@@ -68,12 +68,12 @@ public class ObliqueTriangleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.oblique_triangle_detail, container, false);
-        setAd(rootView);
+        setAd();
         initializeLayout();
         return rootView;
     }
 
-    private void setAd(View rootView){
+    private void setAd(){
         adView = (AdView)rootView.findViewById(R.id.oblique_adView);
         AdRequest adRequest = new AdRequest.Builder()
 /*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
@@ -102,7 +102,6 @@ public class ObliqueTriangleFragment extends Fragment {
         spinnerX = 0;
         spinnerY = 0;
         spinnerZ = 0;
-        sp = getActivity().getPreferences(Context.MODE_PRIVATE);
         setAngleAdapters();
         setAngleXListener();
         setAngleYListener();
@@ -120,7 +119,8 @@ public class ObliqueTriangleFragment extends Fragment {
                 .centerInside()
                 .into(ObTriangle);
 
-        if(!sp.getBoolean("isTablet", false)){
+        SharedPreferences shpr = getActivity().getPreferences(Context.MODE_PRIVATE);
+        if(!shpr.getBoolean("isTablet", false)) {
             ObTriangle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

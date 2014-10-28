@@ -2,11 +2,9 @@
 
 <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="40dp"
-    android:background="#111111"
-    android:textColor="#999999"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
     android:gravity="center"
-    android:layout_gravity="center"
-    android:textSize="12sp"/>
+    style="@style/TextViewStyle"/>
 

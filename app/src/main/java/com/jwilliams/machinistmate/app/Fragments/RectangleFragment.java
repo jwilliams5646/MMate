@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +20,15 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.Rectangle;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
+import com.jwilliams.machinistmate.app.Utility;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by John on 5/27/2014.
+ * Created by John Williams
+ * Rectangle View-Controller
  */
 public class RectangleFragment extends Fragment {
 
@@ -47,17 +49,14 @@ public class RectangleFragment extends Fragment {
     private int answerPos;
     private int inputPos;
     private int precision;
-    private ArrayAdapter<CharSequence> answerAdapter;
-    private ArrayAdapter<CharSequence> inputAdapter;
-    private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
+    //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
-    private AdRequest adRequest;
     private Rectangle rectangle;
     private double inputValue1;
     private double inputValue2;
     private double inputValue3;
     private SharedPreferences sp;
-    private boolean isTablet;
+    private View rootView;
 
 
     public RectangleFragment() {
@@ -70,9 +69,9 @@ public class RectangleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.rectangle_geometry, container, false);
-        setAd(rootView);
-        initializeLayout(rootView);
+        rootView = inflater.inflate(R.layout.rectangle_geometry, container, false);
+        setAd();
+        initializeLayout();
         setInitialLayout();
         setAnwerChoiceAdapter();
         setAnswerChoiceListener();
@@ -82,11 +81,11 @@ public class RectangleFragment extends Fragment {
         return rootView;
     }
 
-    private void setAd(View rootView){
+    private void setAd(){
         adView = (AdView)rootView.findViewById(R.id.rect_adView);
-        adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice(TEST_DEVICE_ID)
+        AdRequest adRequest = new AdRequest.Builder()
+/*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
         adView.loadAd(adRequest);
     }
@@ -96,8 +95,8 @@ public class RectangleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 rectangle = new Rectangle();
-                precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
-                switch (answerPos) {
+                sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));                switch (answerPos) {
                     case 0:
                         calcArea();
                         break;
@@ -314,7 +313,7 @@ public class RectangleFragment extends Fragment {
     }
 
     private void setInputChoiceAdapter() {
-        inputAdapter = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> inputAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.rect_input_array, R.layout.spinner_background);
         inputAdapter.setDropDownViewResource(R.layout.spinner_drop_down);
         inputChoice.setAdapter(inputAdapter);
@@ -362,13 +361,13 @@ public class RectangleFragment extends Fragment {
     }
 
     private void setAnwerChoiceAdapter() {
-        answerAdapter = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> answerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.rect_calc_array, R.layout.spinner_background);
         answerAdapter.setDropDownViewResource(R.layout.spinner_drop_down);
         answerChoice.setAdapter(answerAdapter);
     }
 
-    private void initializeLayout(View rootView) {
+    private void initializeLayout() {
         rectangleImage = (ImageView)rootView.findViewById(R.id.rectangle_image);
         inputLayout1 = (LinearLayout)rootView.findViewById(R.id.rectangle_input_layout1);
         inputLayout2 = (LinearLayout)rootView.findViewById(R.id.rectangle_input_layout2);
@@ -385,8 +384,6 @@ public class RectangleFragment extends Fragment {
         calcButton = (RobotoButton)rootView.findViewById(R.id.rect_calc);
         answerPos = 0;
         inputPos = 0;
-        sp = getActivity().getPreferences(Context.MODE_PRIVATE);
-        isTablet = sp.getBoolean("isTablet", false);
         showRectangle();
     }
 
@@ -396,7 +393,8 @@ public class RectangleFragment extends Fragment {
                 .fit()
                 .centerInside()
                 .into(rectangleImage);
-        if(!isTablet) {
+        SharedPreferences shpr = getActivity().getPreferences(Context.MODE_PRIVATE);
+        if(!shpr.getBoolean("isTablet", false)) {
             rectangleImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

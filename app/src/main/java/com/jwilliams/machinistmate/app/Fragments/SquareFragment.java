@@ -1,6 +1,7 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -18,18 +19,18 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.GeometryClasses.Square;
 import com.jwilliams.machinistmate.app.R;
+import com.jwilliams.machinistmate.app.Utility;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by John on 5/12/2014.
+ * Created by John Williams
+ * Square View-Controller
  */
 public class SquareFragment extends Fragment {
 
-    private static final String KEY_POSITION="position";
     private EditText input;
     private RobotoTextView inputView;
     private RobotoTextView answer;
@@ -40,13 +41,10 @@ public class SquareFragment extends Fragment {
     private int sidePos;
     private int answerPos;
     private double inputValue;
-    private ArrayAdapter<CharSequence> adapter;
-    private ArrayAdapter<CharSequence> answerAdapter;
-    private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
+    //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
-    private AdRequest adRequest;
     private SharedPreferences sp;
-    private ImageView image;
+    private View rootView;
 
     public SquareFragment() {
     }
@@ -59,9 +57,9 @@ public class SquareFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.square_detail, container, false);
-        setAd(rootView);
-        initializeLayout(rootView);
+        rootView = inflater.inflate(R.layout.square_detail, container, false);
+        setAd();
+        initializeLayout();
         setAnswerChoiceAdapter();
         setSideChoiceAdapter();
         setAnswerChoiceListener();
@@ -71,14 +69,16 @@ public class SquareFragment extends Fragment {
 
     }
 
-    private void setSquare(View rootView) {
-        image = (ImageView)rootView.findViewById(R.id.square_image);
+    private void setSquare() {
+        ImageView image = (ImageView) rootView.findViewById(R.id.square_image);
         Picasso.with(getActivity())
                 .load(R.drawable.square)
                 .fit()
                 .centerInside()
                 .into(image);
-        if(!sp.getBoolean("isTablet", false)) {
+
+        SharedPreferences shpr = getActivity().getPreferences(Context.MODE_PRIVATE);
+        if(!shpr.getBoolean("isTablet", false)) {
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -89,11 +89,11 @@ public class SquareFragment extends Fragment {
         }
     }
 
-    private void setAd(View rootView){
+    private void setAd(){
         adView = (AdView)rootView.findViewById(R.id.sq_adView);
-        adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice(TEST_DEVICE_ID)
+        AdRequest adRequest = new AdRequest.Builder()
+/*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
         adView.loadAd(adRequest);
     }
@@ -102,8 +102,8 @@ public class SquareFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
-                if(validInput()) {
+                sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));                if(validInput()) {
                     Square sq = new Square(inputValue);
                     switch (answerPos) {
                         case 0:
@@ -183,20 +183,20 @@ public class SquareFragment extends Fragment {
     }
 
     private void setSideChoiceAdapter() {
-        adapter = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.square_side_array, R.layout.spinner_background);
         adapter.setDropDownViewResource(R.layout.spinner_drop_down);
         sideChoice.setAdapter(adapter);
     }
 
     private void setAnswerChoiceAdapter() {
-        answerAdapter = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> answerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.square_calc_array, R.layout.spinner_background);
         answerAdapter.setDropDownViewResource(R.layout.spinner_drop_down);
         answerChoice.setAdapter(answerAdapter);
     }
 
-    private void initializeLayout(View rootView) {
+    private void initializeLayout() {
         input = (EditText)rootView.findViewById(R.id.sq_input);
         inputView = (RobotoTextView)rootView.findViewById(R.id.sq_input_view);
         answer = (RobotoTextView)rootView.findViewById(R.id.sq_answer);
@@ -205,8 +205,7 @@ public class SquareFragment extends Fragment {
         calcButton = (RobotoButton)rootView.findViewById(R.id.sq_calc);
         sidePos = 0;
         answerPos = 0;
-        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        setSquare(rootView);
+        setSquare();
         setBasicLayout();
     }
 
