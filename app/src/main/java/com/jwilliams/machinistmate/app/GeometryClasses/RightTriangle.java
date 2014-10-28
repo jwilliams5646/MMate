@@ -1,5 +1,12 @@
 package com.jwilliams.machinistmate.app.GeometryClasses;
 
+import android.app.Activity;
+import android.content.Context;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.jwilliams.machinistmate.app.Utility;
+
 /**
  * Created by John Williams
  * This class performs calculations for the Right Triangle Fragment.
@@ -12,42 +19,8 @@ public class RightTriangle {
     double y;
     int xPos;
     int yPos;
-
-    public void setH(double h) {
-        this.H = h;
-    }
-
-    public void setO(double o) {
-        this.O = o;
-    }
-
-    public void setA(double a) {
-        this.A = a;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public void setXPos(int xPos) {
-        this.xPos = xPos;
-    }
-
-    public void setYPos(int yPos) {
-        this.yPos = yPos;
-    }
-
-    public double getArea() {
-        return (O + A) / 2;
-    }
-
-    public double getPerimeter() {
-        return H + O + A;
-    }
+    Utility u;
+    private Context context;
 
     public double getH() {
         return H;
@@ -61,12 +34,109 @@ public class RightTriangle {
         return A;
     }
 
+    public double getX() {
+        return x;
+    }
+
     public double getY() {
         return y;
     }
 
-    public double getX() {
-        return x;
+    public double getArea() {
+        return (O + A) / 2;
+    }
+
+    public double getPerimeter() {
+        return H + O + A;
+    }
+
+    public boolean calcRightTriangle(EditText H, EditText O, EditText A, EditText X, EditText Y, int xPos, int yPos, Activity context ){
+        u = new Utility();
+        int count = 0;
+
+        if(!u.isEmpty(H)){
+            this.H = Double.parseDouble(H.getText().toString());
+            count++;
+        }
+
+        if(!u.isEmpty(O)){
+            this.O = Double.parseDouble(O.getText().toString());
+            count++;
+        }
+
+        if(!u.isEmpty(A)){
+            this.A = Double.parseDouble(A.getText().toString());
+            count++;
+        }
+
+        if(!u.isEmpty(X)){
+            this.x = Double.parseDouble(X.getText().toString());
+            count++;
+        }
+
+        if(!u.isEmpty(Y)){
+            this.y = Double.parseDouble(Y.getText().toString());
+            count++;
+        }
+
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.context = context;
+
+        return process(H,O,A,X,Y,count);
+    }
+
+    private boolean process(EditText H, EditText O, EditText A, EditText X, EditText Y, int count) {
+
+        if (count > 4 || count < 2) {
+            Toast.makeText(context, "You must enter 2 values, and they cannot both be angles.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!u.isEmpty(X) && !u.isEmpty(Y)) {
+            Toast.makeText(context, "You must enter 2 values, and they cannot both be angles.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!u.isEmpty(X)) {
+            if (x < 1 || x >= 90) {
+                Toast.makeText(context, "Angle x can't be greater than 90 or less than 1", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+
+        if (!u.isEmpty(Y)) {
+            if (y < 1 || y >= 90) {
+                Toast.makeText(context, "Angle y can't be greater than 90 or less than 1", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+
+        if (this.H < this.A && this.H != 0) {
+            Toast.makeText(context, "Side H must always be longer than side A.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!u.isEmpty(H) && !u.isEmpty(O)) {
+            calcFromHO();
+        } else if (!u.isEmpty(H) && !u.isEmpty(A)) {
+            calcFromHA();
+        } else if (!u.isEmpty(H) && !u.isEmpty(X)) {
+            calcFromHX();
+        } else if (!u.isEmpty(H) && !u.isEmpty(Y)) {
+            calcFromHY();
+        } else if (!u.isEmpty(O) && !u.isEmpty(A)) {
+            calcFromOA();
+        } else if (!u.isEmpty(O) && !u.isEmpty(X)) {
+            calcFromOX();
+        } else if (!u.isEmpty(O) && !u.isEmpty(Y)) {
+            calcFromOY();
+        } else if (!u.isEmpty(A) && !u.isEmpty(X)) {
+            calcFromAX();
+        } else if (!u.isEmpty(A) && !u.isEmpty(Y)) {
+            calcFromAY();
+        }
+        return true;
     }
 
     public void calcFromHO() {
@@ -186,6 +256,5 @@ public class RightTriangle {
         if (xPos == 1) {
             x = Math.toRadians(x);
         }
-
     }
 }

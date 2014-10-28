@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Formatter;
+import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.Rectangle;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
@@ -143,7 +142,7 @@ public class RectangleFragment extends Fragment {
         if(input1Valid() && input2Valid()){
             rectangle.setLength(inputValue1);
             rectangle.setWidth(inputValue2);
-            answer.setText(Formatter.formatOutput(rectangle.calcPerimeter(),precision));
+            answer.setText(Utility.formatOutput(rectangle.calcPerimeter(), precision));
         }else{
             Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
         }
@@ -153,7 +152,7 @@ public class RectangleFragment extends Fragment {
         if(input2Valid() && input3Valid()){
             rectangle.setPerimeter(inputValue2);
             rectangle.setWidth(inputValue3);
-            answer.setText(Formatter.formatOutput(rectangle.calcLengthByPerimeter(),precision));
+            answer.setText(Utility.formatOutput(rectangle.calcLengthByPerimeter(), precision));
         }else{
             Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
         }
@@ -163,7 +162,7 @@ public class RectangleFragment extends Fragment {
         if(input2Valid() && input3Valid()){
             rectangle.setDiagonal(inputValue2);
             rectangle.setWidth(inputValue3);
-            answer.setText(Formatter.formatOutput(rectangle.calcLengthByDiagonal(),precision));
+            answer.setText(Utility.formatOutput(rectangle.calcLengthByDiagonal(), precision));
         }else{
             Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
         }
@@ -173,7 +172,7 @@ public class RectangleFragment extends Fragment {
         if(input2Valid() && input3Valid()){
             rectangle.setArea(inputValue2);
             rectangle.setWidth(inputValue3);
-            answer.setText(Formatter.formatOutput(rectangle.calcLengthByArea(),precision));
+            answer.setText(Utility.formatOutput(rectangle.calcLengthByArea(), precision));
         }else{
             Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
         }
@@ -183,7 +182,7 @@ public class RectangleFragment extends Fragment {
         if(input2Valid() && input3Valid()){
             rectangle.setPerimeter(inputValue2);
             rectangle.setLength(inputValue3);
-            answer.setText(Formatter.formatOutput(rectangle.calcWidthByPerimeter(),precision));
+            answer.setText(Utility.formatOutput(rectangle.calcWidthByPerimeter(), precision));
         }else{
             Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
         }
@@ -193,7 +192,7 @@ public class RectangleFragment extends Fragment {
         if(input2Valid() && input3Valid()){
             rectangle.setDiagonal(inputValue2);
             rectangle.setLength(inputValue3);
-            answer.setText(Formatter.formatOutput(rectangle.calcWidthByDiagonal(),precision));
+            answer.setText(Utility.formatOutput(rectangle.calcWidthByDiagonal(), precision));
         }else{
             Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
         }
@@ -203,7 +202,7 @@ public class RectangleFragment extends Fragment {
         if(input2Valid() && input3Valid()){
             rectangle.setArea(inputValue2);
             rectangle.setLength(inputValue3);
-            answer.setText(Formatter.formatOutput(rectangle.calcWidthByArea(),precision));
+            answer.setText(Utility.formatOutput(rectangle.calcWidthByArea(), precision));
         }else{
             Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
         }
@@ -213,7 +212,7 @@ public class RectangleFragment extends Fragment {
         if(input1Valid() && input2Valid()){
             rectangle.setLength(inputValue1);
             rectangle.setWidth(inputValue2);
-            answer.setText(Formatter.formatOutput(rectangle.calcDiagonal(),precision));
+            answer.setText(Utility.formatOutput(rectangle.calcDiagonal(), precision));
         }else{
             Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
         }
@@ -223,7 +222,7 @@ public class RectangleFragment extends Fragment {
         if(input1Valid() && input2Valid()){
             rectangle.setLength(inputValue1);
             rectangle.setWidth(inputValue2);
-            answer.setText(Formatter.formatOutput(rectangle.calcArea(),precision));
+            answer.setText(Utility.formatOutput(rectangle.calcArea(), precision));
         }else{
             Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
         }

@@ -17,7 +17,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Formatter;
+import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.R;
 import com.jwilliams.machinistmate.app.SpeedsandFeedsClasses.Speeds;
 import com.squareup.picasso.Picasso;
@@ -29,6 +29,7 @@ import com.squareup.picasso.Picasso;
  */
 public class SpeedsFragment extends Fragment {
 
+    //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private RobotoTextView speedAnswer;
     private RobotoTextView surfaceType;
     private EditText surfaceInput;
@@ -36,7 +37,6 @@ public class SpeedsFragment extends Fragment {
     private boolean isStandard;
     private RadioGroup speedRadioGroup;
     private RobotoButton speedsCalc;
-    private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private Speeds speeds;
     private Context context;
@@ -54,11 +54,7 @@ public class SpeedsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.speeds_item_detail, container, false);
-        try {
-            setAd();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        setAd();
         setLayout();
         setRadioGroupListener();
         setCalcButtonListener();
@@ -70,8 +66,8 @@ public class SpeedsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 speeds = new Speeds();
-                if (speeds.calcSpeed(surfaceInput,diameterInput,isStandard)) {
-                    speedAnswer.setText(Formatter.formatOutput(speeds.getSpeed(), 0));
+                if (speeds.calcSpeed(surfaceInput, diameterInput, isStandard)) {
+                    speedAnswer.setText(Utility.formatOutput(speeds.getSpeed(), 0));
                 } else {
                     Toast.makeText(getActivity(), "One or more inputs are invalid", Toast.LENGTH_SHORT).show();
                 }
@@ -102,14 +98,10 @@ public class SpeedsFragment extends Fragment {
     private void setAd() {
         adView = (AdView) rootView.findViewById(R.id.speeds_adView);
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice(TEST_DEVICE_ID)
+/*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
-        try {
-            adView.loadAd(adRequest);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        adView.loadAd(adRequest);
     }
 
     private void setLayout() {
@@ -135,12 +127,12 @@ public class SpeedsFragment extends Fragment {
 
     @Override
     public void onResume() {
-        Log.d("Resuming...",".......");
+        Log.d("Resuming...", ".......");
         super.onResume();
         if (adView != null) {
             try {
                 adView.resume();
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -148,11 +140,11 @@ public class SpeedsFragment extends Fragment {
 
     @Override
     public void onPause() {
-        Log.d("Pausing...",".......");
+        Log.d("Pausing...", ".......");
         if (adView != null) {
             try {
                 adView.pause();
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -161,12 +153,12 @@ public class SpeedsFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        Log.d("Destroying...",".......");
+        Log.d("Destroying...", ".......");
         // Destroy the AdView.
         if (adView != null) {
             try {
                 adView.destroy();
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

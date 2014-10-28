@@ -18,7 +18,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Formatter;
+import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.Circle;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
@@ -107,24 +107,24 @@ public class CircleFragment extends Fragment {
                         case 0:
                             switch (radiusChoice) {
                                 case 0:
-                                    answer.setText(Formatter.formatOutput(circle.calcRadDiam(), precision));
+                                    answer.setText(Utility.formatOutput(circle.calcRadDiam(), precision));
                                     break;
                                 case 1:
-                                    answer.setText(Formatter.formatOutput(circle.calcRadArea(), precision));
+                                    answer.setText(Utility.formatOutput(circle.calcRadArea(), precision));
                                     break;
                                 case 2:
-                                    answer.setText(Formatter.formatOutput(circle.calcRadCirc(), precision));
+                                    answer.setText(Utility.formatOutput(circle.calcRadCirc(), precision));
                                     break;
                             }
                             break;
                         case 1:
-                            answer.setText(Formatter.formatOutput(circle.calcDiameter(), precision));
+                            answer.setText(Utility.formatOutput(circle.calcDiameter(), precision));
                             break;
                         case 2:
-                            answer.setText(Formatter.formatOutput(circle.calcArea(), precision));
+                            answer.setText(Utility.formatOutput(circle.calcArea(), precision));
                             break;
                         case 3:
-                            answer.setText(Formatter.formatOutput(circle.calcCircumference(), precision));
+                            answer.setText(Utility.formatOutput(circle.calcCircumference(), precision));
                             break;
                         default:
                             break;
@@ -212,7 +212,7 @@ public class CircleFragment extends Fragment {
         pos = 0;
         radiusChoice = 0;
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        sp = getActivity().getPreferences(Context.MODE_PRIVATE);
+        //sp = getActivity().getPreferences(Context.MODE_PRIVATE);
         showCircle();
     }
 

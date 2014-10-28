@@ -1,7 +1,6 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -19,7 +18,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Formatter;
+import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.GeometryClasses.Square;
 import com.jwilliams.machinistmate.app.R;
@@ -108,26 +107,26 @@ public class SquareFragment extends Fragment {
                     Square sq = new Square(inputValue);
                     switch (answerPos) {
                         case 0:
-                            answer.setText(Formatter.formatOutput(sq.calcArea(), precision));
+                            answer.setText(Utility.formatOutput(sq.calcArea(), precision));
                             break;
                         case 1:
-                            answer.setText(Formatter.formatOutput(sq.calcDiagonal(), precision));
+                            answer.setText(Utility.formatOutput(sq.calcDiagonal(), precision));
                             break;
                         case 2:
                             switch (sidePos) {
                                 case 0:
-                                    answer.setText(Formatter.formatOutput(sq.calcSideByArea(), precision));
+                                    answer.setText(Utility.formatOutput(sq.calcSideByArea(), precision));
                                     break;
                                 case 1:
-                                    answer.setText(Formatter.formatOutput(sq.calcSideByDiagonal(), precision));
+                                    answer.setText(Utility.formatOutput(sq.calcSideByDiagonal(), precision));
                                     break;
                                 case 2:
-                                    answer.setText(Formatter.formatOutput(sq.calcSideByPerimeter(), precision));
+                                    answer.setText(Utility.formatOutput(sq.calcSideByPerimeter(), precision));
                                     break;
                             }
                             break;
                         case 3:
-                            answer.setText(Formatter.formatOutput(sq.calcPerimeter(), precision));
+                            answer.setText(Utility.formatOutput(sq.calcPerimeter(), precision));
                             break;
                     }
                 }else{

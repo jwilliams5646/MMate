@@ -19,7 +19,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Formatter;
+import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.ObliqueTriangle;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
@@ -166,15 +166,15 @@ public class ObliqueTriangleFragment extends Fragment {
     private void postAnswers() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         int precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
-        sideAInput.setText(Formatter.formatOutput(ot.getA(), precision));
-        sideBInput.setText(Formatter.formatOutput(ot.getB(), precision));
-        sideCInput.setText(Formatter.formatOutput(ot.getC(), precision));
-        angleXInput.setText(Formatter.formatOutput(ot.getX(), precision));
-        angleYInput.setText(Formatter.formatOutput(ot.getY(), precision));
-        angleZInput.setText(Formatter.formatOutput(ot.getZ(), precision));
-        areaAnswer.setText(Formatter.formatOutput(ot.getArea(), precision));
-        heightAnswer.setText(Formatter.formatOutput(ot.getHeight(), precision));
-        perimeterAnswer.setText(Formatter.formatOutput(ot.getPerimeter(), precision));
+        sideAInput.setText(Utility.formatOutput(ot.getA(), precision));
+        sideBInput.setText(Utility.formatOutput(ot.getB(), precision));
+        sideCInput.setText(Utility.formatOutput(ot.getC(), precision));
+        angleXInput.setText(Utility.formatOutput(ot.getX(), precision));
+        angleYInput.setText(Utility.formatOutput(ot.getY(), precision));
+        angleZInput.setText(Utility.formatOutput(ot.getZ(), precision));
+        areaAnswer.setText(Utility.formatOutput(ot.getArea(), precision));
+        heightAnswer.setText(Utility.formatOutput(ot.getHeight(), precision));
+        perimeterAnswer.setText(Utility.formatOutput(ot.getPerimeter(), precision));
     }
 
     private void setClearListener(){

@@ -12,12 +12,10 @@
         android:layout_weight="1"
         android:padding="4dp" />
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_weight="1">
 
         <LinearLayout
             android:id="@+id/rt_layout1"
@@ -66,6 +64,7 @@
             android:id="@+id/rt_layout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/rt_layout1"
             android:orientation="horizontal">
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -101,16 +100,14 @@
             <Spinner
                 android:id="@+id/rt_y_spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="4dp" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/rt_layout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/rt_layout2"
             android:orientation="horizontal">
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -148,6 +145,7 @@
             android:id="@+id/rt_layout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/rt_layout3"
             android:orientation="horizontal">
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -169,47 +167,43 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/rt_layout4"
             android:orientation="horizontal">
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
                 android:id="@+id/rt_question_button"
-                style="@style/buttons"
-                android:layout_width="40dp"
+                style="@style/calc_buttons"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="\?"
-                android:layout_margin="16dp" />
+                android:layout_margin="4dp"
+                android:text="\?" />
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
                 android:id="@+id/rt_calc_button"
-                style="@style/buttons"
+                style="@style/calc_buttons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/calculate"
-                android:layout_margin="16dp" />
+                android:layout_margin="4dp"
+                android:text="@string/calculate" />
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
                 android:id="@+id/rt_clear_button"
-                style="@style/buttons"
+                style="@style/calc_buttons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clear"
-                android:layout_margin="16dp" />
+                android:layout_margin="4dp"
+                android:text="Clear" />
         </LinearLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
 
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/rt_adView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                ads:adSize="BANNER"
-                ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp" />
-        </RelativeLayout>
-    </LinearLayout>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/rt_adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
 </LinearLayout>

@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Formatter;
+import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.Parallelogram;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
@@ -89,49 +88,49 @@ public class ParallelogramFragment extends Fragment {
                 switch (setCalc) {
                     case 0:
                         if(pg.calcArea(input1, input2)){
-                            answer.setText(Formatter.formatOutput(pg.getArea(), precision));
+                            answer.setText(Utility.formatOutput(pg.getArea(), precision));
                         }else{
                             Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 1:
                         if(pg.calcBase(input1, input2)){
-                            answer.setText(Formatter.formatOutput(pg.getB(), precision));
+                            answer.setText(Utility.formatOutput(pg.getB(), precision));
                         }else{
                             Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 2:
                         if(pg.calcHeight(input1, input2)){
-                            answer.setText(Formatter.formatOutput(pg.getH(), precision));
+                            answer.setText(Utility.formatOutput(pg.getH(), precision));
                         }else{
                             Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 3:
                         if(pg.calcSide(input1, input2)){
-                            answer.setText(Formatter.formatOutput(pg.getA(), precision));
+                            answer.setText(Utility.formatOutput(pg.getA(), precision));
                         }else{
                             Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 4:
                         if(pg.calcPerimeter(input1, input2)){
-                            answer.setText(Formatter.formatOutput(pg.getPerimeter(), precision));
+                            answer.setText(Utility.formatOutput(pg.getPerimeter(), precision));
                         }else{
                             Toast.makeText(getActivity(), "One or more inputs are missing or invalid", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 5:
                         if(pg.calcX(input1)){
-                            answer.setText(Formatter.formatOutput(pg.getX(), precision));
+                            answer.setText(Utility.formatOutput(pg.getX(), precision));
                         }else{
                             Toast.makeText(getActivity(), "Invalid Input", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 6:
                         if(pg.calcY(input1)){
-                          answer.setText(Formatter.formatOutput(pg.getY(), precision));
+                          answer.setText(Utility.formatOutput(pg.getY(), precision));
                         }else{
                             Toast.makeText(getActivity(), "Invalid Input", Toast.LENGTH_SHORT).show();
                         }

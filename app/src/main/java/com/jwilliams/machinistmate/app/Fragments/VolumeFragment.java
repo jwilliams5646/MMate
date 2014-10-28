@@ -1,11 +1,9 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,45 +11,36 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.jwilliams.machinistmate.app.Adapters.DbHelper;
+import com.jwilliams.machinistmate.app.ConversionClass.Conversions;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Formatter;
 import com.jwilliams.machinistmate.app.R;
-
-import java.io.IOException;
-
-//import android.util.Log;
+import com.squareup.picasso.Picasso;
 
 /**
- * Created by John on 6/1/2014.
+ * Created by John Williams
+ * Volume Conversion View-Controller
  */
 public class VolumeFragment extends Fragment {
-    //Conversion Variables
 
-    private static final String KEY_POSITION="position";
+    private ImageView convImage;
     private RobotoTextView answer;
     private RobotoTextView answerType;
-    private RobotoTextView precisionView;
     private Spinner inputSpinner;
     private Spinner outputSpinner;
     private EditText input;
     private RobotoButton calcButton;
-    private RobotoButton addButton;
-    private RobotoButton minusButton;
-    private LinearLayout answerLayout;
     private int inputPos;
     private int precision;
     private String output;
-    private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
+    //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
-    private AdRequest adRequest;
+    private View rootView;
 
     public VolumeFragment() {
     }
@@ -59,9 +48,9 @@ public class VolumeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.conversion_layout, container, false);
-        setAd(rootView);
-        setLayoutVariables(rootView);
+        rootView = inflater.inflate(R.layout.conversion_layout, container, false);
+        setAd();
+        initializeVariables();
         setSpinnerAdapter();
         setInputListener();
         setOutputListener();
@@ -70,9 +59,9 @@ public class VolumeFragment extends Fragment {
         return rootView;
     }
 
-    private void setAd(View rootView){
-        adView = (AdView)rootView.findViewById(R.id.rt_adView);
-        adRequest = new AdRequest.Builder()
+    private void setAd() {
+        adView = (AdView) rootView.findViewById(R.id.rt_adView);
+        AdRequest adRequest = new AdRequest.Builder()
 /*                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice(TEST_DEVICE_ID)*/
                 .build();
@@ -83,7 +72,7 @@ public class VolumeFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new getCalculation().execute();
+                new Conversions(input, answer, 1, inputPos, output, precision, getActivity()).execute();
             }
         });
     }
@@ -120,6 +109,7 @@ public class VolumeFragment extends Fragment {
     }
 
     private void setInputHint(int position) {
+        answer.setText("");
         switch (position) {
             case 0:
                 input.setHint(Html.fromHtml("in<sup><small>3</small></sup>"));
@@ -145,20 +135,29 @@ public class VolumeFragment extends Fragment {
         }
     }
 
-    private void setLayoutVariables(View rootView){
+    public void initializeVariables() {
+        convImage = (ImageView) rootView.findViewById(R.id.conv_image);
         answer = (RobotoTextView) rootView.findViewById(R.id.conv_answer);
         answerType = (RobotoTextView) rootView.findViewById(R.id.conv_answer_type);
         inputSpinner = (Spinner) rootView.findViewById(R.id.conv_input_spinner);
         outputSpinner = (Spinner) rootView.findViewById(R.id.conv_output_spinner);
         input = (EditText) rootView.findViewById(R.id.conv_input);
         calcButton = (RobotoButton) rootView.findViewById(R.id.conv_calc_button);
-        answerLayout = (LinearLayout) rootView.findViewById(R.id.conv_answer_layout);
         inputPos = 0;
-        precision = 2;
-        //precisionView.setText(Integer.toString(precision));
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        precision = Integer.parseInt(sp.getString("pref_key_conversion_precision", "2"));
+        showImage();
     }
 
-    private void setSpinnerAdapter(){
+    private void showImage() {
+        Picasso.with(getActivity())
+                .load(R.drawable.conversion)
+                .fit()
+                .centerInside()
+                .into(convImage);
+    }
+
+    private void setSpinnerAdapter() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.conv_volume_array, R.layout.spinner_background);
         adapter.setDropDownViewResource(R.layout.spinner_drop_down);
@@ -166,7 +165,8 @@ public class VolumeFragment extends Fragment {
         outputSpinner.setAdapter(adapter);
     }
 
-    private void setConversionType(int position){
+    private void setConversionType(int position) {
+        answer.setText("");
         switch (position) {
             case 0:
                 answerType.setText(Html.fromHtml("in<sup><small>3</small></sup>"));
@@ -199,66 +199,8 @@ public class VolumeFragment extends Fragment {
         }
     }
 
-    private void setDatabase(DbHelper myDbHelper){
-        //instantiates the database and the
-        try {
-            myDbHelper.createDataBase();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openDb(DbHelper myDbHelper){
-        try {
-            myDbHelper.openDataBase();
-        }catch(SQLException sqle){
-            //Log.d("Open Database", "SQL Exception");
-            throw sqle;
-        }
-    }
-
-    private class getCalculation extends AsyncTask {
-        private double calcInput = 0.0;
-        DbHelper myDbHelper;
-        Cursor c;
-        String result;
-
-        @Override
-        protected void onPreExecute(){
-            try {
-                calcInput = Double.parseDouble(input.getText().toString());
-            } catch (NumberFormatException e) {
-                Toast.makeText(getActivity(), "Invalid Input", Toast.LENGTH_SHORT).show();
-                cancel(true);
-            }
-        }
-
-        @Override
-        protected String doInBackground(Object[] params) {
-           // Log.d("DB Thread", "Starting work");
-            myDbHelper = new DbHelper(getActivity());
-            setDatabase(myDbHelper);
-            openDb(myDbHelper);
-            c = myDbHelper.getVolumeConversionFactor(inputPos, output);
-            c.moveToFirst();
-            result = Formatter.formatOutput(calcInput *
-                    Double.parseDouble(c.getString(c.getColumnIndex(output))), precision);
-            myDbHelper.close();
-           // Log.d("DB Thread", "Ending work");
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(Object result){
-            answer.setText(result.toString());
-            myDbHelper = null;
-            c = null;
-            this.cancel(true);
-        }
-    }
-
     @Override
-    public void onPause(){
+    public void onPause() {
         if (adView != null) {
             adView.pause();
         }
@@ -273,7 +215,9 @@ public class VolumeFragment extends Fragment {
         }
     }
 
-    /** Called before the activity is destroyed. */
+    /**
+     * Called before the activity is destroyed.
+     */
     @Override
     public void onDestroy() {
         // Destroy the AdView.

@@ -1,9 +1,6 @@
 package com.jwilliams.machinistmate.app.GeometryClasses;
 
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.jwilliams.machinistmate.app.Formatter;
 
 /**
  * Created by john.williams on 10/21/2014.

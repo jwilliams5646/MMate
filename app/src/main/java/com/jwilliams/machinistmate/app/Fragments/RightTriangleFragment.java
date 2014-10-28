@@ -16,12 +16,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
-import com.jwilliams.machinistmate.app.Formatter;
+import com.jwilliams.machinistmate.app.Utility;
 import com.jwilliams.machinistmate.app.GeometryClasses.RightTriangle;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.R;
@@ -47,14 +46,11 @@ public class RightTriangleFragment extends Fragment {
     private RobotoButton questionButton;
     private int xPos;
     private int yPos;
-    private ArrayAdapter<CharSequence> adapter;
     private View rootView;
     private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
-    private AdRequest adRequest;
     private RightTriangle rt;
     private ImageView rtImage;
-    private SharedPreferences sharedPref;
     private Boolean isTablet;
 
     public RightTriangleFragment() {
@@ -69,8 +65,8 @@ public class RightTriangleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.right_triangle, container, false);
-        setAd(rootView);
-        initializeLayout(rootView);
+        setAd();
+        initializeLayout();
         setSpinnerAdapters();
         setSpinnerXListener();
         setSpinnerYListener();
@@ -98,9 +94,9 @@ public class RightTriangleFragment extends Fragment {
         }
     }
 
-    private void setAd(View rootView) {
+    private void setAd() {
         adView = (AdView) rootView.findViewById(R.id.rt_adView);
-        adRequest = new AdRequest.Builder()
+        AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice(TEST_DEVICE_ID)
                 .build();
@@ -112,114 +108,23 @@ public class RightTriangleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 rt = new RightTriangle();
-                rt.setXPos(xPos);
-                rt.setYPos(yPos);
-                boolean ch = false;
-                boolean co = false;
-                boolean ca = false;
-                boolean cx = false;
-                boolean cy = false;
-                int count = 0;
-                Log.d("I'm in the clicker thingy", "");
-                Log.d("count = ", Integer.toString(count));
-
-
-                try {
-                    rt.setH(Double.parseDouble(sideH.getText().toString()));
-                } catch (NumberFormatException e) {
-                    ch = true;
-                    count++;
+                if(rt.calcRightTriangle(sideH,sideO,sideA,angleX,angleY,xPos,yPos,getActivity())) {
+                    postAnswers();
                 }
-                try {
-                    rt.setO(Double.parseDouble(sideO.getText().toString()));
-                } catch (NumberFormatException e) {
-                    co = true;
-                    count++;
-                }
-                try {
-                    rt.setA(Double.parseDouble(sideA.getText().toString()));
-                } catch (NumberFormatException e) {
-                    ca = true;
-                    count++;
-                }
-                try {
-                    rt.setX(Double.parseDouble(angleX.getText().toString()));
-                } catch (NumberFormatException e) {
-                    cx = true;
-                    count++;
-                }
-                try {
-                    rt.setY(Double.parseDouble(angleY.getText().toString()));
-                } catch (NumberFormatException e) {
-                    cy = true;
-                    count++;
-                }
-
-                Log.d("count = ", Integer.toString(count));
-
-                if (count > 4 || count < 2) {
-                    Toast.makeText(getActivity(), "You must enter 2 values, and they cannot both be angles.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (!cx && !cy) {
-                    Toast.makeText(getActivity(), "You must enter 2 values, and they cannot both be angles.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (!cx) {
-                    if (rt.getX() < 1 || rt.getX() >= 90) {
-                        Toast.makeText(getActivity(), "Angle x can't be greater than 90 or less than 1", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-
-                if (!cy) {
-                    if (rt.getY() < 1 || rt.getY() >= 90) {
-                        Toast.makeText(getActivity(), "Angle y can't be greater than 90 or less than 1", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-
-                if (rt.getH() < rt.getA() && rt.getH() != 0) {
-                    Toast.makeText(getActivity(), "Side H must always be longer than side A.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (!ch && !co) {
-                    rt.calcFromHO();
-                } else if (!ch && !ca) {
-                    rt.calcFromHA();
-                } else if (!ch && !cx) {
-                    rt.calcFromHX();
-                } else if (!ch && !cy) {
-                    rt.calcFromHY();
-                } else if (!co && !ca) {
-                    rt.calcFromOA();
-                } else if (!co && !cx) {
-                    rt.calcFromOX();
-                } else if (!co && !cy) {
-                    rt.calcFromOY();
-                } else if (!ca && !cx) {
-                    rt.calcFromAX();
-                } else if (!ca && !cy) {
-                    rt.calcFromAY();
-                }
-
-                postAnswers();
             }
 
 
             private void postAnswers() {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 int precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
-                sideH.setText(Formatter.formatOutput(rt.getH(), precision));
-                sideO.setText(Formatter.formatOutput(rt.getO(), precision));
-                sideA.setText(Formatter.formatOutput(rt.getA(), precision));
-                angleX.setText(Formatter.formatOutput(rt.getX(), precision));
-                angleY.setText(Formatter.formatOutput(rt.getY(), precision));
-                areaAnswer.setText(Formatter.formatOutput(rt.getArea(), precision));
-                perimeterAnswer.setText(Formatter.formatOutput(rt.getPerimeter(), precision));
+                Log.d("Precision", Integer.toString(precision));
+                sideH.setText(Utility.formatOutput(rt.getH(), precision));
+                sideO.setText(Utility.formatOutput(rt.getO(), precision));
+                sideA.setText(Utility.formatOutput(rt.getA(), precision));
+                angleX.setText(Utility.formatOutput(rt.getX(), precision));
+                angleY.setText(Utility.formatOutput(rt.getY(), precision));
+                areaAnswer.setText(Utility.formatOutput(rt.getArea(), precision));
+                perimeterAnswer.setText(Utility.formatOutput(rt.getPerimeter(), precision));
             }
 
         });
@@ -278,7 +183,7 @@ public class RightTriangleFragment extends Fragment {
         });
     }
 
-    private void initializeLayout(View rootView) {
+    private void initializeLayout() {
         rtImage = (ImageView)rootView.findViewById(R.id.rt_image);
         sideH = (EditText) rootView.findViewById(R.id.rt_h_input);
         sideO = (EditText) rootView.findViewById(R.id.rt_o_input);
@@ -294,7 +199,7 @@ public class RightTriangleFragment extends Fragment {
         questionButton = (RobotoButton) rootView.findViewById(R.id.rt_question_button);
         xPos = 0;
         yPos = 0;
-        sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         isTablet = sharedPref.getBoolean("isTablet", false);
         setImage();
     }
@@ -310,7 +215,7 @@ public class RightTriangleFragment extends Fragment {
     }
 
     private void setSpinnerAdapters() {
-        adapter = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.degree_rad_array, R.layout.spinner_background);
         adapter.setDropDownViewResource(R.layout.spinner_drop_down);
         angleXSpinner.setAdapter(adapter);

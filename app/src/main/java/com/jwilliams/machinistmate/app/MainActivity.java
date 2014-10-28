@@ -1,8 +1,7 @@
 package com.jwilliams.machinistmate.app;
 
-import android.app.Activity;
-
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -10,18 +9,11 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import com.jwilliams.machinistmate.app.Adapters.DbHelper;
 
@@ -29,12 +21,12 @@ import com.jwilliams.machinistmate.app.Adapters.DbHelper;
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+    SharedPreferences sharedPref;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private Context context;
-    SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
 
     @Override
@@ -46,11 +38,11 @@ public class MainActivity extends Activity
         sharedPref = getPreferences(Context.MODE_PRIVATE);
         editor = sharedPref.edit();
 
-        if(isTablet()){
+        if (isTablet()) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             editor.putBoolean("isTablet", true);
             editor.commit();
-        }else{
+        } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             editor.putBoolean("isTablet", false);
             editor.commit();
@@ -125,8 +117,9 @@ public class MainActivity extends Activity
         }
     }
 
-    public class createOrCheckDb extends AsyncTask{
-            DbHelper myDbHelper = new DbHelper(context);
+    public class createOrCheckDb extends AsyncTask {
+        DbHelper myDbHelper = new DbHelper(context);
+
         @Override
         protected Object doInBackground(Object[] objects) {
             try {

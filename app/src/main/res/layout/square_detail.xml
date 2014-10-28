@@ -89,8 +89,7 @@
         android:layout_height="wrap_content"
         ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
         ads:adSize="BANNER"
-        android:layout_below="@+id/sq_calc"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
