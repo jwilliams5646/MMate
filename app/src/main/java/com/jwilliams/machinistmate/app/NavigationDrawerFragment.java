@@ -45,7 +45,7 @@ import java.util.List;
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends Fragment{
 
     /**
      * Remember the position of the selected item.
@@ -80,6 +80,9 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+    private SharedPreferences sp;
+
+    private SharedPreferences.Editor editor;
 
     public NavigationDrawerFragment() {
     }
@@ -92,6 +95,7 @@ public class NavigationDrawerFragment extends Fragment {
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mUserLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
+        editor = sp.edit();
 
         if (savedInstanceState != null) {
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
@@ -115,6 +119,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView = (ExpandableListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
         lastGroupExpandedPosition = -1;
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         setHomeFragment();
         prepareListData();
         ExpandableListAdapter listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
@@ -261,6 +266,8 @@ public class NavigationDrawerFragment extends Fragment {
                         }
                         break;
                 }
+
+                mDrawerLayout.closeDrawer(mDrawerListView);
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, fragment)
                         .commit();
@@ -346,6 +353,8 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
+                editor.putBoolean("isDrawerOpened", false);
+                editor.commit();
                 if (!isAdded()) {
                     return;
                 }
@@ -356,6 +365,8 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+                editor.putBoolean("isDrawerOpened", true);
+                editor.commit();
                 if (!isAdded()) {
                     return;
                 }
@@ -478,5 +489,10 @@ public class NavigationDrawerFragment extends Fragment {
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(int position);
+    }
+
+    public void openDrawer(){
+        if(!mDrawerLayout.isDrawerOpen(mDrawerListView))
+            mDrawerLayout.openDrawer(mDrawerListView);
     }
 }

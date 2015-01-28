@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +97,8 @@ public class RectangleFragment extends Fragment {
             public void onClick(View view) {
                 rectangle = new Rectangle();
                 sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));                switch (answerPos) {
+                precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
+                switch (answerPos) {
                     case 0:
                         calcArea();
                         break;
@@ -417,7 +419,6 @@ public class RectangleFragment extends Fragment {
         input1.setText("");
         input2.setText("");
         input3.setText("");
-        answerPos = 0;
         inputPos = 0;
 
     }

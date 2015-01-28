@@ -39,7 +39,7 @@ public class Rectangle {
     }
 
     public double calcLengthByDiagonal() {
-        return (diagonal*diagonal)-(width*width);
+        return Math.sqrt(diagonal*diagonal - width*width);
     }
 
     public double calcLengthByArea() {
@@ -47,11 +47,11 @@ public class Rectangle {
     }
 
     public double calcWidthByPerimeter() {
-        return perimeter/2-1;
+        return perimeter/2-length;
     }
 
     public double calcWidthByDiagonal() {
-        return Math.sqrt(diagonal * diagonal - length * length);
+        return Math.sqrt(diagonal*diagonal - length*length);
     }
 
     public double calcWidthByArea() {
@@ -59,7 +59,7 @@ public class Rectangle {
     }
 
     public double calcDiagonal() {
-        return Math.sqrt(length * length + width * width);
+        return Math.sqrt(length*length + width*width);
     }
 
     public double calcArea() {

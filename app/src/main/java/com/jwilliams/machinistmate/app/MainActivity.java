@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -12,14 +13,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.jwilliams.machinistmate.app.Adapters.DbHelper;
 
 
-public class MainActivity extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
 
     SharedPreferences sharedPref;
     /**
@@ -27,7 +28,6 @@ public class MainActivity extends Activity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private Context context;
-    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MainActivity extends Activity
         context = this;
         new createOrCheckDb().execute();
         sharedPref = getPreferences(Context.MODE_PRIVATE);
-        editor = sharedPref.edit();
+        SharedPreferences.Editor editor = sharedPref.edit();
 
         if (isTablet()) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -61,10 +61,6 @@ public class MainActivity extends Activity
         boolean xlarge = ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4);
         boolean large = ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
         return (xlarge || large);
-    }
-
-    @Override
-    public void onNavigationDrawerItemSelected(int position) {
     }
 
     public void restoreActionBar() {
@@ -109,6 +105,11 @@ public class MainActivity extends Activity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onNavigationDrawerItemSelected(int position) {
+
+    }
+
     public static class SettingsFragment extends PreferenceFragment {
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -133,4 +134,16 @@ public class MainActivity extends Activity
         }
     }
 
+    @Override
+    public void onBackPressed(){
+        if(!mNavigationDrawerFragment.isDrawerOpen()) {
+            mNavigationDrawerFragment.openDrawer();
+        }else{
+            Log.d("onBackPressed#", "Minimizing App...");
+            Intent startMain = new Intent(Intent.ACTION_MAIN);
+            startMain.addCategory(Intent.CATEGORY_HOME);
+            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(startMain);
+        }
+    }
 }

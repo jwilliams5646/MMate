@@ -8,12 +8,12 @@ android {
         applicationId "com.jwilliams.machinistmate.app"
         minSdkVersion 15
         targetSdkVersion 20
-        versionCode 3
-        versionName "1.03"
+        versionCode 4
+        versionName "1.04"
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
