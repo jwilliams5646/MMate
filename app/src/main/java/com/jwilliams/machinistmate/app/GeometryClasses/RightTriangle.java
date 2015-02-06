@@ -2,6 +2,7 @@ package com.jwilliams.machinistmate.app.GeometryClasses;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -43,7 +44,8 @@ public class RightTriangle {
     }
 
     public double getArea() {
-        return (O + A) / 2;
+        Log.d(Double.toString(O*A),"/2 = " + Double.toString((O*A)/2));
+        return (O * A) / 2;
     }
 
     public double getPerimeter() {
