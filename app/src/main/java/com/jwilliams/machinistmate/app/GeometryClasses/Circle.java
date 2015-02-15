@@ -3,7 +3,7 @@ package com.jwilliams.machinistmate.app.GeometryClasses;
 
 
 /**
- * Created by john.williams on 9/10/2014.
+ * Created by John Williams
  */
 public class Circle {
 

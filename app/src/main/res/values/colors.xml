@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background">#151515</color>
+    <color name="TextColor">#999999</color>
+    <color name="WhiteSmoke">#F5F5F5</color>
 </resources>

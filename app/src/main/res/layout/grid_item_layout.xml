@@ -6,5 +6,6 @@
     android:layout_height="wrap_content"
     android:background="@color/background"
     android:gravity="center"
+    android:padding="8dp"
     style="@style/TextViewStyle"/>
 

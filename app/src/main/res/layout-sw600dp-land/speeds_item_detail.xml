@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
-<RelativeLayout
+
+<LinearLayout
     android:layout_width="0dp"
     android:layout_weight="1"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <LinearLayout
         android:id="@+id/speed_answer_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -23,13 +23,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:gravity="right"/>
+            android:gravity="end"/>
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:id="@+id/speed_answer_type"
             style="@style/AnswerStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="16dp"
+            android:paddingTop="4dp"
             android:text="@string/rpm" />
     </LinearLayout>
 
@@ -72,8 +76,11 @@
             android:id="@+id/surface_view"
             style="@style/TextViewStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingBottom="4dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="4dp"
+            android:paddingTop="4dp"
             android:text="@string/surface_standard"/>
         <EditText
             android:id="@+id/surfaceInput"
@@ -99,7 +106,10 @@
             style="@style/TextViewStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="4dp"
+            android:paddingTop="4dp"
             android:text="@string/diameter" />
 
 
@@ -113,16 +123,23 @@
             android:hint="@string/in"/>
     </LinearLayout>
 
-    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+    <ImageButton
         android:id="@+id/speed_calc"
         style="@style/calc_buttons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="4dp"
-        android:text="@string/calculate"
-        android:layout_below="@+id/diameter_view" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="Calculate Button"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_calc" />
 
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/speeds_adView"
@@ -130,11 +147,10 @@
         android:layout_height="wrap_content"
         ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
         ads:adSize="BANNER"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"/>
+        android:layout_gravity="center_horizontal"/>
 
 
-</RelativeLayout>
+</LinearLayout>
 
     <RelativeLayout
     android:layout_width="0dp"

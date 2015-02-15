@@ -7,8 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -36,7 +39,7 @@ public class SpeedsFragment extends Fragment {
     private EditText diameterInput;
     private boolean isStandard;
     private RadioGroup speedRadioGroup;
-    private RobotoButton speedsCalc;
+    private ImageButton speedsCalc;
     private AdView adView;
     private Speeds speeds;
     private Context context;
@@ -65,6 +68,8 @@ public class SpeedsFragment extends Fragment {
         speedsCalc.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animate = AnimationUtils.loadAnimation(context, R.anim.touch_anim);
+                speedsCalc.startAnimation(animate);
                 speeds = new Speeds();
                 if (speeds.calcSpeed(surfaceInput, diameterInput, isStandard)) {
                     speedAnswer.setText(Utility.formatOutput(speeds.getSpeed(), 0));
@@ -109,7 +114,7 @@ public class SpeedsFragment extends Fragment {
         surfaceType = (RobotoTextView) rootView.findViewById(R.id.surface_view);
         surfaceInput = (EditText) rootView.findViewById(R.id.surfaceInput);
         diameterInput = (EditText) rootView.findViewById(R.id.diameterInput);
-        speedsCalc = (RobotoButton) rootView.findViewById(R.id.speed_calc);
+        speedsCalc = (ImageButton) rootView.findViewById(R.id.speed_calc);
         speedAnswer = (RobotoTextView) rootView.findViewById(R.id.speed_answer);
         isStandard = true;
         context = getActivity();

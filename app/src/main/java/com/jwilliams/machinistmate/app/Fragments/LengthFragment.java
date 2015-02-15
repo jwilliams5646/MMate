@@ -1,21 +1,24 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jwilliams.machinistmate.app.ConversionClass.Conversions;
-import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.R;
 import com.squareup.picasso.Picasso;
@@ -32,7 +35,8 @@ public class LengthFragment extends Fragment {
     private Spinner inputSpinner;
     private Spinner outputSpinner;
     private EditText input;
-    private RobotoButton calcButton;
+    private ImageButton calcButton;
+    private Context context;
     private int inputPos;
     private int precision;
     private String output;
@@ -69,6 +73,8 @@ public class LengthFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animate = AnimationUtils.loadAnimation(context, R.anim.touch_anim);
+                calcButton.startAnimation(animate);
                 new Conversions(input, answer, 0, inputPos, output, precision, getActivity()).execute();
             }
         });
@@ -139,7 +145,8 @@ public class LengthFragment extends Fragment {
         inputSpinner = (Spinner) rootView.findViewById(R.id.conv_input_spinner);
         outputSpinner = (Spinner) rootView.findViewById(R.id.conv_output_spinner);
         input = (EditText) rootView.findViewById(R.id.conv_input);
-        calcButton = (RobotoButton) rootView.findViewById(R.id.conv_calc_button);
+        calcButton = (ImageButton) rootView.findViewById(R.id.conv_calc_button);
+        context = getActivity();
         inputPos = 0;
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         precision = Integer.parseInt(sp.getString("pref_key_conversion_precision", "2"));

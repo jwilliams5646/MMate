@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="G Codes"
+            android:text="G-codes"
             android:id="@+id/gm_g_button"
             style="@style/buttons"/>
 
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="M Codes"
+            android:text="M-codes"
             android:id="@+id/gm_m_button"
             style="@style/buttons" />
 
@@ -71,37 +71,31 @@
 
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="Code"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:id="@+id/code_header"
                 style="@style/HeaderStyle"/>
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
                 android:text="Description"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 style="@style/HeaderStyle"
                 android:id="@+id/desc_header" />
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:text="Milling (M)"
-                android:textSize="12sp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Type"
+                android:textSize="16sp"
                 style="@style/HeaderStyle"
                 android:id="@+id/mill_header"/>
-
-            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="Turning (T)"
-                android:textSize="12sp"
-                style="@style/HeaderStyle"
-                android:id="@+id/turn_header"/>
         </LinearLayout>
 
         <LinearLayout
@@ -110,12 +104,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/gm_buttons"
             android:id="@+id/gm_address_header"
+            android:divider="@drawable/vertical_separator"
+            android:showDividers="middle"
             android:visibility="gone">
 
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="Code"
                 android:textSize="12sp"
                 android:id="@+id/gm_code"
@@ -124,8 +121,8 @@
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="40dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical|left"
                 android:text="Description"
                 android:textSize="12sp"

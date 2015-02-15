@@ -5,21 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:layout_gravity="center">
     <ImageView
         android:id="@+id/conv_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    </RelativeLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2">
+        android:layout_weight="2"
+        android:orientation="vertical">
     <LinearLayout
         android:id="@+id/conv_answer_layout"
         android:layout_width="match_parent"
@@ -34,17 +30,22 @@
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:id="@+id/conv_answer_type"
-            style="@style/AnswerStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="16dp"
+            android:paddingTop="4dp"
+            android:textColor="@color/TextColor"
+            android:textSize="35sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/conv_spinner_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/conv_answer_layout"
-        android:layout_centerHorizontal="true">
+        android:layout_gravity="center_horizontal">
 
             <Spinner
                 android:id="@+id/conv_input_spinner"
@@ -71,7 +72,6 @@
         android:id="@+id/conversion_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/conv_spinner_layout"
         android:orientation="horizontal">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -79,7 +79,10 @@
             style="@style/TextViewStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="4dp"
+            android:paddingTop="4dp"
             android:text="@string/input" />
 
         <EditText
@@ -93,25 +96,30 @@
     </LinearLayout>
 
 
-    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+    <ImageButton
         android:id="@+id/conv_calc_button"
         style="@style/calc_buttons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/calculate"
-        android:layout_below="@+id/conversion_input_layout"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="4dp" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_calc" />
 
 
-    <com.google.android.gms.ads.AdView
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <com.google.android.gms.ads.AdView
         android:id="@+id/rt_adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-        ads:adSize="BANNER"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-    </RelativeLayout>
+        ads:adSize="BANNER"/>
+    </LinearLayout>
 
 </LinearLayout>

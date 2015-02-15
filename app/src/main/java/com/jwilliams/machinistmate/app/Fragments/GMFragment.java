@@ -7,16 +7,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.jwilliams.machinistmate.app.Adapters.AddressAdapter;
+import com.jwilliams.machinistmate.app.Adapters.CodeAdapter;
 import com.jwilliams.machinistmate.app.Adapters.DbHelper;
-import com.jwilliams.machinistmate.app.Adapters.GMAddAdapter;
 import com.jwilliams.machinistmate.app.Adapters.GMAddContent;
-import com.jwilliams.machinistmate.app.Adapters.GMCodeAdapter;
 import com.jwilliams.machinistmate.app.Adapters.GMCodeContent;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.R;
@@ -36,14 +38,15 @@ public class GMFragment extends Fragment {
     private RobotoButton addressButton;
     private ListView codeList;
     public ArrayList<GMCodeContent> codeContent;
-    private GMCodeAdapter codeAdapter;
+    private CodeAdapter codeAdapter;
     private ListView addList;
     public ArrayList<GMAddContent> addContent;
-    private GMAddAdapter addAdapter;
+    private AddressAdapter addAdapter;
     private int dbSwitch;
     //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private View rootView;
+    private  Animation animate;
 
     DbHelper myDbHelper;
 
@@ -79,12 +82,14 @@ public class GMFragment extends Fragment {
         addressButton = (RobotoButton)rootView.findViewById(R.id.gm_address_button);
         codeList = (ListView)rootView.findViewById(R.id.gm_code_list);
         addList = (ListView)rootView.findViewById(R.id.gm_address_list);
+        animate = AnimationUtils.loadAnimation(getActivity(), R.anim.touch_anim);
     }
 
     private void setButtonListeners() {
         gButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
+                gButton.startAnimation(animate);
                 dbSwitch = 0;
                 new setList().execute();
             }
@@ -92,6 +97,7 @@ public class GMFragment extends Fragment {
         mButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mButton.startAnimation(animate);
                 dbSwitch = 1;
                 new setList().execute();
             }
@@ -99,6 +105,7 @@ public class GMFragment extends Fragment {
         addressButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
+                addressButton.startAnimation(animate);
                 dbSwitch = 2;
                 new setList().execute();
             }
@@ -119,13 +126,13 @@ public class GMFragment extends Fragment {
     private void setCodeAdapter(){
         codeContent = new ArrayList<GMCodeContent>();
         //the adapter, sets the list to the layout
-        codeAdapter = new GMCodeAdapter(codeContent, getActivity());
+        codeAdapter = new CodeAdapter(codeContent, getActivity());
     }
     private void setAddressAdapter(){
         addContent = new ArrayList<GMAddContent>();
         //instantiates the array list used for the adapter
         //the adapter, sets the list to the layout
-        addAdapter = new GMAddAdapter(addContent, getActivity());
+        addAdapter = new AddressAdapter(addContent, getActivity());
     }
 
     public class setList extends AsyncTask {

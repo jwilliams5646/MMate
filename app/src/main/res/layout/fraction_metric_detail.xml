@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -27,7 +24,7 @@
             android:text="@string/fraction"
             android:id="@+id/textView"
             android:gravity="center"
-            android:textSize="14sp"
+            android:textSize="16sp"
             style="@style/ListHeaderStyle"/>
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -37,14 +34,14 @@
             android:text="@string/standard"
             android:id="@+id/textView2"
             android:gravity="center"
-            android:textSize="14sp"
+            android:textSize="16sp"
             style="@style/ListHeaderStyle"/>
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:text="@string/metric"
             android:id="@+id/textView3"
             android:gravity="center"
@@ -60,16 +57,14 @@
         android:numColumns="3"
         android:horizontalSpacing="1dp"
         android:verticalSpacing="1dp"
-        android:clickable="false" />
-</LinearLayout>
+        android:clickable="false"
+        android:fastScrollEnabled="true" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/frac_adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-        ads:adSize="BANNER"
         android:layout_gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+        ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+        ads:adSize="BANNER" />
+</LinearLayout>

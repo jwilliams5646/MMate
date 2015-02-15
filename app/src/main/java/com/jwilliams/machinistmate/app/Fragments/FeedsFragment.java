@@ -1,21 +1,24 @@
 package com.jwilliams.machinistmate.app.Fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.R;
 import com.jwilliams.machinistmate.app.SpeedsandFeedsClasses.Feeds;
@@ -34,12 +37,13 @@ public class FeedsFragment extends Fragment {
     private EditText feedPerToothInput;
     private EditText numberTeethInput;
     private RobotoTextView feedAnswerType;
-    private RobotoButton feedCalc;
+    private ImageButton feedCalc;
     private RadioGroup feedRadioGroup;
     private int precision;
     //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
     private Feeds feeds;
+    private Context context;
     private SharedPreferences sp;
 
     public FeedsFragment() {
@@ -73,6 +77,8 @@ public class FeedsFragment extends Fragment {
     private void setCalcButtonListener() {
         feedCalc.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
+                Animation animate = AnimationUtils.loadAnimation(context, R.anim.touch_anim);
+                feedCalc.startAnimation(animate);
                 feeds = new Feeds();
                 precision = Integer.parseInt(sp.getString("pref_key_feeds_precision", "4"));
                 if (feeds.calcFeed(feedSpeedInput, feedPerToothInput, numberTeethInput)) {
@@ -108,8 +114,9 @@ public class FeedsFragment extends Fragment {
         numberTeethInput = (EditText) rootView.findViewById(R.id.number_teeth_input);
         feedAnswerType = (RobotoTextView) rootView.findViewById(R.id.feed_answer_type);
         feedRadioGroup = (RadioGroup) rootView.findViewById(R.id.feed_radio_group);
-        feedCalc = (RobotoButton) rootView.findViewById(R.id.feed_calc);
+        feedCalc = (ImageButton) rootView.findViewById(R.id.feed_calc);
         feedAnswerType.setText(getText(R.string.ipm));
+        context = getActivity();
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         showImage(rootView);
     }

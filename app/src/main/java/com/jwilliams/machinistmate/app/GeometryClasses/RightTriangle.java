@@ -45,7 +45,7 @@ public class RightTriangle {
 
     public double getArea() {
         Log.d(Double.toString(O*A),"/2 = " + Double.toString((O*A)/2));
-        return (O * A) / 2;
+        return (O*A) / 2;
     }
 
     public double getPerimeter() {

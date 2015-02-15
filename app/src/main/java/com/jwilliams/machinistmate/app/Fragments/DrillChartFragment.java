@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -33,6 +35,7 @@ public class DrillChartFragment extends Fragment {
     private RobotoButton metricButton;
     private RobotoTextView typeHeader;
     private GridView referenceGridView;
+    private Animation animate;
     private List<String> li;
     private ArrayAdapter<String> adapter;
     private int dbSwitch;
@@ -60,6 +63,7 @@ public class DrillChartFragment extends Fragment {
         allInfo.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
+                allInfo.startAnimation(animate);
                 typeHeader.setText("All");
                 dbSwitch = 0;
                 new setGrid().execute();
@@ -69,6 +73,7 @@ public class DrillChartFragment extends Fragment {
         wiregaugeButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
+                wiregaugeButton.startAnimation(animate);
                 typeHeader.setText("Wiregauge");
                 dbSwitch = 1;
                 new setGrid().execute();
@@ -78,6 +83,7 @@ public class DrillChartFragment extends Fragment {
         letterButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
+                letterButton.startAnimation(animate);
                 typeHeader.setText("Letter");
                 dbSwitch = 2;
                 new setGrid().execute();
@@ -87,6 +93,7 @@ public class DrillChartFragment extends Fragment {
         fractionButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fractionButton.startAnimation(animate);
                 typeHeader.setText("Fraction");
                 dbSwitch = 3;
                 new setGrid().execute();
@@ -96,6 +103,7 @@ public class DrillChartFragment extends Fragment {
         metricButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
+                metricButton.startAnimation(animate);
                 typeHeader.setText("Metric");
                 dbSwitch = 4;
                 new setGrid().execute();
@@ -121,6 +129,7 @@ public class DrillChartFragment extends Fragment {
         metricButton = (RobotoButton)rootView.findViewById(R.id.drill_metric_button);
         typeHeader = (RobotoTextView)rootView.findViewById(R.id.type_header);
         referenceGridView = (GridView)rootView.findViewById(R.id.drill_chart_grid);
+        animate = AnimationUtils.loadAnimation(getActivity(), R.anim.touch_anim);
         typeHeader.setText("All");
     }
 
@@ -131,23 +140,6 @@ public class DrillChartFragment extends Fragment {
         adapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.grid_item_layout, li);
     }
-
-/*    private void setDatabase(DbHelper myDbHelper){
-        try {
-            myDbHelper.createDataBase();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
-
-/*    public void openDb(DbHelper myDbHelper){
-        try {
-            myDbHelper.openDataBase();
-        }catch(SQLException sqle){
-            throw sqle;
-        }
-    }*/
 
     private class setGrid extends AsyncTask {
         Cursor c;

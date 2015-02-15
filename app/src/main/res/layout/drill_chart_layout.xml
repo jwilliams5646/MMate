@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -79,21 +74,19 @@
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:id="@+id/type_header"
             android:gravity="center"
             android:text="Wireguage"
-            android:textSize="14sp"
-            style="@style/ListHeaderStyle"/>
+            android:padding="8dp"
+            style="@style/TextViewStyle"/>
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:text="@string/standard"
-            style="@style/ListHeaderStyle"
-            android:textSize="14sp"
+            style="@style/TextViewStyle"
             android:gravity="center"
+            android:padding="8dp"
             android:id="@+id/standard_header" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -101,9 +94,9 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/metric"
-            style="@style/ListHeaderStyle"
-            android:textSize="14sp"
+            style="@style/TextViewStyle"
             android:gravity="center"
+            android:padding="8dp"
             android:id="@+id/metric_header"/>
     </LinearLayout>
     <GridView
@@ -115,15 +108,14 @@
         android:horizontalSpacing="1dp"
         android:verticalSpacing="1dp"
         android:numColumns="3"
-        android:clickable="false" />
-    </LinearLayout>
+        android:clickable="false"
+        android:fastScrollEnabled="true" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/drill_chart_adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-        ads:adSize="BANNER"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
-</RelativeLayout>
+        ads:adSize="BANNER"/>
+</LinearLayout>

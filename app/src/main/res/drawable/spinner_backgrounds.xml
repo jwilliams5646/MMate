@@ -2,14 +2,14 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="#343434" />
-            <padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp" />
+            <solid android:color="#252525" />
+            <padding android:bottom="4dp" android:left="4dp" android:right="4dp" android:top="4dp" />
         </shape>
     </item>
     <item>
         <shape>
-            <gradient android:angle="270" android:endColor="#161819" android:startColor="#161819" />
-            <padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp" />
+            <solid android:color="@color/background" />
+            <padding android:bottom="4dp" android:left="4dp" android:right="4dp" android:top="4dp" />
         </shape>
     </item>
 </selector>
