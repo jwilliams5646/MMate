@@ -12,24 +12,27 @@
         android:layout_weight="1"
         android:id="@+id/circle_image" />
 
-<RelativeLayout
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="3"
-    android:layout_margin="4dp"
-    android:layout_gravity="center_horizontal">
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="4dp"
         android:id="@+id/circle_answer_layout">
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/circle_choice" />
+            android:id="@+id/circle_choice"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="4dp"/>
 
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -39,7 +42,10 @@
             android:id="@+id/circle_answer"
             style="@style/TextViewStyle"
             android:textSize="20sp"
-            android:padding="10dp" />
+            android:paddingRight="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="4dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -52,7 +58,11 @@
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/circle_radius_choice" />
+            android:id="@+id/circle_radius_choice"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="4dp" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:layout_width="0dp"
@@ -61,7 +71,11 @@
             android:text="New Text"
             android:id="@+id/circle_view"
             style="@style/TextViewStyle"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="4dp"/>
 
         <EditText
             android:layout_width="0dp"
@@ -69,18 +83,29 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:id="@+id/circle_input"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="16dp"
             style="@style/EditTextStyle"/>
     </LinearLayout>
 
-    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="@string/calculate"
-            android:id="@+id/c_calc"
-            android:layout_margin="4dp"
-            style="@style/calc_buttons"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/circle_radius_layout" />
+    <ImageButton
+        android:id="@+id/c_calc"
+        style="@style/calc_buttons"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_calc" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/c_adView"
@@ -88,9 +113,8 @@
         android:layout_height="wrap_content"
         ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
         ads:adSize="BANNER"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_gravity="center_horizontal"/>
 
-</RelativeLayout>
+</LinearLayout>
 
 </LinearLayout>

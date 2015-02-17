@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -45,9 +46,9 @@ public class ObliqueTriangleFragment extends Fragment {
     private Spinner angleXSpinner;
     private Spinner angleYSpinner;
     private Spinner angleZSpinner;
-    private RobotoButton calcButton;
-    private RobotoButton clearButton;
-    private RobotoButton questionButton;
+    private ImageButton calcButton;
+    private ImageButton clearButton;
+    private ImageButton questionButton;
     private int spinnerX;
     private int spinnerY;
     private int spinnerZ;
@@ -96,9 +97,9 @@ public class ObliqueTriangleFragment extends Fragment {
         angleXSpinner = (Spinner)rootView.findViewById(R.id.oblique_x_spinner);
         angleYSpinner = (Spinner)rootView.findViewById(R.id.oblique_y_spinner);
         angleZSpinner = (Spinner)rootView.findViewById(R.id.oblique_z_spinner);
-        calcButton = (RobotoButton)rootView.findViewById(R.id.oblique_calc_button);
-        clearButton = (RobotoButton)rootView.findViewById(R.id.oblique_clear_button);
-        questionButton = (RobotoButton)rootView.findViewById(R.id.ot_question_button);
+        calcButton = (ImageButton)rootView.findViewById(R.id.oblique_calc_button);
+        clearButton = (ImageButton)rootView.findViewById(R.id.oblique_clear_button);
+        questionButton = (ImageButton)rootView.findViewById(R.id.ot_question_button);
         spinnerX = 0;
         spinnerY = 0;
         spinnerZ = 0;
