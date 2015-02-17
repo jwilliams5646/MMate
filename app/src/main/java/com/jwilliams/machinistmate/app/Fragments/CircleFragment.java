@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -39,7 +40,7 @@ public class CircleFragment extends Fragment {
     private RobotoTextView answer;
     private Spinner answerSpinner;
     private Spinner radiusSpinner;
-    private RobotoButton calcButton;
+    private ImageButton calcButton;
     private int pos;
     private int radiusChoice;
     private int precision;
@@ -194,7 +195,7 @@ public class CircleFragment extends Fragment {
         answer = (RobotoTextView)rootView.findViewById(R.id.circle_answer);
         answerSpinner = (Spinner)rootView.findViewById(R.id.circle_choice);
         radiusSpinner = (Spinner)rootView.findViewById(R.id.circle_radius_choice);
-        calcButton = (RobotoButton)rootView.findViewById(R.id.c_calc);
+        calcButton = (ImageButton)rootView.findViewById(R.id.c_calc);
         pos = 0;
         radiusChoice = 0;
         showCircle();
