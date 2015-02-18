@@ -8,8 +8,8 @@ android {
         applicationId "com.jwilliams.machinistmate.app"
         minSdkVersion 15
         targetSdkVersion 20
-        versionCode 4
-        versionName "1.04"
+        versionCode 5
+        versionName "2.1"
     }
     buildTypes {
         release {
