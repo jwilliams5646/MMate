@@ -15,91 +15,108 @@
         android:layout_margin="4dp"/>
         <!--android:src="@drawable/square" -->
 
-<RelativeLayout
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
-    android:layout_margin="4dp"
-    android:layout_gravity="center_horizontal"
-    android:gravity="center_horizontal">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/square_answer_layout">
 
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/sq_choice"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp" />
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/sq_answer"
-            android:textSize="32sp"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginBottom="4dp"
-            style="@style/TextViewStyle"/>
-    </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/square_answer_layout"
-        android:id="@+id/sq_input_layout">
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/sq_input_view"
-            style="@style/TextViewStyle"/>
+            android:id="@+id/square_answer_layout">
 
-        <Spinner
-            android:layout_width="wrap_content"
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sq_choice"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp" />
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/sq_answer"
+                android:textSize="20sp"
+                style="@style/TextViewStyle"
+                android:padding="10dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/sq_side_choice"
-            android:visibility="gone"/>
+            android:id="@+id/sq_input_layout"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/sq_input"
-            style="@style/EditTextStyle"/>
-    </LinearLayout>
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/sq_input_view"
+                style="@style/TextViewStyle"
+                android:paddingLeft="16dp"
+                android:paddingTop="4dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="4dp" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sq_side_choice"
+                android:visibility="gone"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:id="@+id/sq_input"
+                style="@style/EditTextStyle"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="4dp" />
+        </LinearLayout>
 
 
 
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/calculate"
+        <ImageButton
             android:id="@+id/sq_calc"
             style="@style/calc_buttons"
-            android:layout_below="@+id/sq_input_layout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="false"
-            android:layout_margin="4dp" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="4dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_calc"
+            android:layout_gravity="center_horizontal" />
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/sq_adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-        ads:adSize="BANNER"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-</RelativeLayout>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/sq_adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
+            ads:adSize="BANNER"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

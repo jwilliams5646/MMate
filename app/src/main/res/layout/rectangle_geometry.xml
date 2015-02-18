@@ -12,36 +12,48 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:id="@+id/rectangle_image" />
-<RelativeLayout
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="3">
+    android:layout_weight="3"
+    android:orientation="vertical">
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:id="@+id/rectangle_answer_layout">
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rectangle_answer_choice"/>
+            android:id="@+id/rectangle_answer_choice"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/rectangle_answer"
-            android:layout_weight="1"
-            style="@style/GeometryAnswerStyle"/>
+            style="@style/GeometryAnswerStyle"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="4dp" />
     </LinearLayout>
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rectangle_input_choice"
-        android:layout_below="@+id/rectangle_answer_layout"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -56,7 +68,11 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/rectangle_input_view1"
-            style="@style/TextViewStyle"/>
+            style="@style/TextViewStyle"
+            android:paddingLeft="16dp"
+            android:paddingTop="4dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="4dp" />
 
         <EditText
             android:layout_width="0dp"
@@ -64,7 +80,11 @@
             android:id="@+id/rectangle_input1"
             android:layout_weight="1"
             android:inputType="numberDecimal"
-            style="@style/EditTextStyle"/>
+            style="@style/EditTextStyle"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="4dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -80,7 +100,11 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/rectangle_input_view2"
-            style="@style/TextViewStyle"/>
+            style="@style/TextViewStyle"
+            android:paddingLeft="16dp"
+            android:paddingTop="4dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="4dp" />
 
         <EditText
             android:layout_width="0dp"
@@ -88,7 +112,11 @@
             android:id="@+id/rectangle_input2"
             android:layout_weight="1"
             android:inputType="numberDecimal"
-            style="@style/EditTextStyle"/>
+            style="@style/EditTextStyle"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="4dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -104,7 +132,11 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/rectangle_input_view3"
-            style="@style/TextViewStyle"/>
+            style="@style/TextViewStyle"
+            android:paddingLeft="16dp"
+            android:paddingTop="4dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="4dp" />
 
         <EditText
             android:layout_width="0dp"
@@ -112,25 +144,35 @@
             android:id="@+id/rectangle_input3"
             android:layout_weight="1"
             android:inputType="numberDecimal"
-            style="@style/EditTextStyle"/>
+            style="@style/EditTextStyle"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="4dp" />
     </LinearLayout>
 
-    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/calculate"
+    <ImageButton
         android:id="@+id/rect_calc"
         style="@style/calc_buttons"
-        android:layout_below="@+id/rectangle_input_layout3"
-        android:layout_centerHorizontal="true" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_calc" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <com.google.android.gms.ads.AdView
     android:id="@+id/rect_adView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-    ads:adSize="BANNER"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+    ads:adSize="BANNER" />
+</LinearLayout>
 </LinearLayout>
