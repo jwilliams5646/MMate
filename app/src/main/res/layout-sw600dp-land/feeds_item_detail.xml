@@ -4,6 +4,7 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:baselineAligned="false"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -85,6 +86,12 @@
                 style="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
                 android:layout_weight="2"
                 android:hint="@string/rpm"
                 android:inputType="numberDecimal" />
@@ -115,6 +122,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
                 android:hint="@string/in"
                 android:inputType="numberDecimal" />
         </LinearLayout>
@@ -123,7 +136,6 @@
             android:id="@+id/number_teeth_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/feed_per_tooth_layout"
             android:orientation="horizontal">
 
             <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
@@ -144,6 +156,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
                 android:inputType="numberDecimal" />
         </LinearLayout>
 
@@ -155,6 +173,7 @@
             android:layout_gravity="end"
             android:layout_marginRight="16dp"
             android:layout_marginTop="4dp"
+            android:contentDescription="@string/calc_button"
             android:scaleType="fitXY"
             android:src="@drawable/ic_calc"
             android:text="@string/calculate" />
@@ -168,8 +187,7 @@
             android:id="@+id/feeds_adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-6986976933268044/5924552212" />
     </LinearLayout>
@@ -182,7 +200,8 @@
         <ImageView
             android:id="@+id/feeds_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:contentDescription="@string/feeds" />
 
     </RelativeLayout>
 

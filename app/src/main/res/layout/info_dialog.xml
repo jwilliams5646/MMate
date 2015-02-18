@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/background">
 
-
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/logo_heading"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_action_logo"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="4dp"/>
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/ic_action_logo" />
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#999999"
         android:layout_below="@id/logo_heading"
-        android:id="@+id/separator"/>
+        android:background="#999999"
+        android:orientation="horizontal" />
 
     <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+        android:id="@+id/dialog"
+        style="@style/TextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/dialog"
         android:layout_below="@+id/separator"
-        style="@style/TextViewStyle"/>
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="4dp" />
 </RelativeLayout>

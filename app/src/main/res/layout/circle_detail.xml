@@ -7,114 +7,125 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/circle_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/circle_image" />
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="3"
-    android:layout_gravity="center_horizontal"
-    android:orientation="vertical">
+        android:contentDescription="@string/circle_image" />
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/circle_answer_layout">
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/circle_choice"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginRight="4dp"/>
-
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/circle_answer"
-            style="@style/TextViewStyle"
-            android:textSize="20sp"
-            android:paddingRight="16dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:paddingLeft="4dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/circle_answer_layout"
-        android:id="@+id/circle_radius_layout">
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/circle_radius_choice"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginRight="4dp" />
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/circle_view"
-            style="@style/TextViewStyle"
-            android:visibility="gone"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginRight="4dp"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:id="@+id/circle_input"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginRight="16dp"
-            style="@style/EditTextStyle"/>
-    </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/c_calc"
-        style="@style/calc_buttons"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="end"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="4dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_calc" />
-
-    <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="3"
+        android:orientation="vertical">
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/c_adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-        ads:adSize="BANNER"
-        android:layout_gravity="center_horizontal"/>
+        <LinearLayout
+            android:id="@+id/circle_answer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-</LinearLayout>
+            <Spinner
+                android:id="@+id/circle_choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp" />
+
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:id="@+id/circle_answer"
+                style="@style/TextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="16dp"
+                android:paddingTop="4dp"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/circle_radius_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/circle_radius_choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp" />
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:id="@+id/circle_view"
+                style="@style/TextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:text="@string/sample"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/circle_input"
+                style="@style/EditTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/c_calc"
+            style="@style/calc_buttons"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:contentDescription="@string/calc_button"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_calc" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/c_adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-6986976933268044/5924552212" />
+
+    </LinearLayout>
 
 </LinearLayout>

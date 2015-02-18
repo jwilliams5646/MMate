@@ -2,23 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:divider="@drawable/vertical_separator"
+    android:orientation="horizontal"
     android:showDividers="middle">
 
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:id="@+id/add_code"
-            style="@style/ListTextView" />
+    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+        android:id="@+id/add_code"
+        style="@style/ListTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center" />
 
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="0dp"
-            android:layout_weight="4"
-            android:layout_height="wrap_content"
-            style="@style/ListTextView"
-            android:text="rabblerabble"
-            android:id="@+id/add_desc" />
+    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+        android:id="@+id/add_desc"
+        style="@style/ListTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:text="@string/sample" />
 </LinearLayout>

@@ -8,9 +8,12 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -41,7 +44,7 @@ public class ParallelogramFragment extends Fragment {
     private EditText input1;
     private EditText input2;
     private Spinner paraSpinner;
-    private RobotoButton calcButton;
+    private ImageButton calcButton;
     private int setCalc;
     private int precision;
     //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
@@ -84,6 +87,8 @@ public class ParallelogramFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animate = AnimationUtils.loadAnimation(getActivity(), R.anim.touch_anim);
+                calcButton.startAnimation(animate);
                 pg = new Parallelogram();
 
                 sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -216,7 +221,7 @@ public class ParallelogramFragment extends Fragment {
         input1 = (EditText)rootView.findViewById(R.id.para_input1);
         input2 = (EditText)rootView.findViewById(R.id.para_input2);
         paraSpinner = (Spinner)rootView.findViewById(R.id.para_spinner);
-        calcButton = (RobotoButton)rootView.findViewById(R.id.para_calc_button);
+        calcButton = (ImageButton)rootView.findViewById(R.id.para_calc_button);
         setCalc = 0;
         showParallelogram();
     }

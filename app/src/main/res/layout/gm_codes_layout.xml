@@ -2,41 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    android:divider="@drawable/vertical_separator"
+    android:orientation="horizontal"
+    android:showDividers="middle">
+
+    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+        android:id="@+id/codes_code"
+        style="@style/ListTextView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:showDividers="middle"
-        android:divider="@drawable/vertical_separator">
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/sample" />
 
+    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+        android:id="@+id/codes_desc"
+        style="@style/ListTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="@string/sample" />
 
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:id="@+id/codes_code"
-            android:text="G05P10000"
-            style="@style/ListTextView"/>
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"
-            style="@style/ListTextView"
-            android:text="afdbsdbgnsdgnsgnsgnsbsfgn"
-            android:id="@+id/codes_desc" />
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="M"
-            android:gravity="center"
-            style="@style/ListTextView"
-            android:id="@+id/codes_mill"/>
-
-
-    </LinearLayout>
+    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+        android:id="@+id/codes_mill"
+        style="@style/ListTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/sample" />
 </LinearLayout>

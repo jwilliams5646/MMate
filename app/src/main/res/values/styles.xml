@@ -43,10 +43,6 @@
     <style name="EditTextStyle">
         <item name="android:background">@drawable/edit_text_background</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:layout_marginLeft">4dp</item>
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginRight">16dp</item>
-        <item name="android:layout_marginBottom">4dp</item>
         <item name="android:textColor">@color/TextColor</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_height">wrap_content</item>
@@ -108,8 +104,5 @@
 
     <style name="calc_buttons">
         <item name="android:background">@drawable/calc_button</item>
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
     </style>
 </resources>

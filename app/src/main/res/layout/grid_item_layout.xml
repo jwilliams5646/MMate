@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/TextViewStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/background"
     android:gravity="center"
-    android:padding="8dp"
-    style="@style/TextViewStyle"/>
+    android:padding="8dp" />
 

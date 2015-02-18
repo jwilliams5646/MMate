@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/TextViewStyle"
     android:layout_width="match_parent"
-    android:padding="8dp"
-    android:background="@drawable/spinner_backgrounds"/>
+    android:background="@drawable/spinner_backgrounds"
+    android:padding="8dp" />

@@ -4,120 +4,122 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:baselineAligned="false"
     android:orientation="horizontal">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/linearLayout"
         android:divider="@drawable/horizontal_separator"
+        android:orientation="vertical"
         android:showDividers="middle|beginning|end">
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="All"
             android:id="@+id/drill_all_button"
-            android:textSize="16sp"
-            style="@style/buttons"/>
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            style="@style/buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="#"
+            android:text="@string/all"
+            android:textSize="16sp" />
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
             android:id="@+id/drill_wiregauge_button"
-            style="@style/buttons" />
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            style="@style/buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="ABC"
+            android:text="@string/number"
+            android:textSize="16sp" />
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
             android:id="@+id/drill_letter_button"
-            style="@style/buttons" />
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            style="@style/buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="1/2"
+            android:text="@string/abc"
+            android:textSize="16sp" />
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
             android:id="@+id/drill_fraction_button"
-            style="@style/buttons" />
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
+            style="@style/buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="MM"
+            android:text="@string/fraction_button"
+            android:textSize="16sp" />
+
+        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
             android:id="@+id/drill_metric_button"
-            style="@style/buttons" />
+            style="@style/buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/metric_button"
+            android:textSize="16sp" />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/drill_chart_adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-            ads:adSize="BANNER"/>
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-6986976933268044/5924552212" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_weight="1"
         android:divider="@drawable/horizontal_separator"
+        android:orientation="vertical"
         android:showDividers="middle|beginning|end">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/drill_chart_headers"
-        android:divider="@drawable/vertical_separator"
-        android:showDividers="middle">
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:id="@+id/drill_chart_headers"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/type_header"
-            android:gravity="center"
-            android:text="Wireguage"
-            android:textSize="16sp"
-            style="@style/ListHeaderStyle"/>
+            android:divider="@drawable/vertical_separator"
+            android:orientation="horizontal"
+            android:showDividers="middle">
 
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/standard"
-            style="@style/ListHeaderStyle"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:id="@+id/standard_header" />
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:id="@+id/type_header"
+                style="@style/ListHeaderStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/wiregauge"
+                android:textSize="16sp" />
 
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:layout_width="0dp"
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:id="@+id/standard_header"
+                style="@style/ListHeaderStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/standard"
+                android:textSize="16sp" />
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:id="@+id/metric_header"
+                style="@style/ListHeaderStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/metric"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <GridView
+            android:id="@+id/drill_chart_grid"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/metric"
-            style="@style/ListHeaderStyle"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:id="@+id/metric_header"/>
-    </LinearLayout>
-    <GridView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/drill_chart_grid"
-        android:background="#000000"
-        android:horizontalSpacing="1dp"
-        android:verticalSpacing="1dp"
-        android:numColumns="3"
-        android:clickable="false"
-        android:fastScrollEnabled="true" />
+            android:background="@android:color/black"
+            android:clickable="false"
+            android:fastScrollEnabled="true"
+            android:horizontalSpacing="1dp"
+            android:numColumns="3"
+            android:verticalSpacing="1dp" />
     </LinearLayout>
 </LinearLayout>

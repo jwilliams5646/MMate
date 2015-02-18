@@ -4,24 +4,24 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:id="@+id/text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:minHeight="?android:attr/listPreferredItemHeightSmall"
-            android:paddingLeft="32dp"
-            android:textColor="#999999"
-            android:textSize="18sp"/>
+    <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+        android:id="@+id/text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:textColor="#999999"
+        android:textSize="18sp" />
 
-        <ImageView
-            android:id="@+id/square_image"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight=".1"
-            android:src="@drawable/ic_action_next_item" />
-
-
+    <ImageView
+        android:id="@+id/square_image"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight=".1"
+        android:contentDescription="@string/pick"
+        android:src="@drawable/ic_action_next_item" />
 </LinearLayout>

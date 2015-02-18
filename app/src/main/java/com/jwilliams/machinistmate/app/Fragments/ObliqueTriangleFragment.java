@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -136,6 +138,8 @@ public class ObliqueTriangleFragment extends Fragment {
         questionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animation animate = AnimationUtils.loadAnimation(getActivity(), R.anim.touch_anim);
+                questionButton.startAnimation(animate);
                 Dialog d = new Dialog(getActivity());
 
                 // Set GUI of login screen
@@ -154,6 +158,8 @@ public class ObliqueTriangleFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animate = AnimationUtils.loadAnimation(getActivity(), R.anim.touch_anim);
+                calcButton.startAnimation(animate);
                 ot = new ObliqueTriangle();
                 if(ot.calcObliqueTriangle(sideAInput, sideBInput, sideCInput,
                         angleXInput, angleYInput, angleZInput,
@@ -182,6 +188,8 @@ public class ObliqueTriangleFragment extends Fragment {
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animate = AnimationUtils.loadAnimation(getActivity(), R.anim.touch_anim);
+                clearButton.startAnimation(animate);
                 sideAInput.setText("");
                 sideBInput.setText("");
                 sideCInput.setText("");

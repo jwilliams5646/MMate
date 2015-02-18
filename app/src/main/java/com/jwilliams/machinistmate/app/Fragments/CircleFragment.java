@@ -8,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -86,6 +88,8 @@ public class CircleFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animate = AnimationUtils.loadAnimation(getActivity(), R.anim.touch_anim);
+                calcButton.startAnimation(animate);
                 sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
                 if (validInput()) {

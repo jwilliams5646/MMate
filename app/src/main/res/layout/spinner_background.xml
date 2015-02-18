@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/textView1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textSize="16sp"
     android:padding="4dp"
-    android:text="adfbadfg"
-    android:textColor="@color/TextColor" />
+    android:text="@string/sample"
+    android:textColor="@color/TextColor"
+    android:textSize="16sp" />
 
 

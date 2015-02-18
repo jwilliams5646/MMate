@@ -8,16 +8,18 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton;
 import com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView;
 import com.jwilliams.machinistmate.app.GeometryClasses.ShowImage;
 import com.jwilliams.machinistmate.app.GeometryClasses.Square;
@@ -36,7 +38,7 @@ public class SquareFragment extends Fragment {
     private RobotoTextView answer;
     private Spinner answerChoice;
     private Spinner sideChoice;
-    private RobotoButton calcButton;
+    private ImageButton calcButton;
     private int precision;
     private int sidePos;
     private int answerPos;
@@ -102,6 +104,8 @@ public class SquareFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animate = AnimationUtils.loadAnimation(getActivity(), R.anim.touch_anim);
+                calcButton.startAnimation(animate);
                 sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));                if(validInput()) {
                     Square sq = new Square(inputValue);
@@ -202,7 +206,7 @@ public class SquareFragment extends Fragment {
         answer = (RobotoTextView)rootView.findViewById(R.id.sq_answer);
         answerChoice = (Spinner)rootView.findViewById(R.id.sq_choice);
         sideChoice = (Spinner)rootView.findViewById(R.id.sq_side_choice);
-        calcButton = (RobotoButton)rootView.findViewById(R.id.sq_calc);
+        calcButton = (ImageButton)rootView.findViewById(R.id.sq_calc);
         sidePos = 0;
         answerPos = 0;
         setSquare();

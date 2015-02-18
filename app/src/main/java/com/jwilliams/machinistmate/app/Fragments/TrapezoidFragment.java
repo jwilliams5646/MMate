@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -43,7 +46,7 @@ public class TrapezoidFragment extends Fragment {
     private EditText input2;
     private EditText input3;
     private EditText input4;
-    private RobotoButton calcButton;
+    private ImageButton calcButton;
     private int choice;
     //private static final String TEST_DEVICE_ID = "03f3f1d189532cca";
     private AdView adView;
@@ -82,6 +85,8 @@ public class TrapezoidFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animate = AnimationUtils.loadAnimation(getActivity(), R.anim.touch_anim);
+                calcButton.startAnimation(animate);
                 Trapezoid trap = new Trapezoid();
                 trap.calcTrapezoid(input1, input2, input3, input4, answer, choice, getActivity());
 
@@ -212,7 +217,7 @@ public class TrapezoidFragment extends Fragment {
         input2 = (EditText)rootView.findViewById(R.id.trap_input2);
         input3 = (EditText)rootView.findViewById(R.id.trap_input3);
         input4 = (EditText)rootView.findViewById(R.id.trap_input4);
-        calcButton = (RobotoButton)rootView.findViewById(R.id.trap_calc_button);
+        calcButton = (ImageButton)rootView.findViewById(R.id.trap_calc_button);
         choice = 0;
         showImage();
         setInitialLayout();

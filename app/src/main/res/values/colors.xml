@@ -3,4 +3,6 @@
     <color name="background">#151515</color>
     <color name="TextColor">#999999</color>
     <color name="WhiteSmoke">#F5F5F5</color>
+    <color name="nav_divider">#1b1b1b</color>
+    <color name="nav_background">#171717</color>
 </resources>

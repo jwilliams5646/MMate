@@ -25,7 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="G-codes"
+            android:text="@string/gcode"
             android:textSize="12sp" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="M-codes"
+            android:text="@string/mcode"
             android:textSize="12sp" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoButton
@@ -43,7 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="Letter Address"
+            android:text="@string/letter"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Code" />
+            android:text="@string/code" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:id="@+id/desc_header"
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="3"
-            android:text="Description" />
+            android:text="@string/desc" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:id="@+id/mill_header"
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Type" />
+            android:text="@string/type" />
     </LinearLayout>
 
     <LinearLayout
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Code" />
+            android:text="@string/code" />
 
         <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
             android:id="@+id/gm_desc"
@@ -109,7 +109,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:text="Description" />
+            android:text="@string/desc" />
 
     </LinearLayout>
 

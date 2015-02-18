@@ -5,65 +5,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
-<RelativeLayout
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1">
+
     <ImageView
         android:id="@+id/conv_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    </RelativeLayout>
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="@string/conv_image" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
-    <LinearLayout
-        android:id="@+id/conv_answer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:id="@+id/conv_answer"
-            style="@style/AnswerStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/conv_answer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:id="@+id/conv_answer_type"
-            style="@style/AnswerStyle"
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:id="@+id/conv_answer"
+                style="@style/AnswerStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:id="@+id/conv_answer_type"
+                style="@style/AnswerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="16dp"
+                android:paddingTop="4dp"
+                android:textColor="@color/TextColor"
+                android:textSize="35sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/conv_spinner_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="4dp"
-            android:paddingLeft="4dp"
-            android:paddingRight="16dp"
-            android:paddingTop="4dp"
-            android:textColor="@color/TextColor"
-            android:textSize="35sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/conv_spinner_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal">
 
             <Spinner
                 android:id="@+id/conv_input_spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
-        <ImageView
-            android:id="@+id/too_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_look_over"
-            android:contentDescription="@string/converto"
-            android:layout_gravity="center_vertical" />
+            <ImageView
+                android:id="@+id/too_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/converto"
+                android:src="@drawable/ic_look_over" />
 
             <Spinner
                 android:id="@+id/conv_output_spinner"
@@ -71,61 +70,66 @@
                 android:layout_height="wrap_content" />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/conversion_input_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/conv_spinner_layout"
-        android:orientation="horizontal">
-
-        <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
-            android:id="@+id/conv_input_text"
-            style="@style/TextViewStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:paddingBottom="4dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="4dp"
-            android:paddingTop="4dp"
-            android:text="@string/input" />
-
-        <EditText
-            android:id="@+id/conv_input"
-            style="@style/EditTextStyle"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/conversion_input_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:layout_weight="1"
-            android:hint="@string/in"/>
-    </LinearLayout>
+            android:orientation="horizontal">
+
+            <com.jwilliams.machinistmate.app.ExtendedClasses.RobotoTextView
+                android:id="@+id/conv_input_text"
+                style="@style/TextViewStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingBottom="4dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="4dp"
+                android:paddingTop="4dp"
+                android:text="@string/input" />
+
+            <EditText
+                android:id="@+id/conv_input"
+                style="@style/EditTextStyle"
+                android:layout_width="0dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:hint="@string/in"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
 
 
-    <ImageButton
-        android:id="@+id/conv_calc_button"
-        style="@style/calc_buttons"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="end"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="4dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_calc" />
-
+        <ImageButton
+            android:id="@+id/conv_calc_button"
+            style="@style/calc_buttons"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp"
+            android:contentDescription="@string/calc_button"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_calc" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <com.google.android.gms.ads.AdView
-        android:id="@+id/rt_adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        ads:adUnitId="ca-app-pub-6986976933268044/5924552212"
-        ads:adSize="BANNER"/>
+            android:id="@+id/rt_adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-6986976933268044/5924552212" />
     </LinearLayout>
 
 </LinearLayout>

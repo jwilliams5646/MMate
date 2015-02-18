@@ -88,6 +88,58 @@
     <string name="height">Height(O)</string>
     <string name="or"><b>or</b></string>
 
+    <string name="circle_image">Drawing of a circle</string>
+    <string name="sample">Sample Text</string>
+    <string name="calc_button">Calculate button</string>
+
+    <string name="conv_image">Conversion Image</string>
+    <string name="all">All</string>
+    <string name="number">#</string>
+    <string name="abc">ABC</string>
+    <string name="fraction_button">1/2</string>
+    <string name="metric_button">MM</string>
+    <string name="wiregauge">Wiregauge</string>
+
+    <string name="feeds">Feeds Image</string>
+
+    <string name="gcode">G-codes</string>
+    <string name="mcode">M-codes</string>
+    <string name="letter">Letter Address</string>
+
+    <string name="code">Code</string>
+    <string name="desc">Description</string>
+    <string name="type">Type</string>
+
+    <string name="logo">Logo Image</string>
+
+    <string name="pick">Pick Image</string>
+    <string name="triangle">Triangle Drawing</string>
+    <string name="lower_a">a</string>
+    <string name="lower_x">x</string>
+    <string name="lower_y">y</string>
+    <string name="lower_b">b</string>
+    <string name="lower_c">c</string>
+    <string name="lower_z">z</string>
+
+    <string name="area">Area</string>
+    <string name="height_o">Height</string>
+    <string name="peri">Perimeter</string>
+
+    <string name="question_button">Question Button</string>
+    <string name="clear_button">Clear Button</string>
+
+    <string name="para_image">Parallelogram Image</string>
+    <string name="rect_image">Rectangle Image</string>
+    <string name="right_triangle">Right Triangle Image</string>
+    <string name="geo_image">Geometry Image expanded</string>
+    <string name="ok_button">Ok Button</string>
+    <string name="speeds_image">Speeds Image</string>
+    <string name="square_image">Square Image</string>
+    <string name="trap_image">Trapezoid Image</string>
+
+    <string name="upper_h">H</string>
+    <string name="upper_o">O</string>
+    <string name="upper_a">A</string>
 
     <string name="drill_size_chart"><b>Drill Size Chart</b></string>
 

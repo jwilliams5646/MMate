@@ -9,9 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -46,7 +49,7 @@ public class RectangleFragment extends Fragment {
     private EditText input1;
     private EditText input2;
     private EditText input3;
-    private RobotoButton calcButton;
+    private ImageButton calcButton;
     private int answerPos;
     private int inputPos;
     private int precision;
@@ -95,6 +98,8 @@ public class RectangleFragment extends Fragment {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animate = AnimationUtils.loadAnimation(getActivity(), R.anim.touch_anim);
+                calcButton.startAnimation(animate);
                 rectangle = new Rectangle();
                 sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 precision = Integer.parseInt(sp.getString("pref_key_geometry_precision", "2"));
@@ -383,7 +388,7 @@ public class RectangleFragment extends Fragment {
         input1 = (EditText)rootView.findViewById(R.id.rectangle_input1);
         input2 = (EditText)rootView.findViewById(R.id.rectangle_input2);
         input3 = (EditText)rootView.findViewById(R.id.rectangle_input3);
-        calcButton = (RobotoButton)rootView.findViewById(R.id.rect_calc);
+        calcButton = (ImageButton)rootView.findViewById(R.id.rect_calc);
         answerPos = 0;
         inputPos = 0;
         showRectangle();
